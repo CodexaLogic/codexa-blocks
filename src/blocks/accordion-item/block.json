@@ -1,0 +1,34 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "codexa-blocks/accordion-item",
+	"version": "1.0.0",
+	"title": "Accordion Item",
+	"category": "codexa-blocks",
+	"parent": ["codexa-blocks/accordion"],
+	"description": "One section of an Accordion: a title, and content that shows when the title is opened.",
+	"textdomain": "codexa-blocks",
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"isOpen": {
+			"type": "boolean",
+			"default": false
+		},
+		"hideOn": {
+			"type": "object"
+		}
+	},
+	"usesContext": ["codexa-blocks/onlyOneOpen", "codexa-blocks/titleTag"],
+	"supports": {
+		"html": false,
+		"reusable": false,
+		"anchor": true
+	},
+	"editorScript": "file:./index.js"
+}

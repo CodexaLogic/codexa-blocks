@@ -1,0 +1,105 @@
+/**
+ * Per-device settings, one rule per setting per device.
+ *
+ * ResponsiveStyles (PHP) and its editor twin add a class and a variable for
+ * each device with a value.
+ *
+ *     class="has-codexa-padding-top has-codexa-padding-top-mobile"
+ *     style="--codexa-padding-top:4rem;--codexa-padding-top-mobile:2rem"
+ *
+ * Desktop rules have no media query, tablet rules apply below desktop and
+ * mobile rules below tablet. With equal specificity in that order, each
+ * device inherits from the next larger one through the cascade alone.
+ *
+ * Untouched settings add no rule. Each rule is one class (0,1,0), which
+ * beats WordPress's :where() rules without !important, except margins
+ * (see $boosted and $forced).
+ */
+@use "sass:list";
+@use "mixins" as *;
+
+// Setting name (used in the class and the variable) => CSS property.
+$properties: (
+	"padding-top": padding-top,
+	"padding-right": padding-right,
+	"padding-bottom": padding-bottom,
+	"padding-left": padding-left,
+	"margin-top": margin-top,
+	"margin-right": margin-right,
+	"margin-bottom": margin-bottom,
+	"margin-left": margin-left,
+	"min-height": min-height,
+	"text-align": text-align,
+	"text-color": color,
+	"background-color": background-color,
+	"background-image": background-image,
+	"background-position": background-position,
+	"background-size": background-size,
+	"background-repeat": background-repeat,
+	"background-attachment": background-attachment,
+	"border-style": border-style,
+	"border-color": border-color,
+	"border-width-top": border-top-width,
+	"border-width-right": border-right-width,
+	"border-width-bottom": border-bottom-width,
+	"border-width-left": border-left-width,
+	"border-radius-top-left": border-top-left-radius,
+	"border-radius-top-right": border-top-right-radius,
+	"border-radius-bottom-right": border-bottom-right-radius,
+	"border-radius-bottom-left": border-bottom-left-radius,
+	"box-shadow": box-shadow,
+	"grid-columns": grid-template-columns,
+	"column-gap": column-gap,
+	"row-gap": row-gap,
+	"align-content": align-content,
+	// Not CSS properties. The Row's columns read --codexa-reversed (1 or 0)
+	// to reverse their order, and the first and last read the spans as their
+	// grid-column.
+	"reverse": --codexa-reversed,
+	"first-column-span": --codexa-first-span,
+	"last-column-span": --codexa-last-span,
+);
+
+// Settings that compete with WordPress's spacing between blocks. A block
+// theme prints it as ":root :where(.is-layout-constrained) > *" (0,1,0),
+// after this stylesheet, so a single class would lose. ":root" lifts these
+// to (0,2,0); every device's rule is lifted alike, so the device order
+// above still decides between them.
+$boosted: ("margin-top", "margin-right", "margin-bottom", "margin-left");
+
+// Side margins also need !important. WordPress centers each block in a
+// constrained layout with "margin-left: auto !important" (and right), and
+// no specificity beats !important. Only blocks given a side margin get
+// these rules, and every device's rule is forced alike, so the device
+// order still decides between them.
+$forced: ("margin-right", "margin-left");
+
+// Prints one rule per setting for one device suffix.
+@mixin device-rules($suffix) {
+	@each $name, $property in $properties {
+		$selector: ".has-codexa-#{$name}#{$suffix}";
+		$value: var(--codexa-#{$name}#{$suffix});
+
+		@if list.index($boosted, $name) {
+			$selector: ":root #{$selector}";
+		}
+
+		#{$selector} {
+			@if list.index($forced, $name) {
+				#{$property}: $value !important;
+			} @else {
+				#{$property}: $value;
+			}
+		}
+	}
+}
+
+@include device-rules("");
+
+@include bp-below-desktop {
+	@include device-rules("-tablet");
+}
+
+@include bp-below-tablet {
+	@include device-rules("-mobile");
+}

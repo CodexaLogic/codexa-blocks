@@ -1,0 +1,208 @@
+/**
+ * Gallery, front end and editor.
+ *
+ * The page markup (Render\Gallery) and the editor preview match.
+ *
+ *   .wp-block-codexa-blocks-gallery.is-type-grid.is-shape-3-2.is-captions-below
+ *     .__items                 the list, arranged by the type
+ *       .__item
+ *         figure.__figure
+ *           (a) img.__image
+ *           figcaption.__caption
+ *
+ * A carousel wraps the list in .codexa-carousel (carousel.scss).
+ *
+ * The figure, image and caption rules are shared by every type, and each
+ * type only arranges .__items (Grid and Masonry are below). Settings arrive
+ * as per-device variables, copied into --codexa-gallery-*, whose names
+ * differ so a variable never refers to itself.
+ */
+@use "../../common/scss/mixins" as *;
+
+$gallery: ".wp-block-codexa-blocks-gallery";
+
+// Defaults, set on every gallery so a nested one never inherits the
+// settings of the one around it. Columns default to the block's saved
+// default (block.json), so this is only a fallback.
+:where(#{$gallery}) {
+	--codexa-gallery-column-count: 3;
+	--codexa-gallery-spacing: var(--codexa-space-4);
+
+	@include corner-defaults(
+		--codexa-gallery-image-corner,
+		var(--codexa-radius-sm)
+	);
+
+	--codexa-gallery-image-shadow: none;
+	--codexa-gallery-caption-color: currentcolor;
+	--codexa-gallery-caption-background: transparent;
+
+	@include typography-defaults(--codexa-gallery-caption);
+}
+
+@include device-variable("gallery-columns", --codexa-gallery-column-count);
+@include device-variable("gallery-gap", --codexa-gallery-spacing);
+@include corner-variables("gallery-radius", --codexa-gallery-image-corner);
+@include device-variable("gallery-shadow", --codexa-gallery-image-shadow);
+@include device-variable(
+	"gallery-hover-shadow",
+	--codexa-gallery-image-hover-shadow
+);
+@include device-variable("caption-color", --codexa-gallery-caption-color);
+@include device-variable(
+	"caption-background",
+	--codexa-gallery-caption-background
+);
+@include typography-variables("caption", --codexa-gallery-caption);
+
+#{$gallery}__items {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#{$gallery}__item {
+	margin: 0;
+	min-inline-size: 0;
+
+	// An item an add-on hides, such as with a filter, even where a type
+	// gives items a display of their own.
+	&[hidden] {
+		display: none;
+	}
+}
+
+// The figure is as tall as its image and caption, never stretched to its
+// row, so a caption over the image sits on the image's bottom edge even
+// when images of different heights share a row.
+#{$gallery}__figure {
+	display: flex;
+	flex-direction: column;
+	margin: 0;
+	position: relative;
+}
+
+// The link around an image, when images link somewhere. It takes the
+// image's shape, so its focus outline follows the rounded corners.
+#{$gallery}__link {
+	border-radius: corners(--codexa-gallery-image-corner);
+	display: block;
+
+	&:focus-visible {
+		outline: 2px solid var(--codexa-focus);
+		outline-offset: 2px;
+	}
+}
+
+#{$gallery}__image {
+	block-size: auto;
+	border-radius: corners(--codexa-gallery-image-corner);
+	box-shadow: var(--codexa-gallery-image-shadow);
+	display: block;
+	inline-size: 100%;
+	max-inline-size: 100%;
+}
+
+// The hover shadow, also on keyboard focus of a linked image. Only a
+// gallery with one set gets it; the shadow fades rather than moves, so it
+// stays for visitors who prefer reduced motion.
+#{$gallery}.has-codexa-gallery-hover-shadow #{$gallery}__image {
+	transition: box-shadow var(--codexa-transition-base);
+}
+
+#{$gallery}.has-codexa-gallery-hover-shadow
+	:is(#{$gallery}__figure:hover, #{$gallery}__link:focus-visible)
+	#{$gallery}__image {
+	box-shadow: var(--codexa-gallery-image-hover-shadow);
+}
+
+// A chosen shape crops every image to it, from the center.
+@include image-shapes($gallery, "#{$gallery}__image");
+
+#{$gallery}__caption {
+	background: var(--codexa-gallery-caption-background);
+	color: var(--codexa-gallery-caption-color);
+
+	@include typography(--codexa-gallery-caption);
+
+	margin: var(--codexa-space-2) 0 0;
+}
+
+// Captions over the image sit along its bottom edge, as light text on a
+// dark fade. A chosen caption background or text color replaces them.
+#{$gallery}.is-captions-overlay #{$gallery}__caption {
+	background: var(
+		--codexa-gallery-caption-overlay,
+		linear-gradient(transparent, rgb(0 0 0 / 70%))
+	);
+	border-bottom-left-radius: var(--codexa-gallery-image-corner-bottom-left);
+	border-bottom-right-radius: var(--codexa-gallery-image-corner-bottom-right);
+	color: var(--codexa-gallery-caption-overlay-color, #fff);
+	inset: auto 0 0;
+	margin: 0;
+	padding: var(--codexa-space-6) var(--codexa-space-4) var(--codexa-space-3);
+	position: absolute;
+}
+
+.has-codexa-caption-background {
+	--codexa-gallery-caption-overlay: var(--codexa-gallery-caption-background);
+}
+
+.has-codexa-caption-color {
+	--codexa-gallery-caption-overlay-color: var(--codexa-gallery-caption-color);
+}
+
+// Grid uses even columns per device, which Masonry starts from too.
+#{$gallery}:is(.is-type-grid, .is-type-masonry) > #{$gallery}__items {
+	display: grid;
+	gap: var(--codexa-gallery-spacing);
+	grid-template-columns: repeat(
+		var(--codexa-gallery-column-count),
+		minmax(0, 1fr)
+	);
+}
+
+// Masonry keeps each image's shape and puts it in the shortest column.
+// Browsers with CSS masonry do it here. Others use gallery-masonry.js
+// (masonry-layout.js), which adds .is-masonry-placed, the list's height and
+// each item's column and top. Without either it's an even grid.
+#{$gallery}.is-type-masonry > #{$gallery}__items {
+	align-items: start;
+
+	@supports (display: grid-lanes) {
+		display: grid-lanes;
+	}
+}
+
+#{$gallery}.is-type-masonry > #{$gallery}__items.is-masonry-placed {
+	$gap: var(--codexa-gallery-spacing);
+	$columns: var(--codexa-gallery-column-count);
+
+	// One column's share of the width, with the gap after it.
+	--codexa-masonry-lane: calc((100% + #{$gap}) / #{$columns});
+
+	block-size: var(--codexa-masonry-height);
+	display: block;
+	position: relative;
+
+	> #{$gallery}__item {
+		inline-size: calc(var(--codexa-masonry-lane) - #{$gap});
+		inset-block-start: var(--codexa-masonry-top);
+		inset-inline-start: calc(
+			var(--codexa-masonry-lane) * var(--codexa-masonry-column)
+		);
+		position: absolute;
+	}
+}
+
+// A carousel (carousel.scss) shows as many images as the columns, with the
+// gallery's spacing, and leaves room below for the images' shadows.
+#{$gallery} .codexa-carousel {
+	--codexa-carousel-per-view: var(--codexa-gallery-column-count);
+	--codexa-carousel-gap: var(--codexa-gallery-spacing);
+}
+
+#{$gallery}:is(.has-codexa-gallery-shadow, .has-codexa-gallery-hover-shadow)
+	.codexa-carousel {
+	--codexa-carousel-bleed: var(--codexa-space-6);
+}

@@ -1,0 +1,171 @@
+/**
+ * The carousel any block can show its list as (Utilities\Carousel), on the
+ * page and in the editor. Imported by carousel-view.js, built to
+ * build/assets/common/css/carousel.css and loaded with each block that has
+ * a carousel. It uses the shared stylesheet's tokens.
+ *
+ *   .codexa-carousel.is-carousel-ready
+ *     .codexa-carousel__track      the block's list, one item per position
+ *     .codexa-carousel__controls   arrows on either side of the dots, and a status message
+ *
+ * A block sets these on its .codexa-carousel:
+ * - --codexa-carousel-per-view  items in view, e.g. its columns.
+ * - --codexa-carousel-gap       space between items.
+ * - --codexa-carousel-align     an item's alignment in the row.
+ * - --codexa-carousel-bleed     room below the row for shadows.
+ */
+@use "mixins" as *;
+
+$carousel: ".codexa-carousel";
+
+:where(#{$carousel}) {
+	--codexa-carousel-per-view: 1;
+	--codexa-carousel-gap: var(--codexa-space-4);
+	--codexa-carousel-align: start;
+	--codexa-carousel-bleed: 4px;
+}
+
+// A row that scrolls sideways and snaps to each item, with no script. The
+// padding leaves room for a link's focus outline, and below it for
+// shadows, which the scrolling would otherwise cut off. Once the script
+// has added the arrows and dots, the scrollbar hides.
+#{$carousel} > #{$carousel}__track {
+	$per-view: var(--codexa-carousel-per-view);
+	$gap: var(--codexa-carousel-gap);
+
+	align-items: var(--codexa-carousel-align);
+	display: grid;
+	gap: $gap;
+	grid-auto-columns: calc(
+		(100% - (#{$per-view} - 1) * #{$gap}) / #{$per-view}
+	);
+	grid-auto-flow: column;
+	grid-template-columns: none;
+	overflow-x: auto;
+	overscroll-behavior-x: contain;
+	padding: 4px 4px var(--codexa-carousel-bleed);
+	scroll-padding-inline: 4px;
+	scroll-snap-type: x mandatory;
+
+	> * {
+		scroll-snap-align: start;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--codexa-focus);
+		outline-offset: 2px;
+	}
+}
+
+#{$carousel}.is-carousel-ready > #{$carousel}__track {
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+// In the text color, under the row.
+#{$carousel}__controls {
+	align-items: center;
+	display: flex;
+	gap: var(--codexa-space-3);
+	justify-content: center;
+	margin-block-start: var(--codexa-space-3);
+
+	&[hidden] {
+		display: none;
+	}
+}
+
+#{$carousel}__arrow,
+#{$carousel}__dot {
+	background: transparent;
+	border: 0;
+	color: inherit;
+	cursor: pointer;
+	display: grid;
+	flex: none;
+	padding: 0;
+	place-items: center;
+
+	&:focus-visible {
+		outline: 2px solid var(--codexa-focus);
+		outline-offset: 2px;
+	}
+
+	&[hidden] {
+		display: none;
+	}
+}
+
+// Round, at least 44px for touch. Unavailable at the first and last slide,
+// but still focusable, so focus isn't lost there.
+#{$carousel}__arrow {
+	block-size: 2.75rem;
+	border: 1px solid currentcolor;
+	border-radius: var(--codexa-radius-pill);
+	inline-size: 2.75rem;
+	transition: background-color var(--codexa-transition-fast);
+
+	svg {
+		block-size: 1.5rem;
+		fill: currentcolor;
+		inline-size: 1.5rem;
+	}
+
+	&:dir(rtl) svg {
+		transform: scaleX(-1);
+	}
+
+	&:hover:not([aria-disabled="true"]) {
+		background: color-mix(in srgb, currentcolor 10%, transparent);
+	}
+
+	&[aria-disabled="true"] {
+		cursor: default;
+		opacity: 0.4;
+	}
+}
+
+#{$carousel}__dots {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+
+	&[hidden] {
+		display: none;
+	}
+}
+
+// A ring, filled for the slide in view, in a 24px target.
+#{$carousel}__dot {
+	block-size: 1.5rem;
+	border-radius: 50%;
+	inline-size: 1.5rem;
+
+	&::before {
+		block-size: 0.625rem;
+		border: 2px solid currentcolor;
+		border-radius: 50%;
+		box-sizing: border-box;
+		content: "";
+		inline-size: 0.625rem;
+		transition: background-color var(--codexa-transition-fast);
+	}
+
+	&[aria-current="true"]::before {
+		background: currentcolor;
+	}
+}
+
+#{$carousel}__status {
+	@include visually-hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	#{$carousel}__arrow,
+	#{$carousel}__dot::before {
+		transition: none;
+	}
+}

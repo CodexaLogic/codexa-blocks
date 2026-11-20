@@ -1,0 +1,170 @@
+/**
+ * The lightbox (lightbox.js), a <dialog> over the page, built once at the
+ * end of the body. Imported by the script, built to
+ * build/assets/common/css/lightbox.css and loaded by Utilities\Lightbox
+ * only where needed. It uses the shared stylesheet's tokens.
+ *
+ *   dialog.codexa-lightbox
+ *     button.__close
+ *     .__stage > figure.__figure > img.__image + figcaption.__caption
+ *     button.__previous, button.__next
+ *     p.__counter
+ */
+
+@use "mixins" as *;
+
+$lightbox: ".codexa-lightbox";
+
+// The page behind doesn't scroll while the viewer is open.
+:root:has(#{$lightbox}[open]) {
+	overflow: hidden;
+}
+// Its background is a backdrop: the site's default from the Colors page,
+// or the gallery's own, which lightbox.js copies over when it opens. The
+// defaults must match BackdropSettings::backdrops().
+#{$lightbox} {
+	@include backdrop(lightbox-backdrop, #000, 0.85);
+	block-size: 100dvh;
+	border: 0;
+	color: #fff;
+	inline-size: 100vw;
+	inset: 0;
+	margin: 0;
+	max-block-size: none;
+	max-inline-size: none;
+	padding: 0;
+
+	// The dialog itself is the background.
+	&::backdrop {
+		background: transparent;
+	}
+
+	@media (prefers-reduced-motion: no-preference) {
+		&[open] {
+			animation: codexa-lightbox-in 0.2s ease-out;
+		}
+	}
+
+	[hidden] {
+		display: none;
+	}
+}
+
+@keyframes codexa-lightbox-in {
+	from {
+		opacity: 0;
+	}
+}
+
+// Room around the image for the buttons, more on wider screens.
+#{$lightbox}__stage {
+	block-size: 100%;
+	box-sizing: border-box;
+	display: grid;
+	padding: 3.5rem 0.75rem;
+	place-items: center;
+	// Sideways swipes go to the script; pinch zoom still works.
+	touch-action: pan-y pinch-zoom;
+
+	@media (min-width: 48rem) {
+		padding: 3.5rem 4.5rem;
+	}
+}
+
+#{$lightbox}__figure {
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	gap: var(--codexa-space-3);
+	margin: 0;
+	max-block-size: 100%;
+	min-block-size: 0;
+}
+
+#{$lightbox}__image {
+	block-size: auto;
+	inline-size: auto;
+	max-block-size: calc(100dvh - 9rem);
+	max-inline-size: 100%;
+	object-fit: contain;
+}
+
+// The caption and counter sit on dark panels, so their white text stays
+// readable (4.5:1 or more) on a light or see-through background too.
+#{$lightbox}__caption,
+#{$lightbox}__counter {
+	background: rgb(0 0 0 / 70%);
+	border-radius: var(--codexa-radius-sm);
+	font-size: var(--codexa-font-size-xs);
+	padding: var(--codexa-space-1) var(--codexa-space-2);
+}
+
+#{$lightbox}__caption {
+	max-inline-size: 60ch;
+	text-align: center;
+}
+
+#{$lightbox}__counter {
+	inset-block-end: var(--codexa-space-3);
+	inset-inline-start: 50%;
+	margin: 0;
+	position: absolute;
+	translate: -50% 0;
+}
+
+// Round buttons, at least 44px for touch.
+#{$lightbox}__close,
+#{$lightbox}__previous,
+#{$lightbox}__next {
+	align-items: center;
+	background: rgb(0 0 0 / 50%);
+	block-size: 2.75rem;
+	border: 1px solid rgb(255 255 255 / 35%);
+	border-radius: 50%;
+	color: inherit;
+	cursor: pointer;
+	display: flex;
+	inline-size: 2.75rem;
+	justify-content: center;
+	padding: 0;
+	position: absolute;
+
+	&:hover {
+		background: rgb(0 0 0 / 80%);
+	}
+
+	&:focus-visible {
+		outline: 2px solid #fff;
+		outline-offset: 2px;
+	}
+
+	svg {
+		block-size: 1.5rem;
+		fill: currentcolor;
+		inline-size: 1.5rem;
+	}
+}
+
+#{$lightbox}__close {
+	inset-block-start: var(--codexa-space-3);
+	inset-inline-end: var(--codexa-space-3);
+}
+
+#{$lightbox}__previous,
+#{$lightbox}__next {
+	inset-block-start: 50%;
+	translate: 0 -50%;
+}
+
+#{$lightbox}__previous {
+	inset-inline-start: var(--codexa-space-3);
+}
+
+#{$lightbox}__next {
+	inset-inline-end: var(--codexa-space-3);
+}
+
+// The arrows point the other way on right-to-left pages.
+[dir="rtl"] :is(#{$lightbox}__previous, #{$lightbox}__next) svg {
+	scale: -1 1;
+}

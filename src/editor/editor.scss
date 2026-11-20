@@ -1,0 +1,1140 @@
+/**
+ * Styles for the editor's sidebar controls, shared (src/shared/components)
+ * and block-specific. Loaded on enqueue_block_editor_assets, outside the
+ * canvas, where these controls live.
+ */
+
+.codexa-device-switcher {
+	display: inline-flex;
+	gap: 2px;
+}
+
+.codexa-responsive-control {
+	margin-bottom: 16px;
+}
+
+.codexa-responsive-control__header {
+	align-items: center;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 8px;
+
+	.components-base-control__label {
+		margin-bottom: 0;
+	}
+}
+
+.codexa-responsive-control__actions {
+	align-items: center;
+	display: inline-flex;
+	gap: 4px;
+}
+
+// A control's own buttons after the device switcher, such as BoxFields' link.
+.codexa-responsive-control__extra {
+	display: contents;
+}
+
+.codexa-color-control {
+	border: 0;
+	margin: 0 0 16px;
+	min-width: 0;
+	padding: 0;
+
+	legend {
+		margin-bottom: 8px;
+		padding: 0;
+	}
+}
+
+.codexa-background-image {
+	display: grid;
+	gap: 8px;
+}
+
+.codexa-background-image__actions,
+.codexa-background-video-control__actions {
+	display: flex;
+	gap: 8px;
+}
+
+// The background video's file name, above its buttons.
+.codexa-background-video-control__file {
+	margin: 0 0 8px;
+	overflow-wrap: anywhere;
+}
+
+// Space before the overlay setting, as between WordPress's own controls.
+.codexa-background-video-control {
+	margin-bottom: 16px;
+}
+
+// A size with presets as one compact field (SizeField.jsx). It shows the
+// size in use and opens the presets and a custom size. Inherited sizes on
+// tablet and mobile are dimmed.
+.codexa-size-field {
+	display: block;
+	min-width: 0;
+}
+
+.codexa-size-field__toggle {
+	align-items: center;
+	background: #fff;
+	border: 1px solid #949494;
+	border-radius: 2px;
+	color: #1e1e1e;
+	cursor: pointer;
+	display: flex;
+	font: inherit;
+	font-size: 13px;
+	font-weight: 500;
+	gap: 2px;
+	height: 36px;
+	justify-content: space-between;
+	padding: 0 4px 0 8px;
+	width: 100%;
+
+	&:hover {
+		border-color: #1e1e1e;
+	}
+
+	&:focus-visible,
+	&[aria-expanded="true"] {
+		border-color: var(--wp-admin-theme-color);
+		box-shadow: 0 0 0 1px var(--wp-admin-theme-color);
+		outline: none;
+	}
+
+	&.is-inherited .codexa-size-field__value {
+		color: #757575;
+		font-weight: 400;
+	}
+}
+
+.codexa-size-field__arrow {
+	fill: currentcolor;
+	flex: none;
+}
+
+.codexa-size-field__value {
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.codexa-size-field__popover .components-popover__content {
+	min-width: 220px;
+	padding: 8px;
+}
+
+.codexa-size-field__size {
+	color: #757575;
+	font-size: 12px;
+}
+
+// The custom size below the presets.
+.codexa-size-field__custom {
+	border-top: 1px solid #e0e0e0;
+	margin-top: 8px;
+	padding: 12px 8px 4px;
+}
+
+.codexa-size-field__custom-label {
+	display: block;
+	font-size: 11px;
+	font-weight: 500;
+	margin-bottom: 8px;
+	text-transform: uppercase;
+}
+
+// The sides of a padding or margin, or the corners of a radius
+// (BoxFields.jsx).
+.codexa-box-fields {
+	display: grid;
+	gap: 8px;
+}
+
+// Without a header to sit in, the link button sits above the fields, on the right.
+.codexa-box-fields > .codexa-box-fields__link.components-button {
+	justify-self: end;
+}
+
+// One field, its side or corner icon and then the field (BoxFields.jsx).
+.codexa-box-fields__row {
+	align-items: center;
+	display: flex;
+	gap: 8px;
+
+	> :last-child {
+		flex: 1;
+		min-width: 0;
+	}
+}
+
+.codexa-box-fields__icon {
+	color: #1e1e1e;
+	flex: none;
+}
+
+// Sides or corners with presets have their fields on one row, one column
+// each, or one field across the row while linked. Below each field, the
+// icon and the name of its side or corner.
+.codexa-box-fields__fields {
+	display: grid;
+	gap: 4px;
+	grid-auto-columns: minmax(0, 1fr);
+	grid-auto-flow: column;
+
+	// In narrow fields the size and the arrow get all the room.
+	.codexa-size-field__toggle {
+		font-size: 12px;
+		padding-inline: 6px 2px;
+	}
+}
+
+.codexa-box-fields__field {
+	display: grid;
+	gap: 4px;
+	min-width: 0;
+}
+
+.codexa-box-fields__caption {
+	align-items: center;
+	color: #757575;
+	display: flex;
+	font-size: 10px;
+	gap: 2px;
+	justify-content: center;
+	line-height: 1.2;
+	min-width: 0;
+
+	svg {
+		fill: currentcolor;
+		flex: none;
+	}
+}
+
+// A name too long for its column, such as Bottom right, wraps rather than
+// being cut off.
+.codexa-box-fields__name {
+	min-width: 0;
+	text-align: center;
+}
+
+// Every item lines up whether or not it has the check of the chosen size.
+.codexa-size-field__popover .components-menu-item__button:not(.has-icon) {
+	padding-inline-start: 36px;
+}
+
+// While linked, what comes before the fields (the border's color and
+// style) shares the row with the one field.
+.codexa-box-fields__inline {
+	align-items: center;
+	display: flex;
+	gap: 8px;
+
+	> .codexa-box-fields__row {
+		flex: 1;
+		min-width: 0;
+	}
+}
+
+// The border's color and its style as a sample of the line (BorderControl.jsx).
+.codexa-border-control__lead {
+	align-items: center;
+	display: flex;
+	flex: none;
+	gap: 4px;
+}
+
+.codexa-border-control__style.components-button {
+	border: 1px solid #949494;
+	border-radius: 2px;
+	color: #1e1e1e;
+	height: 40px;
+	justify-content: center;
+	min-width: 0;
+	padding: 0 10px;
+}
+
+.codexa-border-control__sample {
+	border-top-color: currentcolor;
+	border-top-width: 4px;
+	display: block;
+	inline-size: 24px;
+}
+
+.codexa-border-control__choice .components-menu-item__item {
+	align-items: center;
+	display: flex;
+	gap: 12px;
+
+	.codexa-border-control__sample {
+		inline-size: 32px;
+	}
+}
+
+// The Row's layouts as pictures, three to a line (row/LayoutChoices.jsx).
+// The pictures are drawn in currentColor, so the chosen one turns white on
+// the theme color with the button's text.
+.codexa-layout-choices {
+	display: grid;
+	gap: 8px;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.codexa-layout-choices__choice.components-button {
+	border: 1px solid #949494;
+	border-radius: 2px;
+	color: #949494;
+	height: auto;
+	justify-content: center;
+	padding: 8px;
+
+	&:hover:not(.is-pressed) {
+		border-color: var(--wp-admin-theme-color);
+		color: var(--wp-admin-theme-color);
+	}
+
+	&.is-pressed,
+	&.is-pressed:hover {
+		background: var(--wp-admin-theme-color);
+		border-color: var(--wp-admin-theme-color);
+		color: #fff;
+	}
+
+	svg {
+		display: block;
+		height: auto;
+		width: 100%;
+	}
+}
+
+// The Row's column widths as small fields, three to a line, under its
+// layouts (row/ColumnWidths.jsx).
+.codexa-column-widths {
+	margin-top: 16px;
+}
+
+.codexa-column-widths__fields {
+	display: grid;
+	gap: 8px;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin-top: 8px;
+}
+
+// The icon picker (IconPicker.jsx), a button with the current icon and its
+// name, and a window with search and a grid of named icons.
+.codexa-icon-picker {
+	align-items: center;
+	display: flex;
+	gap: 8px;
+}
+
+.codexa-icon-picker__toggle.components-button {
+	gap: 8px;
+	min-width: 0;
+
+	svg,
+	> span:first-child:empty {
+		block-size: 24px;
+		flex: none;
+		inline-size: 24px;
+	}
+}
+
+// An add-on's links at the bottom of the window (IconPickerActions), kept
+// in view while the icons scroll.
+.codexa-icon-picker__actions {
+	align-items: center;
+	background: #fff;
+	border-top: 1px solid #e0e0e0;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 16px;
+	inset-block-end: 0;
+	margin-top: 16px;
+	padding-block: 12px;
+	position: sticky;
+}
+
+// A short note beside an add-on's link.
+.codexa-icon-picker__actions-note {
+	color: #757575;
+	font-size: 12px;
+}
+
+.codexa-icon-picker__filters {
+	align-items: end;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	margin-bottom: 8px;
+
+	> :first-child {
+		flex: 1 1 240px;
+	}
+}
+
+// Outline / Solid, as two joined buttons.
+.codexa-icon-picker__styles {
+	display: flex;
+
+	.components-button {
+		height: 40px;
+
+		&:first-child {
+			border-end-end-radius: 0;
+			border-start-end-radius: 0;
+		}
+
+		&:last-child {
+			border-end-start-radius: 0;
+			border-start-start-radius: 0;
+			margin-inline-start: -1px;
+		}
+	}
+}
+
+.codexa-icon-picker__count {
+	color: #757575;
+	font-size: 12px;
+	margin: 0 0 8px;
+}
+
+.codexa-icon-picker__grid {
+	display: grid;
+	gap: 4px;
+	grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+}
+
+.codexa-icon-picker__item.components-button {
+	align-content: center;
+	display: grid;
+	gap: 6px;
+	height: auto;
+	justify-items: center;
+	min-height: 84px;
+	padding: 8px 4px;
+
+	svg {
+		block-size: 32px;
+		inline-size: 32px;
+	}
+}
+
+.codexa-icon-picker__name {
+	font-size: 11px;
+	line-height: 1.3;
+	overflow-wrap: anywhere;
+	text-align: center;
+}
+
+// "None" is an empty circle with a line through it, the size of an icon.
+.codexa-icon-picker__none {
+	block-size: 32px;
+	border: 1.5px solid currentcolor;
+	border-radius: 50%;
+	inline-size: 32px;
+	position: relative;
+
+	&::after {
+		background: currentcolor;
+		block-size: 1.5px;
+		content: "";
+		inset: 50% -2px auto;
+		position: absolute;
+		transform: rotate(-45deg);
+	}
+}
+
+// A sentence at the top of a panel saying what its settings do, styled
+// like a control's help text.
+.codexa-panel-description {
+	color: #757575;
+	font-size: 12px;
+	margin: 0 0 16px;
+}
+
+// The Column's hover effects, each switch with its settings under it.
+.codexa-hover-effect {
+	display: grid;
+	gap: 12px;
+	margin-bottom: 16px;
+
+	.codexa-panel-description {
+		margin: 0;
+	}
+}
+
+// The Gallery's type pictures (TypePicker.jsx), two to a line, each with
+// its name underneath. Same colors as the Row's layout pictures above.
+.codexa-type-picker {
+	display: grid;
+	gap: 8px;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.codexa-type-picker__choice.components-button {
+	border: 1px solid #949494;
+	border-radius: 2px;
+	color: #1e1e1e;
+	flex-direction: column;
+	gap: 6px;
+	height: auto;
+	justify-content: center;
+	padding: 10px 8px 8px;
+
+	&:hover:not(.is-pressed) {
+		border-color: var(--wp-admin-theme-color);
+		color: var(--wp-admin-theme-color);
+	}
+
+	&.is-pressed,
+	&.is-pressed:hover {
+		background: var(--wp-admin-theme-color);
+		border-color: var(--wp-admin-theme-color);
+		color: #fff;
+	}
+}
+
+.codexa-type-picker__picture svg {
+	display: block;
+	fill: currentcolor;
+	height: 32px;
+	width: 48px;
+}
+
+.codexa-type-picker__title {
+	font-size: 12px;
+}
+
+// The Gallery's images in the sidebar (gallery/ImageList.jsx).
+.codexa-gallery-images {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.codexa-gallery-images__item {
+	border-top: 1px solid #e0e0e0;
+	margin: 0;
+	padding: 8px 0;
+
+	&:first-child {
+		border-top: 0;
+		padding-top: 0;
+	}
+
+	.components-base-control {
+		margin-top: 8px;
+	}
+}
+
+.codexa-gallery-images__row {
+	align-items: center;
+	display: flex;
+	gap: 4px;
+}
+
+// Inside the list, to beat the editor's own "img { height: auto }".
+.codexa-gallery-images .codexa-gallery-images__thumbnail {
+	background: #f0f0f0;
+	border-radius: 2px;
+	flex: none;
+	height: 36px;
+	object-fit: cover;
+	width: 36px;
+}
+
+.codexa-gallery-images__name {
+	flex: 1;
+	min-width: 0;
+	overflow: hidden;
+	padding-inline-start: 4px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.codexa-gallery-images__note {
+	color: #757575;
+	font-size: 12px;
+	margin: 4px 0 0;
+}
+
+// The Links panel's rows (ImageLinks.jsx), each a button that opens the
+// image's link settings.
+.codexa-gallery-images.is-links {
+	margin-top: 16px;
+
+	.codexa-gallery-images__item {
+		padding: 0;
+
+		&:first-child {
+			border-top: 1px solid #e0e0e0;
+		}
+
+		&:last-child {
+			border-bottom: 1px solid #e0e0e0;
+		}
+	}
+}
+
+.components-button.codexa-gallery-images__toggle {
+	gap: 8px;
+	height: auto;
+	padding: 8px 4px;
+	text-align: start;
+	width: 100%;
+
+	&:focus:not(:disabled) {
+		box-shadow: inset 0 0 0 var(--wp-admin-border-width-focus)
+			var(--wp-admin-theme-color);
+	}
+}
+
+.codexa-gallery-images__status {
+	display: inline-flex;
+	flex: none;
+
+	&.is-empty {
+		color: #757575;
+		font-size: 12px;
+	}
+}
+
+.codexa-gallery-images__details {
+	padding-bottom: 12px;
+}
+
+// A Codexa block's sidebar tabs (InspectorTabs.jsx), equal widths with
+// the icon above the name. WordPress fixes tabs at 48px, so the 20px icon
+// and 12px name fit inside.
+.codexa-inspector-tabs .components-tab-panel__tabs {
+	border-bottom: 1px solid #e0e0e0; // WordPress's panel divider gray
+}
+
+// WordPress's Advanced panel (HTML anchor, CSS classes, Additional CSS)
+// follows the tabs, so it ends the Advanced tab; while another tab is open,
+// it's hidden (see InspectorTabs.jsx).
+.block-editor-block-inspector:has(
+		.codexa-inspector-tabs__advanced[aria-selected="false"]
+	)
+	.block-editor-block-inspector__advanced {
+	display: none;
+}
+
+.codexa-inspector-tabs .components-tab-panel__tabs-item.components-button {
+	flex: 1 1 0;
+	flex-direction: column;
+	font-size: 12px;
+	gap: 2px;
+	justify-content: center;
+	line-height: 16px;
+	padding-inline: 4px;
+}
+
+// Color settings as rows of circles (ColorRows.jsx).
+.codexa-color-rows {
+	border: 1px solid #e0e0e0;
+	border-radius: 2px;
+	margin-bottom: 16px;
+}
+
+.codexa-color-row {
+	align-items: center;
+	display: flex;
+	gap: 8px;
+	justify-content: space-between;
+	min-height: 40px;
+	padding: 4px 8px 4px 12px;
+
+	& + & {
+		border-top: 1px solid #e0e0e0;
+	}
+}
+
+.codexa-color-row__swatches {
+	display: flex;
+	gap: 4px;
+}
+
+// The state names (Normal, Hover…) above the circles, one per column.
+// Wider gaps leave room for a name longer than its circle.
+.codexa-color-rows__states {
+	color: #757575;
+	display: flex;
+	font-size: 11px;
+	gap: 12px;
+	justify-content: flex-end;
+	line-height: 16px;
+	padding: 8px 8px 0 12px;
+
+	span {
+		display: flex;
+		inline-size: 32px;
+		justify-content: center;
+		white-space: nowrap;
+	}
+}
+
+.codexa-color-rows.has-states .codexa-color-row__swatches {
+	gap: 12px;
+}
+
+.codexa-color-swatch.components-button {
+	border-radius: 50%;
+	height: 32px;
+	justify-content: center;
+	min-width: 0;
+	padding: 0;
+	width: 32px;
+}
+
+// The color over a checkerboard, so a see-through color shows as one; an
+// unset color is a white circle struck through.
+.codexa-color-swatch__color {
+	background:
+		linear-gradient(var(--codexa-swatch), var(--codexa-swatch)),
+		repeating-conic-gradient(#e0e0e0 0% 25%, #fff 0% 50%) 50% / 8px 8px;
+	block-size: 24px;
+	border-radius: 50%;
+	box-shadow: inset 0 0 0 1px rgb(0 0 0 / 20%);
+	display: block;
+	inline-size: 24px;
+
+	&.is-empty {
+		background:
+			linear-gradient(
+				-45deg,
+				transparent calc(50% - 1px),
+				#949494 calc(50% - 1px) calc(50% + 1px),
+				transparent calc(50% + 1px)
+			),
+			#fff;
+	}
+
+	// A gradient is already an image, so it goes straight over the board.
+	&.is-gradient {
+		background:
+			var(--codexa-swatch),
+			repeating-conic-gradient(#e0e0e0 0% 25%, #fff 0% 50%) 50% / 8px 8px;
+	}
+}
+
+.codexa-color-swatch__popover {
+	padding: 16px;
+	width: 260px;
+}
+
+// The block icons' brand color (blockIcon()) is an inline style. On the
+// List View's selected row the icon takes the row's text color instead,
+// white on the admin color, like WordPress's own blocks. Only !important
+// outranks an inline style.
+.block-editor-list-view-leaf.is-selected .block-editor-block-icon.has-colors {
+	color: inherit !important;
+}
+
+// The link field (LinkSearchControl.jsx). In the sidebar, the same space
+// below it as WordPress puts below its own controls; the popover spaces
+// its rows itself.
+.block-editor-block-inspector .codexa-link-search:not(:last-child) {
+	margin-bottom: 16px;
+}
+
+// The search results, under the field. The highlighted result uses the
+// admin color, like WordPress's own lists.
+.codexa-link-search__results {
+	background: #fff;
+	border: 1px solid #949494;
+	border-radius: 2px;
+	list-style: none;
+	margin: 4px 0 0;
+	max-height: 15rem;
+	overflow-y: auto;
+	padding: 4px 0;
+}
+
+.codexa-link-search__result {
+	align-items: baseline;
+	cursor: pointer;
+	display: flex;
+	gap: 8px;
+	justify-content: space-between;
+	margin: 0;
+	padding: 8px 12px;
+
+	&[aria-selected="true"] {
+		background: var(--wp-admin-theme-color);
+		color: #fff;
+	}
+}
+
+.codexa-link-search__title {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+.codexa-link-search__type {
+	color: #757575;
+	flex-shrink: 0;
+	font-size: 12px;
+
+	[aria-selected="true"] > & {
+		color: inherit;
+	}
+}
+
+// The toolbar's link popover (LinkToolbar.jsx).
+.codexa-link-popover__body {
+	display: grid;
+	gap: 16px;
+	padding: 16px;
+	width: min(22rem, calc(100vw - 2rem));
+}
+
+.codexa-link-popover__actions {
+	display: flex;
+	gap: 8px;
+	justify-content: flex-end;
+}
+
+// Our own sidebar pieces that sit between the editor's controls get the
+// same 16px below them that the block inspector gives its controls.
+.block-editor-block-inspector
+	:is(.codexa-posts-fallback, .codexa-pro-note):where(:not(:last-child)) {
+	margin-bottom: 16px;
+}
+
+// The Posts block's fallback image (posts/edit.jsx), its label and then the
+// buttons side by side.
+.codexa-posts-fallback {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.codexa-posts-fallback__label {
+	flex-basis: 100%;
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 1.4;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+// "Available in Pro" notes (ProNote.jsx), the badge and a short title,
+// then a description and Learn more.
+.codexa-pro-note {
+	color: #50575e;
+	display: grid;
+	font-size: 13px;
+	gap: 8px;
+	line-height: 1.4;
+}
+
+.codexa-pro-note__description {
+	margin: 0;
+}
+
+.codexa-pro-note__line {
+	align-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.codexa-pro-note__badge {
+	align-items: center;
+	border: 1px solid var(--wp-admin-theme-color);
+	border-radius: 999px;
+	color: var(--wp-admin-theme-color);
+	display: inline-flex;
+	flex-shrink: 0;
+	font-size: 11px;
+	font-weight: 600;
+	gap: 3px;
+	letter-spacing: 0.02em;
+	padding: 2px 10px;
+
+	svg {
+		fill: currentcolor;
+	}
+}
+
+// Only the words are clickable, not the note's whole width.
+.codexa-pro-note__link {
+	color: var(--wp-admin-theme-color);
+	font-weight: 600;
+	justify-self: start;
+	text-underline-offset: 0.2em;
+	white-space: nowrap;
+
+	&:is(:hover, :focus) {
+		color: var(--wp-admin-theme-color-darker-10);
+	}
+
+	[aria-hidden="true"] {
+		margin-inline-start: 0.25em;
+	}
+}
+
+// A custom size, a slider with the number and unit beside it, like core's
+// Minimum height (LengthControl.jsx).
+.codexa-length-input__row {
+	align-items: center;
+	display: flex;
+	gap: 12px;
+}
+
+.codexa-length-input__slider {
+	flex: 1;
+	min-width: 0;
+}
+
+// The number and unit as one field, like core's unit fields, with one
+// border, the unit on the right and focus on the whole field.
+.codexa-length-input__number {
+	border: 1px solid #949494;
+	border-radius: 2px;
+	display: flex;
+	flex: 0 0 112px;
+
+	// Without the slider (compact), the field takes the row.
+	&:only-child {
+		flex: 1 1 auto;
+	}
+
+	height: 40px;
+	overflow: hidden;
+
+	&:focus-within {
+		border-color: var(--wp-admin-theme-color);
+		box-shadow: 0 0 0 0.5px var(--wp-admin-theme-color);
+	}
+
+	> :first-child {
+		flex: 1;
+		min-width: 0;
+	}
+
+	// The number has no border or spin buttons, since the slider and arrow keys
+	// step it.
+	.components-text-control__input {
+		appearance: textfield;
+		border: 0;
+		box-shadow: none;
+		height: 38px;
+		min-height: 38px;
+		padding: 0 4px 0 10px;
+
+		&:focus {
+			box-shadow: none;
+		}
+
+		&::-webkit-inner-spin-button,
+		&::-webkit-outer-spin-button {
+			appearance: none;
+			margin: 0;
+		}
+	}
+
+	// The unit's dropdown, borderless inside the field.
+	.components-select-control {
+		flex: 0 0 auto;
+	}
+
+	.components-select-control__input,
+	.components-input-control__container {
+		background: transparent;
+	}
+
+	.components-select-control__input {
+		height: 38px;
+		min-height: 38px;
+		padding-left: 4px;
+		width: 52px;
+	}
+
+	// WordPress styles the dropdown's border with generated classes, so
+	// this names the select control too, to outrank them.
+	.components-select-control
+		.components-input-control__backdrop.components-input-control__backdrop {
+		border-color: transparent;
+	}
+}
+
+// The only unit, as a label where a dropdown would be (border widths).
+.codexa-length-input__unit {
+	align-items: center;
+	color: #1e1e1e;
+	display: flex;
+	font-size: 13px;
+	padding: 0 12px 0 4px;
+}
+
+.codexa-length-input__note {
+	color: #757575;
+	font-size: 12px;
+	margin: 8px 0 0;
+}
+
+// Shadow presets as a row of buttons, each a small tile wearing its
+// shadow (ShadowControl.jsx). The chosen one is filled with the admin
+// color around its tile.
+.codexa-shadow-control {
+	border: 0;
+	margin: 0 0 16px;
+	min-width: 0;
+	padding: 0;
+}
+
+.codexa-shadow-control__choices {
+	display: grid;
+	gap: 6px;
+	grid-template-columns: repeat(auto-fill, minmax(36px, 1fr));
+}
+
+.codexa-shadow-control__choice.components-button {
+	border-radius: 2px;
+	box-shadow: inset 0 0 0 1px #ddd;
+	height: 40px;
+	justify-content: center;
+	min-width: 0;
+	// Keeps a preset's blur inside its button.
+	overflow: hidden;
+	padding: 0;
+
+	&.is-pressed {
+		background: var(--wp-admin-theme-color);
+	}
+}
+
+.codexa-shadow-control__tile {
+	background: #fff;
+	border-radius: 2px;
+	display: block;
+	height: 18px;
+	width: 18px;
+
+	// No shadow, an outlined tile with a slash.
+	&.is-empty {
+		background: linear-gradient(
+			to top right,
+			#fff calc(50% - 0.75px),
+			#cc1818 calc(50% - 0.75px) calc(50% + 0.75px),
+			#fff calc(50% + 0.75px)
+		);
+		box-shadow: inset 0 0 0 1px #949494;
+	}
+}
+
+// The shadow's Color row (ColorRows.jsx), below the chosen preset's name
+// and help.
+.codexa-shadow-control__color {
+	margin-top: 12px;
+
+	.codexa-color-rows {
+		margin-bottom: 0;
+	}
+}
+
+.codexa-shadow-control__chosen,
+.codexa-shadow-control__help {
+	color: #757575;
+	font-size: 12px;
+	margin: 6px 0 0;
+}
+
+// The Dividers panel (DividerControls.jsx), each edge's shapes as buttons
+// with a picture, then its settings.
+.codexa-divider-control {
+	display: grid;
+	gap: 16px;
+	margin-block-end: 24px;
+
+	.codexa-color-rows {
+		margin-bottom: 0;
+	}
+}
+
+.codexa-divider-control__shapes {
+	border: 0;
+	margin: 0;
+	min-width: 0;
+	padding: 0;
+}
+
+.codexa-divider-control__choices {
+	display: grid;
+	gap: 6px;
+	grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
+}
+
+// Tiles stay light when chosen, since core's dark pressed button would hide
+// the shape. The chosen one gets a ring and the admin color.
+.codexa-divider-control__choice.components-button {
+	&,
+	&:hover:not(:disabled),
+	&.is-pressed,
+	&.is-pressed:hover:not(:disabled) {
+		background: #f0f0f0;
+		color: #757575;
+	}
+
+	border-radius: 2px;
+	box-shadow: inset 0 0 0 1px #ddd;
+	height: 40px;
+	justify-content: center;
+	min-width: 0;
+	overflow: hidden;
+	padding: 0;
+	position: relative;
+
+	&.is-pressed,
+	&.is-pressed:hover:not(:disabled) {
+		box-shadow: inset 0 0 0 2px var(--wp-admin-theme-color);
+		color: var(--wp-admin-theme-color);
+	}
+}
+
+// The shape fills the lower part of its button, the way it sits on an
+// edge; a top divider's is turned upside down, at the top.
+.codexa-divider-control__shape.codexa-divider-control__shape {
+	fill: currentcolor;
+	height: 55%;
+	inset-inline: 0;
+	position: absolute;
+	width: 100%;
+
+	&.is-bottom {
+		bottom: 0;
+	}
+
+	&.is-top {
+		top: 0;
+		transform: scaleY(-1);
+	}
+}
+
+// None, a slashed box.
+.codexa-divider-control__none {
+	background: linear-gradient(
+		to top right,
+		transparent calc(50% - 0.75px),
+		#cc1818 calc(50% - 0.75px) calc(50% + 0.75px),
+		transparent calc(50% + 0.75px)
+	);
+	box-shadow: inset 0 0 0 1px #949494;
+	display: block;
+	height: 18px;
+	width: 18px;
+}
+
+.codexa-divider-control__chosen {
+	color: #757575;
+	font-size: 12px;
+	margin: 6px 0 0;
+}

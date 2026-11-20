@@ -1,0 +1,251 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "codexa-blocks/posts",
+	"version": "1.0.0",
+	"title": "Posts",
+	"category": "codexa-blocks",
+	"description": "The latest posts or pages in a grid or carousel, each with its image, title, date and excerpt, filtered by category or tag.",
+	"keywords": ["posts", "latest", "blog", "news", "pages", "grid", "carousel", "slider"],
+	"textdomain": "codexa-blocks",
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"postType": {
+			"type": "string",
+			"default": "post"
+		},
+		"taxonomy": {
+			"type": "string",
+			"default": ""
+		},
+		"terms": {
+			"type": "array",
+			"items": {
+				"type": "integer"
+			},
+			"default": []
+		},
+		"count": {
+			"type": "integer",
+			"default": 6
+		},
+		"orderBy": {
+			"type": "string",
+			"enum": ["date", "modified", "title", "menu_order"],
+			"default": "date"
+		},
+		"order": {
+			"type": "string",
+			"enum": ["asc", "desc"],
+			"default": "desc"
+		},
+		"excludeCurrent": {
+			"type": "boolean",
+			"default": true
+		},
+		"layout": {
+			"type": "string",
+			"enum": ["grid", "carousel"],
+			"default": "grid"
+		},
+		"carousel": {
+			"type": "object"
+		},
+		"columns": {
+			"type": "object",
+			"default": {
+				"desktop": 3,
+				"tablet": 2,
+				"mobile": 1
+			}
+		},
+		"gap": {
+			"type": "object"
+		},
+		"showImage": {
+			"type": "boolean",
+			"default": true
+		},
+		"imageShape": {
+			"type": "string",
+			"enum": ["original", "1-1", "3-2", "4-3", "16-9", "2-3", "3-4"],
+			"default": "3-2"
+		},
+		"imageSize": {
+			"type": "string",
+			"default": "medium_large"
+		},
+		"imageRadius": {
+			"type": "object"
+		},
+		"fallbackImageId": {
+			"type": "integer",
+			"default": 0
+		},
+		"showTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"titleLevel": {
+			"type": "string",
+			"enum": ["h2", "h3", "h4", "h5", "h6"],
+			"default": "h3"
+		},
+		"showDate": {
+			"type": "boolean",
+			"default": true
+		},
+		"showExcerpt": {
+			"type": "boolean",
+			"default": true
+		},
+		"excerptLength": {
+			"type": "integer",
+			"default": 20
+		},
+		"showReadMore": {
+			"type": "boolean",
+			"default": false
+		},
+		"readMoreText": {
+			"type": "string",
+			"default": ""
+		},
+		"cardBackground": {
+			"type": "string"
+		},
+		"cardPadding": {
+			"type": "object"
+		},
+		"contentPadding": {
+			"type": "object"
+		},
+		"cardRadius": {
+			"type": "object"
+		},
+		"cardShadow": {
+			"type": "string"
+		},
+		"cardShadowColor": {
+			"type": "string"
+		},
+		"cardHoverShadow": {
+			"type": "string"
+		},
+		"cardHoverShadowColor": {
+			"type": "string"
+		},
+		"titleColor": {
+			"type": "string"
+		},
+		"titleHoverColor": {
+			"type": "string"
+		},
+		"titleTypography": {
+			"type": "object"
+		},
+		"dateColor": {
+			"type": "string"
+		},
+		"dateTypography": {
+			"type": "object"
+		},
+		"excerptColor": {
+			"type": "string"
+		},
+		"excerptTypography": {
+			"type": "object"
+		},
+		"readMoreStyle": {
+			"type": "string",
+			"enum": ["link", "button"],
+			"default": "link"
+		},
+		"readMoreColor": {
+			"type": "string"
+		},
+		"readMoreHoverColor": {
+			"type": "string"
+		},
+		"readMoreBackground": {
+			"type": "string"
+		},
+		"readMoreHoverBackground": {
+			"type": "string"
+		},
+		"readMoreTypography": {
+			"type": "object"
+		},
+		"readMorePadding": {
+			"type": "object"
+		},
+		"readMoreRadius": {
+			"type": "object"
+		},
+		"margin": {
+			"type": "object"
+		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"backgroundGradient": {
+			"type": "string"
+		},
+		"borderWidth": {
+			"type": "object"
+		},
+		"borderStyle": {
+			"type": "string",
+			"enum": ["solid", "dashed", "dotted", "double"]
+		},
+		"borderColor": {
+			"type": "string"
+		},
+		"borderRadius": {
+			"type": "object"
+		},
+		"padding": {
+			"type": "object"
+		},
+		"backgroundImage": {
+			"type": "object"
+		},
+		"backgroundPosition": {
+			"type": "object"
+		},
+		"backgroundSize": {
+			"type": "string",
+			"enum": ["cover", "contain", "auto"]
+		},
+		"backgroundRepeat": {
+			"type": "string",
+			"enum": ["no-repeat", "repeat"]
+		},
+		"backgroundAttachment": {
+			"type": "string",
+			"enum": ["scroll", "fixed"]
+		},
+		"overlayColor": {
+			"type": "object"
+		},
+		"overlayGradient": {
+			"type": "object"
+		},
+		"overlayOpacity": {
+			"type": "object"
+		},
+		"hideOn": {
+			"type": "object"
+		}
+	},
+	"usesContext": ["postId"],
+	"supports": {
+		"align": ["wide", "full"],
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"style": ["codexa-blocks-common", "file:./style-index.css"]
+}

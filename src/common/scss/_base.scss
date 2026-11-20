@@ -1,0 +1,13 @@
+/**
+ * Base styles shared by every Codexa block.
+ *
+ * :where() keeps the selectors at zero specificity, so a theme can change
+ * any of this with a plain selector.
+ */
+
+:where([class*="wp-block-codexa-blocks-"]),
+:where([class*="wp-block-codexa-blocks-"]) *,
+:where([class*="wp-block-codexa-blocks-"]) *::before,
+:where([class*="wp-block-codexa-blocks-"]) *::after {
+	box-sizing: border-box;
+}

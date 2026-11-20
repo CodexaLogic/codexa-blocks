@@ -1,0 +1,8 @@
+/**
+ * Accordion, editor canvas only. Loaded through block.json "editorStyle".
+ */
+
+.wp-block-codexa-blocks-accordion > .block-list-appender {
+	align-self: flex-start;
+	position: static;
+}

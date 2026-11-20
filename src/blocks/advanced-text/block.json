@@ -1,0 +1,130 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "codexa-blocks/advanced-text",
+	"version": "1.0.0",
+	"title": "Advanced Text",
+	"category": "codexa-blocks",
+	"description": "Text as a paragraph, heading or other element, with an optional icon before or after it, its own typography, colors, spacing per device and a link.",
+	"keywords": ["text", "heading", "paragraph", "icon", "title"],
+	"textdomain": "codexa-blocks",
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"content": {
+			"type": "string",
+			"default": "",
+			"role": "content"
+		},
+		"tagName": {
+			"type": "string",
+			"enum": ["p", "h1", "h2", "h3", "h4", "h5", "h6", "div", "span"],
+			"default": "p"
+		},
+		"textAlign": {
+			"type": "object"
+		},
+		"icon": {
+			"type": "string",
+			"default": "none"
+		},
+		"iconPosition": {
+			"type": "string",
+			"enum": ["start", "end"],
+			"default": "start"
+		},
+		"iconSize": {
+			"type": "object"
+		},
+		"iconGap": {
+			"type": "object"
+		},
+		"iconLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"typography": {
+			"type": "object"
+		},
+		"textColor": {
+			"type": "string"
+		},
+		"textHoverColor": {
+			"type": "string"
+		},
+		"linkColor": {
+			"type": "string"
+		},
+		"linkHoverColor": {
+			"type": "string"
+		},
+		"iconColor": {
+			"type": "string"
+		},
+		"iconHoverColor": {
+			"type": "string"
+		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"backgroundGradient": {
+			"type": "string"
+		},
+		"borderWidth": {
+			"type": "object"
+		},
+		"borderStyle": {
+			"type": "string",
+			"enum": ["solid", "dashed", "dotted", "double"]
+		},
+		"borderColor": {
+			"type": "string"
+		},
+		"borderRadius": {
+			"type": "object"
+		},
+		"padding": {
+			"type": "object"
+		},
+		"margin": {
+			"type": "object"
+		},
+		"linkPostId": {
+			"type": "integer"
+		},
+		"linkPostType": {
+			"type": "string"
+		},
+		"linkUrl": {
+			"type": "string"
+		},
+		"linkAnchor": {
+			"type": "string"
+		},
+		"linkOpensInNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"linkRel": {
+			"type": "array",
+			"default": []
+		},
+		"hideOn": {
+			"type": "object"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"example": {
+		"attributes": {
+			"content": "Free delivery on every order",
+			"tagName": "h3",
+			"icon": "codexa/truck"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": ["codexa-blocks-common", "file:./style-index.css"]
+}

@@ -1,0 +1,86 @@
+/**
+ * Shape dividers along a block's top or bottom edge (Utilities\Dividers,
+ * dividers.js in the editor).
+ *
+ * The SVG fills a box the block's width and the divider's height
+ * (preserveAspectRatio "none"), drawn for the bottom edge and turned upside
+ * down on top. It sits behind the content unless set in front, and never
+ * takes a click.
+ */
+@use "mixins" as *;
+
+// The block holds its dividers. Heights are reset here, so a block inside
+// another one with dividers doesn't take its heights.
+:where(.has-codexa-dividers) {
+	--codexa-divider-top-size: initial;
+	--codexa-divider-bottom-size: initial;
+
+	isolation: isolate;
+	position: relative;
+}
+
+// Each divider's height per device (Dividers::apply()). Its own name, so
+// the variable never refers to itself.
+@include device-variable("divider-top-height", --codexa-divider-top-size);
+@include device-variable("divider-bottom-height", --codexa-divider-bottom-size);
+
+.codexa-divider {
+	// A height that suits most screens until one is set.
+	--codexa-divider-default-size: clamp(3rem, 8vw, 6rem);
+
+	border-radius: inherit;
+	inset-inline: 0;
+	line-height: 0;
+	overflow: hidden;
+	pointer-events: none;
+	position: absolute;
+	z-index: -1;
+
+	&.is-top {
+		block-size: var(
+			--codexa-divider-top-size,
+			var(--codexa-divider-default-size)
+		);
+
+		// 1px past the edge, so no hairline of the block shows at any zoom.
+		inset-block-start: -1px;
+	}
+
+	&.is-bottom {
+		block-size: var(
+			--codexa-divider-bottom-size,
+			var(--codexa-divider-default-size)
+		);
+		inset-block-end: -1px;
+	}
+
+	&.is-in-front {
+		z-index: 1;
+	}
+}
+
+// The shape is centered, as wide as the stretch, and flipped with two
+// scales, leaving the translate property free for add-ons' motion.
+.codexa-divider__shape {
+	--codexa-divider-flip: 1;
+	--codexa-divider-turn: 1;
+
+	block-size: 100%;
+	display: block;
+	fill: var(--codexa-divider-color, var(--codexa-white));
+	inline-size: var(--codexa-divider-stretch, 100%);
+
+	// Physical, not logical, so it's centered the same way in either direction.
+	left: 50%;
+	position: absolute;
+	transform: translateX(-50%)
+		scale(var(--codexa-divider-flip), var(--codexa-divider-turn));
+
+	.is-flipped > & {
+		--codexa-divider-flip: -1;
+	}
+
+	.is-top > & {
+		--codexa-divider-turn: -1;
+	}
+}

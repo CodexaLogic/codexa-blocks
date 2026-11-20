@@ -1,0 +1,158 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "codexa-blocks/count-up",
+	"version": "1.0.0",
+	"title": "Count Up",
+	"category": "codexa-blocks",
+	"description": "An animated number that counts up when it scrolls into view, with an optional title. For stats, milestones and results.",
+	"keywords": ["counter", "number", "stat", "statistic", "animated"],
+	"textdomain": "codexa-blocks",
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"start": {
+			"type": "number",
+			"default": 0
+		},
+		"end": {
+			"type": "number",
+			"default": 100
+		},
+		"decimals": {
+			"type": "number",
+			"default": 0
+		},
+		"prefix": {
+			"type": "string",
+			"default": ""
+		},
+		"suffix": {
+			"type": "string",
+			"default": ""
+		},
+		"thousandsSeparator": {
+			"type": "string",
+			"enum": [",", ".", " ", ""],
+			"default": ","
+		},
+		"decimalSeparator": {
+			"type": "string",
+			"enum": [".", ","],
+			"default": "."
+		},
+		"duration": {
+			"type": "number",
+			"default": 2.5
+		},
+		"displayTitle": {
+			"type": "boolean",
+			"default": true
+		},
+		"title": {
+			"type": "string",
+			"default": ""
+		},
+		"titleTag": {
+			"type": "string",
+			"enum": ["div", "h2", "h3", "h4", "h5", "h6"],
+			"default": "div"
+		},
+		"titlePosition": {
+			"type": "string",
+			"enum": ["above", "below"],
+			"default": "below"
+		},
+		"textAlign": {
+			"type": "object",
+			"default": {
+				"desktop": "center"
+			}
+		},
+		"titleGap": {
+			"type": "object"
+		},
+		"numberTypography": {
+			"type": "object"
+		},
+		"titleTypography": {
+			"type": "object"
+		},
+		"numberColor": {
+			"type": "string"
+		},
+		"titleColor": {
+			"type": "string"
+		},
+		"padding": {
+			"type": "object"
+		},
+		"margin": {
+			"type": "object"
+		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"backgroundGradient": {
+			"type": "string"
+		},
+		"borderWidth": {
+			"type": "object"
+		},
+		"borderStyle": {
+			"type": "string",
+			"enum": ["solid", "dashed", "dotted", "double"]
+		},
+		"borderColor": {
+			"type": "string"
+		},
+		"borderRadius": {
+			"type": "object"
+		},
+		"backgroundImage": {
+			"type": "object"
+		},
+		"backgroundPosition": {
+			"type": "object"
+		},
+		"backgroundSize": {
+			"type": "string",
+			"enum": ["cover", "contain", "auto"]
+		},
+		"backgroundRepeat": {
+			"type": "string",
+			"enum": ["no-repeat", "repeat"]
+		},
+		"backgroundAttachment": {
+			"type": "string",
+			"enum": ["scroll", "fixed"]
+		},
+		"overlayColor": {
+			"type": "object"
+		},
+		"overlayGradient": {
+			"type": "object"
+		},
+		"overlayOpacity": {
+			"type": "object"
+		},
+		"hideOn": {
+			"type": "object"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"example": {
+		"attributes": {
+			"end": 1250,
+			"suffix": "+",
+			"title": "Happy customers"
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": ["codexa-blocks-common", "file:./style-index.css"],
+	"viewScript": "file:./view.js"
+}

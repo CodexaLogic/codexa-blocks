@@ -1,0 +1,173 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "codexa-blocks/accordion",
+	"version": "1.0.0",
+	"title": "Accordion",
+	"category": "codexa-blocks",
+	"description": "Collapsible sections for FAQs and details, with the option to keep only one open at a time.",
+	"keywords": [
+		"accordion",
+		"faq",
+		"collapsible",
+		"expandable",
+		"toggle",
+		"section",
+		"details"
+	],
+	"textdomain": "codexa-blocks",
+	"allowedBlocks": ["codexa-blocks/accordion-item"],
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"onlyOneOpen": {
+			"type": "boolean",
+			"default": false
+		},
+		"icon": {
+			"type": "string",
+			"enum": ["chevron", "plus", "none"],
+			"default": "chevron"
+		},
+		"iconPosition": {
+			"type": "string",
+			"enum": ["end", "start"],
+			"default": "end"
+		},
+		"titleTag": {
+			"type": "string",
+			"enum": ["span", "h2", "h3", "h4", "h5", "h6"],
+			"default": "span"
+		},
+		"titleColor": {
+			"type": "string"
+		},
+		"titleBackground": {
+			"type": "string"
+		},
+		"titleBorderColor": {
+			"type": "string"
+		},
+		"titleHoverColor": {
+			"type": "string"
+		},
+		"titleHoverBackground": {
+			"type": "string"
+		},
+		"titleHoverBorderColor": {
+			"type": "string"
+		},
+		"titleOpenColor": {
+			"type": "string"
+		},
+		"titleOpenBackground": {
+			"type": "string"
+		},
+		"titleOpenBorderColor": {
+			"type": "string"
+		},
+		"titleBorderWidth": {
+			"type": "object"
+		},
+		"titleBorderRadius": {
+			"type": "object"
+		},
+		"titlePadding": {
+			"type": "object"
+		},
+		"titleTypography": {
+			"type": "object"
+		},
+		"iconColor": {
+			"type": "string"
+		},
+		"contentColor": {
+			"type": "string"
+		},
+		"contentLinkColor": {
+			"type": "string"
+		},
+		"contentLinkHoverColor": {
+			"type": "string"
+		},
+		"contentBackground": {
+			"type": "string"
+		},
+		"contentBorderColor": {
+			"type": "string"
+		},
+		"contentBorderWidth": {
+			"type": "object"
+		},
+		"contentBorderRadius": {
+			"type": "object"
+		},
+		"contentPadding": {
+			"type": "object"
+		},
+		"itemGap": {
+			"type": "object"
+		},
+		"padding": {
+			"type": "object"
+		},
+		"margin": {
+			"type": "object"
+		},
+		"borderWidth": {
+			"type": "object"
+		},
+		"borderStyle": {
+			"type": "string",
+			"enum": ["solid", "dashed", "dotted", "double"]
+		},
+		"borderColor": {
+			"type": "string"
+		},
+		"borderRadius": {
+			"type": "object"
+		},
+		"backgroundImage": {
+			"type": "object"
+		},
+		"backgroundPosition": {
+			"type": "object"
+		},
+		"backgroundSize": {
+			"type": "string",
+			"enum": ["cover", "contain", "auto"]
+		},
+		"backgroundRepeat": {
+			"type": "string",
+			"enum": ["no-repeat", "repeat"]
+		},
+		"backgroundAttachment": {
+			"type": "string",
+			"enum": ["scroll", "fixed"]
+		},
+		"overlayColor": {
+			"type": "object"
+		},
+		"overlayGradient": {
+			"type": "object"
+		},
+		"overlayOpacity": {
+			"type": "object"
+		},
+		"hideOn": {
+			"type": "object"
+		}
+	},
+	"providesContext": {
+		"codexa-blocks/onlyOneOpen": "onlyOneOpen",
+		"codexa-blocks/titleTag": "titleTag"
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": ["codexa-blocks-common", "file:./style-index.css"]
+}

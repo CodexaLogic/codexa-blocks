@@ -1,0 +1,10 @@
+/**
+ * Shared front-end stylesheet that every block relies on. Built by Vite to
+ * build/assets/common/css/common.css and registered as "codexa-blocks-common",
+ * which every block style depends on, so its rules print once per page.
+ */
+@use "scss/variables";
+@use "scss/base";
+@use "scss/responsive";
+@use "scss/design";
+@use "scss/dividers";

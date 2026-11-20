@@ -1,0 +1,308 @@
+/**
+ * Posts, front end and editor.
+ *
+ * The page markup (Render\Posts) and the editor preview match.
+ *
+ *   .wp-block-codexa-blocks-posts.is-shape-3-2
+ *     (.codexa-carousel)         with the Carousel layout (carousel.scss)
+ *     ul.__items
+ *       li.__item
+ *         article.__post            the card
+ *           a.__image-link > img.__image
+ *           .__body
+ *             h3.__title > a
+ *             time.__date
+ *             p.__excerpt
+ *             a.__more
+ *
+ * Settings arrive as per-device variables, copied into --codexa-posts-*,
+ * whose names differ so a variable never refers to itself.
+ */
+@use "../../common/scss/mixins" as *;
+
+$posts: ".wp-block-codexa-blocks-posts";
+$sides: top, right, bottom, left;
+
+// Defaults, set on every block so a nested one never inherits the settings
+// of the one around it. Columns default to the block's saved default
+// (block.json), so this is only a fallback.
+:where(#{$posts}) {
+	--codexa-posts-column-count: 3;
+	--codexa-posts-spacing: var(--codexa-space-6);
+	--codexa-posts-card-background: transparent;
+	--codexa-posts-card-shadow: none;
+	--codexa-posts-title-color: currentcolor;
+	--codexa-posts-title-hover-color: var(--codexa-posts-title-color);
+	--codexa-posts-date-color: currentcolor;
+	--codexa-posts-excerpt-color: currentcolor;
+	--codexa-posts-more-background: var(--codexa-primary);
+	--codexa-posts-more-hover-background: #{hover-shade(
+			var(--codexa-posts-more-background)
+		)};
+	--codexa-posts-more-padding-top: var(--codexa-space-2);
+	--codexa-posts-more-padding-right: var(--codexa-space-4);
+	--codexa-posts-more-padding-bottom: var(--codexa-space-2);
+	--codexa-posts-more-padding-left: var(--codexa-space-4);
+
+	@include corner-defaults(--codexa-posts-card-corner, 0);
+	@include corner-defaults(
+		--codexa-posts-image-corner,
+		var(--codexa-radius-sm)
+	);
+	@include corner-defaults(
+		--codexa-posts-more-corner,
+		var(--codexa-radius-sm)
+	);
+
+	@each $side in $sides {
+		--codexa-posts-card-padding-#{$side}: 0;
+		--codexa-posts-body-padding-#{$side}: 0;
+	}
+
+	@include typography-defaults(--codexa-posts-title);
+	@include typography-defaults(--codexa-posts-date);
+	@include typography-defaults(--codexa-posts-excerpt);
+	@include typography-defaults(--codexa-posts-more);
+}
+
+@include device-variable("posts-columns", --codexa-posts-column-count);
+@include device-variable("posts-gap", --codexa-posts-spacing);
+@include device-variable("card-background", --codexa-posts-card-background);
+@include corner-variables("card-radius", --codexa-posts-card-corner);
+@include device-variable("card-shadow", --codexa-posts-card-shadow);
+@include device-variable("card-hover-shadow", --codexa-posts-card-hover-shadow);
+@include device-variable("title-color", --codexa-posts-title-color);
+@include device-variable("title-hover-color", --codexa-posts-title-hover-color);
+@include device-variable("date-color", --codexa-posts-date-color);
+@include device-variable("excerpt-color", --codexa-posts-excerpt-color);
+@include device-variable("more-color", --codexa-posts-more-color);
+@include device-variable("more-hover-color", --codexa-posts-more-hover-color);
+@include device-variable("more-background", --codexa-posts-more-background);
+@include device-variable(
+	"more-hover-background",
+	--codexa-posts-more-hover-background
+);
+@include corner-variables("more-radius", --codexa-posts-more-corner);
+@include typography-variables("title", --codexa-posts-title);
+@include typography-variables("date", --codexa-posts-date);
+@include typography-variables("excerpt", --codexa-posts-excerpt);
+@include typography-variables("more", --codexa-posts-more);
+
+@include corner-variables("posts-image-radius", --codexa-posts-image-corner);
+
+@each $side in $sides {
+	@include device-variable(
+		"card-padding-#{$side}",
+		--codexa-posts-card-padding-#{$side}
+	);
+	@include device-variable(
+		"posts-content-padding-#{$side}",
+		--codexa-posts-body-padding-#{$side}
+	);
+	@include device-variable(
+		"more-padding-#{$side}",
+		--codexa-posts-more-padding-#{$side}
+	);
+}
+
+#{$posts}__items {
+	display: grid;
+	gap: var(--codexa-posts-spacing);
+	grid-template-columns: repeat(
+		var(--codexa-posts-column-count),
+		minmax(0, 1fr)
+	);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#{$posts}__item {
+	display: flex;
+	margin: 0;
+	min-inline-size: 0;
+}
+
+// A carousel (carousel.scss) shows as many cards as the columns, with the
+// block's spacing, all the same height, and leaves room below for their
+// shadows.
+#{$posts} .codexa-carousel {
+	--codexa-carousel-per-view: var(--codexa-posts-column-count);
+	--codexa-carousel-gap: var(--codexa-posts-spacing);
+	--codexa-carousel-align: stretch;
+}
+
+#{$posts}:is(.has-codexa-card-shadow, .has-codexa-card-hover-shadow)
+	.codexa-carousel {
+	--codexa-carousel-bleed: var(--codexa-space-6);
+}
+
+// Cards in a row are the same height; with a padding set, the space inside
+// is the same on every side of the image and text.
+#{$posts}__post {
+	background: var(--codexa-posts-card-background);
+	border-radius: corners(--codexa-posts-card-corner);
+	box-shadow: var(--codexa-posts-card-shadow);
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: var(--codexa-space-4);
+	padding: var(--codexa-posts-card-padding-top)
+		var(--codexa-posts-card-padding-right)
+		var(--codexa-posts-card-padding-bottom)
+		var(--codexa-posts-card-padding-left);
+}
+
+// The hover shadow, also while a link in the card has keyboard focus. Only
+// a block with one set gets it; the shadow fades rather than moves, so it
+// stays for visitors who prefer reduced motion.
+#{$posts}.has-codexa-card-hover-shadow #{$posts}__post {
+	transition: box-shadow var(--codexa-transition-base);
+}
+
+#{$posts}.has-codexa-card-hover-shadow
+	#{$posts}__post:is(:hover, :has(:focus-visible)) {
+	box-shadow: var(--codexa-posts-card-hover-shadow);
+}
+
+// The image link takes the image's shape, so its outline follows the
+// rounded corners. It only shows with a mouse, since the keyboard skips it
+// when the title links to the same post.
+#{$posts}__image-link {
+	border-radius: corners(--codexa-posts-image-corner);
+	display: block;
+
+	&:focus-visible {
+		outline: 2px solid var(--codexa-focus);
+		outline-offset: 2px;
+	}
+}
+
+#{$posts}__image {
+	block-size: auto;
+	border-radius: corners(--codexa-posts-image-corner);
+	display: block;
+	inline-size: 100%;
+	max-inline-size: 100%;
+}
+
+@include image-shapes($posts, "#{$posts}__image");
+
+// Content padding spaces the text alone, so the image can reach the card's
+// edges while the text keeps its distance.
+#{$posts}__body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: var(--codexa-space-2);
+	padding: var(--codexa-posts-body-padding-top)
+		var(--codexa-posts-body-padding-right)
+		var(--codexa-posts-body-padding-bottom)
+		var(--codexa-posts-body-padding-left);
+}
+
+#{$posts}__title {
+	margin: 0;
+}
+
+// The theme's heading styles apply until the block sets its own. A theme
+// without a heading size gets Medium, as :where() lets any theme rule win.
+:where(#{$posts}__title) {
+	font-size: var(--codexa-font-size-md);
+}
+
+@include typography-when-set(
+	"title",
+	--codexa-posts-title,
+	$posts,
+	"#{$posts}__title"
+);
+
+// Inside the block's class too, so a theme's content link rule, often
+// `.entry-content a`, doesn't restyle the titles.
+#{$posts} #{$posts}__title {
+	a {
+		color: var(--codexa-posts-title-color);
+		text-decoration: none;
+
+		&:is(:hover, :focus) {
+			color: var(--codexa-posts-title-hover-color);
+			text-decoration: underline;
+		}
+	}
+}
+
+#{$posts}__date {
+	color: var(--codexa-posts-date-color);
+	font-size: var(--codexa-font-size-xs);
+}
+
+@include typography-when-set(
+	"date",
+	--codexa-posts-date,
+	$posts,
+	"#{$posts}__date"
+);
+
+#{$posts}__excerpt {
+	color: var(--codexa-posts-excerpt-color);
+	margin: 0;
+}
+
+@include typography-when-set(
+	"excerpt",
+	--codexa-posts-excerpt,
+	$posts,
+	"#{$posts}__excerpt"
+);
+
+// Pushed to the bottom of the card, so Read more lines up across a row.
+#{$posts}__more {
+	align-self: flex-start;
+	font-weight: var(--codexa-font-weight-bold);
+	margin-block-start: auto;
+}
+
+// As a button, a filled box in the brand color until the block sets its own.
+#{$posts}.is-more-button #{$posts}__more {
+	background: var(--codexa-posts-more-background);
+	border-radius: corners(--codexa-posts-more-corner);
+	color: var(--codexa-on-primary);
+	padding: var(--codexa-posts-more-padding-top)
+		var(--codexa-posts-more-padding-right)
+		var(--codexa-posts-more-padding-bottom)
+		var(--codexa-posts-more-padding-left);
+	text-decoration: none;
+
+	&:is(:hover, :focus) {
+		background: var(--codexa-posts-more-hover-background);
+		text-decoration: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--codexa-focus);
+		outline-offset: 2px;
+	}
+}
+
+// Colors only where the block sets them, so a link keeps the theme's link
+// color otherwise. After the button rules, which they override.
+#{$posts}.has-codexa-more-color #{$posts}__more {
+	color: var(--codexa-posts-more-color);
+}
+
+#{$posts}.has-codexa-more-hover-color #{$posts}__more:is(:hover, :focus) {
+	color: var(--codexa-posts-more-hover-color);
+}
+
+@include typography-when-set(
+	"more",
+	--codexa-posts-more,
+	$posts,
+	"#{$posts}__more"
+);
+
+// Read out with the link text, hidden on screen.
+#{$posts}__hidden {
+	@include visually-hidden;
+}

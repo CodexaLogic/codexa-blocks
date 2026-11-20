@@ -1,0 +1,122 @@
+/**
+ * Row styles, on the front end and in the editor.
+ *
+ * The outer element is the row band (padding, margin, minimum height); the
+ * inner element is the grid that holds the columns. Defaults sit inside
+ * :where() at zero specificity, so the per-device classes from the shared
+ * stylesheet (one class each) always win, whichever stylesheet loads first.
+ */
+
+@use "../../common/scss/mixins" as *;
+
+$max-columns: 12; // Must match MAX_COLUMNS in layouts.js.
+
+// The band holds the grid as a column of one, so the grid grows to fill a
+// minimum height and the Row's and Columns' vertical alignment have room.
+// For several lines the renderer sets align-content (Row::lineAlignment()).
+// The Row's spacing while its Padding, Column gap or Row gap is empty.
+// Zero specificity, so a theme's own :root values win. Must match
+// ROW_SPACING in row-spacing.js.
+:where(:root) {
+	--codexa-row-padding-block: var(--codexa-spacing-lg, 3rem);
+	--codexa-row-column-gap: var(--codexa-spacing-lg, 3rem);
+	--codexa-row-row-gap: var(--codexa-spacing-lg, 3rem);
+
+	@include bp-below-desktop {
+		--codexa-row-padding-block: var(--codexa-spacing-md, 2rem);
+		--codexa-row-column-gap: var(--codexa-spacing-md, 2rem);
+		--codexa-row-row-gap: var(--codexa-spacing-md, 2rem);
+	}
+
+	@include bp-below-tablet {
+		--codexa-row-column-gap: var(--codexa-spacing-sm, 1rem);
+	}
+}
+
+:where(.wp-block-codexa-blocks-row) {
+	display: flex;
+	flex-direction: column;
+	padding-block: var(--codexa-row-padding-block);
+}
+
+// A Row inside another Row's column sits in that Row's band already, so
+// it has no padding of its own until it is given some.
+:where(.wp-block-codexa-blocks-row .wp-block-codexa-blocks-row) {
+	padding-block: 0;
+}
+
+:where(.wp-block-codexa-blocks-row__inner) {
+	align-items: start;
+	column-gap: var(--codexa-row-column-gap);
+	display: grid;
+	grid-template-columns: 1fr;
+	margin-inline: auto;
+	row-gap: var(--codexa-row-row-gap);
+
+	// Fill the band's height; the full width, up to the content width
+	// (auto margins in a flex column would otherwise shrink it to fit).
+	flex-grow: 1;
+	width: 100%;
+
+	// Not reversed and no column stretched unless the Row's settings say
+	// so. Set here so a row nested in another row's column doesn't
+	// inherit them.
+	--codexa-reversed: 0;
+	--codexa-first-span: auto;
+	--codexa-last-span: auto;
+}
+
+// The Custom content width per device (see device-variable() in
+// _mixins.scss). Its own name, so the variable never refers to itself.
+@include device-variable("content-width", --codexa-row-content-width);
+
+.wp-block-codexa-blocks-row__inner {
+	// The theme's widths (theme.json layout.wideSize and contentSize), or
+	// these when it sets none. Must match FALLBACK_WIDTHS in edit.jsx.
+	&.is-content-wide {
+		max-width: var(--wp--style--global--wide-size, 75rem);
+	}
+
+	&.is-content-content {
+		max-width: var(--wp--style--global--content-size, 45rem);
+	}
+
+	// Custom uses the width set per device, inherited from larger devices, and
+	// without any the columns fill the row, as with Full.
+	&.is-content-custom {
+		max-width: var(--codexa-row-content-width, none);
+	}
+
+	// Equal height makes every column as tall as the tallest, on every line,
+	// and the lines share the Row's minimum height (lineAlignment()).
+	&.is-equal-height {
+		align-items: stretch;
+		grid-auto-rows: 1fr;
+	}
+
+	&.is-vertically-aligned-center {
+		align-items: center;
+	}
+
+	&.is-vertically-aligned-bottom {
+		align-items: end;
+	}
+
+	// Fill makes the first or last column span the tracks a short line leaves
+	// empty ("span 2"), worked out per device by the renderer.
+	> :first-child {
+		grid-column: var(--codexa-first-span);
+	}
+
+	> :last-child {
+		grid-column: var(--codexa-last-span);
+	}
+
+	// Reverse order gives column n order -n when --codexa-reversed is 1, so
+	// the last comes first. 0 leaves every column at order 0.
+	@for $i from 1 through $max-columns {
+		> :nth-child(#{$i}) {
+			order: calc(var(--codexa-reversed) * -#{$i});
+		}
+	}
+}

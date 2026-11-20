@@ -1,0 +1,291 @@
+/**
+ * SCSS mixins and functions shared by every block and the shared stylesheet.
+ *
+ * They print no CSS until they are used, so any stylesheet can
+ * `@use "../../common/scss/mixins" as *;` without adding rules.
+ *
+ * Breakpoints
+ *   mobile   under 48rem (768px)
+ *   tablet   48rem to under 62rem (768px to 991px)
+ *   desktop  62rem (992px) and up
+ *
+ * Range syntax `(width < 48rem)` leaves no gap at fractional widths, and rem
+ * lets breakpoints grow with the browser's text size, so large text gets the
+ * roomier layout.
+ *
+ * Per-device settings are desktop first. Desktop applies everywhere,
+ * `bp-below-desktop` holds tablet overrides and `bp-below-tablet` mobile ones.
+ */
+@use "sass:list";
+
+$bp-tablet: 48rem;
+$bp-desktop: 62rem;
+
+// Tablet and wider
+@mixin bp-tablet {
+	@media (width >= #{$bp-tablet}) {
+		@content;
+	}
+}
+
+// Desktop
+@mixin bp-desktop {
+	@media (width >= #{$bp-desktop}) {
+		@content;
+	}
+}
+
+// Tablet and mobile
+@mixin bp-below-desktop {
+	@media (width < #{$bp-desktop}) {
+		@content;
+	}
+}
+
+// Mobile
+@mixin bp-below-tablet {
+	@media (width < #{$bp-tablet}) {
+		@content;
+	}
+}
+
+/**
+ * A block's own per-device setting, read through one CSS variable.
+ *
+ * The editor and PHP set --codexa-{name}, --codexa-{name}-tablet and
+ * --codexa-{name}-mobile on the block, each with its class, the same way
+ * as the shared settings in _responsive.scss. This picks the one for the
+ * current screen and copies it into $variable, which the block's styles
+ * read. The desktop rule has no media query, so a desktop-only setting
+ * applies everywhere.
+ *
+ * @include device-variable("title-gap", --codexa-count-up-title-gap);
+ */
+@mixin device-variable($name, $variable) {
+	// A variable named like the setting's would refer to itself, and the
+	// tablet and mobile values would never apply.
+	@if "#{$variable}" == "--codexa-#{$name}" {
+		@error "device-variable: #{$variable} has the setting's own name. Give the block's variable another name.";
+	}
+
+	.has-codexa-#{$name} {
+		#{$variable}: var(--codexa-#{$name});
+	}
+
+	@include bp-below-desktop {
+		.has-codexa-#{$name}-tablet {
+			#{$variable}: var(--codexa-#{$name}-tablet);
+		}
+	}
+
+	@include bp-below-tablet {
+		.has-codexa-#{$name}-mobile {
+			#{$variable}: var(--codexa-#{$name}-mobile);
+		}
+	}
+}
+
+/**
+ * A backdrop's background (Utilities\Backdrop), its color at its opacity,
+ * from the --codexa-NAME-color and --codexa-NAME-opacity variables, with
+ * the defaults given while those aren't set.
+ *
+ * @param {string} $name    The backdrop's name, e.g. lightbox-backdrop.
+ * @param {color}  $color   Default color.
+ * @param {number} $opacity Default opacity, from 0 to 1.
+ */
+@mixin backdrop($name, $color, $opacity) {
+	background: color-mix(
+		in srgb,
+		var(--codexa-#{$name}-color, #{$color})
+			calc(var(--codexa-#{$name}-opacity, #{$opacity}) * 100%),
+		transparent
+	);
+}
+
+// The four corners, in the order border-radius takes them.
+$corners: (top-left, top-right, bottom-right, bottom-left);
+
+/**
+ * Copies a corner radius setting's per-device variables into the block's
+ * own, one per corner, the same way as device-variable().
+ *
+ * @include corner-variables("tab-border-radius", --codexa-tabs-tab-corner);
+ */
+@mixin corner-variables($name, $prefix) {
+	@each $corner in $corners {
+		@include device-variable("#{$name}-#{$corner}", #{$prefix}-#{$corner});
+	}
+}
+
+/**
+ * Sets every corner of a block's own corner variables, as a default.
+ *
+ * @include corner-defaults(--codexa-tabs-tab-corner, var(--codexa-radius-sm));
+ */
+@mixin corner-defaults($prefix, $value) {
+	@each $corner in $corners {
+		#{$prefix}-#{$corner}: #{$value};
+	}
+}
+
+/**
+ * The four corner variables as one border-radius value.
+ *
+ * border-radius: corners(--codexa-tabs-tab-corner);
+ */
+@function corners($prefix) {
+	@return var(#{$prefix}-top-left) var(#{$prefix}-top-right)
+		var(#{$prefix}-bottom-right) var(#{$prefix}-bottom-left);
+}
+
+/**
+ * Hover and open colors, worked out from the colors they go with, so they
+ * follow every color set on the Colors page or on a block. Nobody picks
+ * them, so none can be left unreadable by a choice made elsewhere. A
+ * block's own hover colors still replace them.
+ */
+
+// A filled control's hover background (Fill button), 15% toward the text
+// color. Mixing toward the control's own text would lighten a mid-tone brand
+// color below 4.5:1 against white text.
+// hover-shade(var(--codexa-btn-background))
+@function hover-shade($color) {
+	@return color-mix(in srgb, #{$color} 85%, var(--codexa-text));
+}
+
+// A light background's hover and open shade (accordion titles, tabs), 6%
+// toward the text on it, for light and dark backgrounds alike.
+// surface-shade(var(--codexa-tabs-tab-background), var(--codexa-tabs-tab-color))
+@function surface-shade($background, $text) {
+	@return color-mix(in srgb, #{$background} 94%, #{$text});
+}
+
+// The properties of a typography setting (TypographyStyles in PHP), in the
+// order the mixins below print them.
+$typography-properties: (
+	font-size,
+	letter-spacing,
+	font-weight,
+	line-height,
+	text-transform
+);
+
+/**
+ * A typography setting's defaults, every property empty (`initial`), so the
+ * element inherits it. Set on every block, so a nested block never inherits
+ * the outer one's setting. Override a default after the include.
+ *
+ * @include typography-defaults(--codexa-tabs-tab);
+ */
+@mixin typography-defaults($prefix) {
+	@each $property in $typography-properties {
+		#{$prefix}-#{$property}: initial;
+	}
+}
+
+/**
+ * Copies a typography setting's per-device variables into the block's
+ * own, the same way as device-variable().
+ *
+ * @include typography-variables("tab", --codexa-tabs-tab);
+ */
+@mixin typography-variables($name, $prefix) {
+	@each $property in $typography-properties {
+		@include device-variable(
+			"#{$name}-#{$property}",
+			#{$prefix}-#{$property}
+		);
+	}
+}
+
+/**
+ * Applies a typography setting to an element.
+ *
+ * @include typography(--codexa-tabs-tab);
+ */
+@mixin typography($prefix) {
+	@each $property in $typography-properties {
+		#{$property}: var(#{$prefix}-#{$property});
+	}
+}
+
+/**
+ * Applies a typography setting only where the block sets it, per property
+ * and device, so a heading keeps the theme's styles everywhere else.
+ *
+ * @include typography-when-set("title", --codexa-posts-title, ".wp-block-codexa-blocks-posts", ".wp-block-codexa-blocks-posts__title");
+ */
+@mixin typography-when-set($name, $prefix, $block, $element) {
+	@each $property in $typography-properties {
+		#{$block}.has-codexa-#{$name}-#{$property} #{$element} {
+			#{$property}: var(#{$prefix}-#{$property});
+		}
+
+		@include bp-below-desktop {
+			#{$block}.has-codexa-#{$name}-#{$property}-tablet #{$element} {
+				#{$property}: var(#{$prefix}-#{$property});
+			}
+		}
+
+		@include bp-below-tablet {
+			#{$block}.has-codexa-#{$name}-#{$property}-mobile #{$element} {
+				#{$property}: var(#{$prefix}-#{$property});
+			}
+		}
+	}
+}
+
+// Image shapes, class suffix => width and height. Must match IMAGE_SHAPES in
+// image-shapes.js and ResponsiveImages::SHAPES ("original" has none).
+$image-shapes: (
+	"1-1": (
+		1,
+		1,
+	),
+	"3-2": (
+		3,
+		2,
+	),
+	"4-3": (
+		4,
+		3,
+	),
+	"16-9": (
+		16,
+		9,
+	),
+	"2-3": (
+		2,
+		3,
+	),
+	"3-4": (
+		3,
+		4,
+	),
+);
+
+/**
+ * Crops a block's images to its chosen shape (.is-shape-3-2 and so on),
+ * from the center. "Original" keeps each image's own shape.
+ *
+ * @include image-shapes(".wp-block-codexa-blocks-gallery", ".wp-block-codexa-blocks-gallery__image");
+ */
+@mixin image-shapes($block, $image) {
+	@each $name, $size in $image-shapes {
+		#{$block}.is-shape-#{$name} #{$image} {
+			aspect-ratio: #{list.nth($size, 1)} / #{list.nth($size, 2)};
+			object-fit: cover;
+		}
+	}
+}
+
+// Hidden on screen but read by screen readers, e.g. "opens in a new tab".
+@mixin visually-hidden {
+	block-size: 1px;
+	clip-path: inset(50%);
+	inline-size: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+}

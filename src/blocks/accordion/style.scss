@@ -1,0 +1,354 @@
+/**
+ * Accordion and Accordion Item, front end and editor.
+ *
+ * On the page each item is a native <details> element with a <summary>
+ * title (CodexaBlocks\Blocks\Render\AccordionItem), so it opens and
+ * closes without JavaScript and the browser's find-in-page opens the item
+ * that holds a match. In the editor the same classes sit on <div>s, so the
+ * title can be edited; .is-open stands in for [open] there.
+ *
+ * The Accordion's title, icon and content settings arrive as per-device
+ * variables (see device-variable() in _mixins.scss) and are copied into
+ * the --codexa-accordion-* variables below, which the items read.
+ */
+@use "../../common/scss/mixins" as *;
+
+$item: ".wp-block-codexa-blocks-accordion-item";
+$sides: (top, right, bottom, left);
+
+// Defaults for the accordion. The colors start from the brand colors (the
+// Colors page). The hover and open backgrounds are the title background a
+// shade toward the title text, so they follow the accordion's own colors.
+:where(.wp-block-codexa-blocks-accordion) {
+	--codexa-accordion-gap: var(--codexa-space-2);
+	--codexa-accordion-title-color: var(--codexa-text);
+	--codexa-accordion-title-background: var(--codexa-surface);
+	--codexa-accordion-title-border-color: var(--codexa-border-color);
+	--codexa-accordion-title-hover-color: var(--codexa-accordion-title-color);
+	--codexa-accordion-title-hover-background: #{surface-shade(
+			var(--codexa-accordion-title-background),
+			var(--codexa-accordion-title-color)
+		)};
+	--codexa-accordion-title-hover-border-color: var(
+		--codexa-accordion-title-border-color
+	);
+	--codexa-accordion-title-open-color: var(--codexa-accordion-title-color);
+	--codexa-accordion-title-open-background: var(
+		--codexa-accordion-title-hover-background
+	);
+	--codexa-accordion-title-open-border-color: var(
+		--codexa-accordion-title-border-color
+	);
+	--codexa-accordion-title-border-width-top: 0;
+	--codexa-accordion-title-border-width-right: 0;
+	--codexa-accordion-title-border-width-bottom: 0;
+	--codexa-accordion-title-border-width-left: 0;
+	--codexa-accordion-title-padding-top: var(--codexa-space-4);
+	--codexa-accordion-title-padding-right: var(--codexa-space-5);
+	--codexa-accordion-title-padding-bottom: var(--codexa-space-4);
+	--codexa-accordion-title-padding-left: var(--codexa-space-5);
+	--codexa-accordion-icon-color: currentcolor;
+	--codexa-accordion-content-color: currentcolor;
+	--codexa-accordion-content-background: transparent;
+	--codexa-accordion-content-border-color: var(
+		--codexa-accordion-title-border-color
+	);
+	--codexa-accordion-content-border-width-top: 0;
+	--codexa-accordion-content-border-width-right: var(
+		--codexa-accordion-title-border-width-right
+	);
+	--codexa-accordion-content-border-width-bottom: var(
+		--codexa-accordion-title-border-width-bottom
+	);
+	--codexa-accordion-content-border-width-left: var(
+		--codexa-accordion-title-border-width-left
+	);
+	--codexa-accordion-content-padding-top: var(--codexa-space-5);
+	--codexa-accordion-content-padding-right: var(--codexa-space-5);
+	--codexa-accordion-content-padding-bottom: var(--codexa-space-5);
+	--codexa-accordion-content-padding-left: var(--codexa-space-5);
+
+	@include corner-defaults(
+		--codexa-accordion-title-corner,
+		var(--codexa-radius-sm)
+	);
+
+	// The content's corners follow the title's until it has its own.
+	@each $corner in $corners {
+		--codexa-accordion-content-corner-#{$corner}: var(
+			--codexa-accordion-title-corner-#{$corner}
+		);
+	}
+
+	@include typography-defaults(--codexa-accordion-title);
+
+	--codexa-accordion-title-font-weight: var(--codexa-font-weight-bold);
+
+	display: flex;
+	flex-direction: column;
+	gap: var(--codexa-accordion-gap);
+}
+
+@include device-variable("item-gap", --codexa-accordion-gap);
+@include device-variable("title-color", --codexa-accordion-title-color);
+@include device-variable(
+	"title-background",
+	--codexa-accordion-title-background
+);
+@include device-variable(
+	"title-border-color",
+	--codexa-accordion-title-border-color
+);
+@include device-variable(
+	"title-hover-color",
+	--codexa-accordion-title-hover-color
+);
+@include device-variable(
+	"title-hover-background",
+	--codexa-accordion-title-hover-background
+);
+@include device-variable(
+	"title-hover-border-color",
+	--codexa-accordion-title-hover-border-color
+);
+@include device-variable(
+	"title-open-color",
+	--codexa-accordion-title-open-color
+);
+@include device-variable(
+	"title-open-background",
+	--codexa-accordion-title-open-background
+);
+@include device-variable(
+	"title-open-border-color",
+	--codexa-accordion-title-open-border-color
+);
+@include corner-variables(
+	"title-border-radius",
+	--codexa-accordion-title-corner
+);
+@include device-variable("icon-color", --codexa-accordion-icon-color);
+@include device-variable("content-color", --codexa-accordion-content-color);
+@include device-variable(
+	"content-background",
+	--codexa-accordion-content-background
+);
+@include device-variable(
+	"content-border-color",
+	--codexa-accordion-content-border-color
+);
+@include corner-variables(
+	"content-border-radius",
+	--codexa-accordion-content-corner
+);
+@include typography-variables("title", --codexa-accordion-title);
+
+@each $side in $sides {
+	@include device-variable(
+		"title-border-width-#{$side}",
+		--codexa-accordion-title-border-width-#{$side}
+	);
+	@include device-variable(
+		"title-padding-#{$side}",
+		--codexa-accordion-title-padding-#{$side}
+	);
+	@include device-variable(
+		"content-border-width-#{$side}",
+		--codexa-accordion-content-border-width-#{$side}
+	);
+	@include device-variable(
+		"content-padding-#{$side}",
+		--codexa-accordion-content-padding-#{$side}
+	);
+}
+
+#{$item} {
+	margin: 0;
+}
+
+#{$item}__title {
+	align-items: center;
+	background: var(--codexa-accordion-title-background);
+	border-color: var(--codexa-accordion-title-border-color);
+	border-radius: corners(--codexa-accordion-title-corner);
+	border-style: solid;
+	border-width: var(--codexa-accordion-title-border-width-top)
+		var(--codexa-accordion-title-border-width-right)
+		var(--codexa-accordion-title-border-width-bottom)
+		var(--codexa-accordion-title-border-width-left);
+	color: var(--codexa-accordion-title-color);
+	cursor: pointer;
+	display: flex;
+
+	@include typography(--codexa-accordion-title);
+
+	gap: var(--codexa-space-4);
+	justify-content: space-between;
+	list-style: none; // Removes the browser's own marker; the icon below replaces it.
+
+	// Inside the edge, so it never overlaps the item above or below when
+	// there is little space between them.
+	outline-offset: -2px;
+	padding: var(--codexa-accordion-title-padding-top)
+		var(--codexa-accordion-title-padding-right)
+		var(--codexa-accordion-title-padding-bottom)
+		var(--codexa-accordion-title-padding-left);
+
+	&::-webkit-details-marker {
+		display: none;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--codexa-focus);
+		box-shadow: inset 0 0 0 4px var(--codexa-focus-halo);
+	}
+
+	// The icon, drawn in CSS with currentcolor, so it takes the icon color,
+	// or the title's color when none is set.
+	&::after {
+		block-size: 0.6em;
+		color: var(--codexa-accordion-icon-color);
+		content: "";
+		flex: none;
+		inline-size: 0.6em;
+	}
+}
+
+// Hover comes before open, and the open rule is more specific, so a
+// hovered open title keeps the open colors.
+#{$item}__title:hover {
+	background: var(--codexa-accordion-title-hover-background);
+	border-color: var(--codexa-accordion-title-hover-border-color);
+	color: var(--codexa-accordion-title-hover-color);
+}
+
+:is(#{$item}[open], #{$item}.is-open) > #{$item}__title {
+	background: var(--codexa-accordion-title-open-background);
+	border-color: var(--codexa-accordion-title-open-border-color);
+	color: var(--codexa-accordion-title-open-color);
+}
+
+// Where the content is drawn as a box (a background or a border, its own
+// or the title's, which it takes by default), an open title's bottom
+// corners are square, so it meets the content, whose top corners are
+// square. Otherwise the content is plain text below the title, which keeps
+// its rounded corners. Any device's setting counts (the class's suffix).
+$boxed-content: '[class*="has-codexa-content-background"], [class*="has-codexa-content-border-width-"], [class*="has-codexa-title-border-width-"]';
+
+.wp-block-codexa-blocks-accordion:is(#{$boxed-content})
+	> :is(#{$item}[open], #{$item}.is-open)
+	> #{$item}__title {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+// The title text, plain or as a heading ("Title tag"). A heading
+// only adds meaning and looks like the plain title, not the theme's headings.
+#{$item}__title-text {
+	color: inherit;
+	font: inherit;
+	letter-spacing: inherit;
+	margin: 0;
+	text-transform: inherit;
+}
+
+#{$item}__content {
+	background: var(--codexa-accordion-content-background);
+	border-color: var(--codexa-accordion-content-border-color);
+	border-radius: 0 0 var(--codexa-accordion-content-corner-bottom-right)
+		var(--codexa-accordion-content-corner-bottom-left);
+	border-style: solid;
+	border-width: var(--codexa-accordion-content-border-width-top)
+		var(--codexa-accordion-content-border-width-right)
+		var(--codexa-accordion-content-border-width-bottom)
+		var(--codexa-accordion-content-border-width-left);
+	color: var(--codexa-accordion-content-color);
+	padding: var(--codexa-accordion-content-padding-top)
+		var(--codexa-accordion-content-padding-right)
+		var(--codexa-accordion-content-padding-bottom)
+		var(--codexa-accordion-content-padding-left);
+
+	> :first-child {
+		margin-block-start: 0;
+	}
+
+	> :last-child {
+		margin-block-end: 0;
+	}
+}
+
+// Link colors in the content. Buttons keep their own colors. The hover
+// color also applies on keyboard focus.
+.has-codexa-content-link-color
+	#{$item}__content
+	a:where(:not(.wp-element-button)) {
+	color: var(--codexa-content-link-color);
+}
+
+.has-codexa-content-link-hover-color
+	#{$item}__content
+	a:where(:not(.wp-element-button)):is(:hover, :focus) {
+	color: var(--codexa-content-link-hover-color);
+}
+
+// Icons, a chevron that turns, a plus that becomes a minus, or none. Each
+// rule reaches only this accordion's own items (">"), so a nested one keeps
+// its own icon.
+$own-title: "> #{$item} > #{$item}__title";
+$open-title: "> :is(#{$item}[open], #{$item}.is-open) > #{$item}__title";
+
+.is-icon-chevron #{$own-title}::after {
+	border-block-end: 2px solid currentcolor;
+	border-inline-end: 2px solid currentcolor;
+	transform: translateY(-25%) rotate(45deg);
+}
+
+.is-icon-chevron #{$open-title}::after {
+	transform: translateY(25%) rotate(-135deg);
+}
+
+.is-icon-plus #{$own-title}::after {
+	background:
+		linear-gradient(currentcolor, currentcolor) center / 100% 2px no-repeat,
+		linear-gradient(currentcolor, currentcolor) center / 2px 100% no-repeat;
+}
+
+.is-icon-plus #{$open-title}::after {
+	background: linear-gradient(currentcolor, currentcolor) center / 100% 2px
+		no-repeat;
+}
+
+.is-icon-none #{$own-title}::after {
+	display: none;
+}
+
+// Icon before the title instead of after it.
+.is-icon-start #{$own-title} {
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+}
+
+// Opening and closing slide, where the browser supports animating to the
+// content's height. Others open instantly, as do visitors who ask their
+// system for reduced motion.
+@media (prefers-reduced-motion: no-preference) {
+	:where(.wp-block-codexa-blocks-accordion) {
+		interpolate-size: allow-keywords;
+	}
+
+	#{$item}::details-content {
+		block-size: 0;
+		overflow: clip;
+		transition:
+			block-size var(--codexa-transition-base),
+			content-visibility var(--codexa-transition-base) allow-discrete;
+	}
+
+	#{$item}[open]::details-content {
+		block-size: auto;
+	}
+
+	#{$item}__title::after {
+		transition: transform var(--codexa-transition-fast);
+	}
+}

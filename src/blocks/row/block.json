@@ -1,0 +1,151 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "codexa-blocks/row",
+	"version": "1.0.0",
+	"title": "Row",
+	"category": "codexa-blocks",
+	"description": "Columns side by side, up to six per line; more columns continue on the next line. Set how they are laid out, spaced and ordered on desktop, tablet and mobile.",
+	"keywords": ["columns", "layout", "section", "grid"],
+	"textdomain": "codexa-blocks",
+	"allowedBlocks": ["codexa-blocks/column"],
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"columnLayout": {
+			"type": "object",
+			"default": {
+				"desktop": "1fr 1fr",
+				"mobile": "1fr"
+			}
+		},
+		"columnFill": {
+			"type": "object"
+		},
+		"columnGap": {
+			"type": "object"
+		},
+		"rowGap": {
+			"type": "object"
+		},
+		"reverse": {
+			"type": "object"
+		},
+		"equalHeight": {
+			"type": "boolean",
+			"default": false
+		},
+		"verticalAlignment": {
+			"type": "string",
+			"enum": ["top", "center", "bottom"],
+			"default": "top"
+		},
+		"contentWidth": {
+			"type": "string",
+			"enum": ["wide", "content", "full", "custom"],
+			"default": "wide"
+		},
+		"customContentWidth": {
+			"type": "object"
+		},
+		"tagName": {
+			"type": "string",
+			"enum": ["div", "section", "header", "footer", "aside"],
+			"default": "div"
+		},
+		"ariaLabel": {
+			"type": "string"
+		},
+		"padding": {
+			"type": "object"
+		},
+		"margin": {
+			"type": "object"
+		},
+		"minHeight": {
+			"type": "object"
+		},
+		"textColor": {
+			"type": "string"
+		},
+		"linkColor": {
+			"type": "string"
+		},
+		"linkHoverColor": {
+			"type": "string"
+		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"backgroundGradient": {
+			"type": "string"
+		},
+		"borderWidth": {
+			"type": "object"
+		},
+		"borderStyle": {
+			"type": "string",
+			"enum": ["solid", "dashed", "dotted", "double"]
+		},
+		"borderColor": {
+			"type": "string"
+		},
+		"borderRadius": {
+			"type": "object"
+		},
+		"shadow": {
+			"type": "string"
+		},
+		"shadowColor": {
+			"type": "string"
+		},
+		"backgroundImage": {
+			"type": "object"
+		},
+		"backgroundVideo": {
+			"type": "object"
+		},
+		"backgroundPosition": {
+			"type": "object"
+		},
+		"backgroundSize": {
+			"type": "string",
+			"enum": ["cover", "contain", "auto"]
+		},
+		"backgroundRepeat": {
+			"type": "string",
+			"enum": ["no-repeat", "repeat"]
+		},
+		"backgroundAttachment": {
+			"type": "string",
+			"enum": ["scroll", "fixed"]
+		},
+		"overlayColor": {
+			"type": "object"
+		},
+		"overlayGradient": {
+			"type": "object"
+		},
+		"overlayOpacity": {
+			"type": "object"
+		},
+		"topDivider": {
+			"type": "object"
+		},
+		"bottomDivider": {
+			"type": "object"
+		},
+		"hideOn": {
+			"type": "object"
+		}
+	},
+	"supports": {
+		"align": ["wide", "full"],
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": ["codexa-blocks-common", "file:./style-index.css"]
+}

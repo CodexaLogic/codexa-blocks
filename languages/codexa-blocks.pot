@@ -1,0 +1,3341 @@
+# Copyright (C) 2026 Codexa
+# This file is distributed under the GPLv2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Codexa Blocks 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/codexa-blocks\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: codexa-blocks\n"
+
+#. Plugin Name of the plugin
+#: codexa-blocks.php:3
+#: includes/Admin/AdminPage.php:108
+#: includes/Admin/AdminPage.php:109
+#: includes/Admin/AdminPage.php:182
+#: includes/Blocks/Categories.php:42
+msgid "Codexa Blocks"
+msgstr ""
+
+#. Description of the plugin
+#: codexa-blocks.php:4
+msgid "Create beautiful, cohesive pages with accessible blocks, flexible layouts, engaging content and effortless styling for desktop, tablet and mobile."
+msgstr ""
+
+#. Author of the plugin
+#: codexa-blocks.php:8
+#: includes/Utilities/Icons.php:130
+msgid "Codexa"
+msgstr ""
+
+#. Author URI of the plugin
+#: codexa-blocks.php:9
+msgid "https://codexalogic.com"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:118
+#: includes/Admin/AdminPage.php:452
+msgid "Overview"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:122
+#: includes/Admin/AdminPage.php:123
+#: includes/Admin/AdminPage.php:453
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+#: build/blocks/icon-list-item/index.js:1
+#: build/editor/index.js:16
+msgid "Colors"
+msgstr ""
+
+#. translators: %s: Plugin version, e.g. "1.0.0".
+#: includes/Admin/AdminPage.php:186
+#, php-format
+msgid "v%s"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:274
+msgid "Get started"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:276
+msgid "Open a page or post in the block editor."
+msgstr ""
+
+#: includes/Admin/AdminPage.php:277
+msgid "Click the + button (Toggle block inserter) and open the Codexa Blocks category, or type a block's name."
+msgstr ""
+
+#: includes/Admin/AdminPage.php:278
+msgid "Switch the editor's preview to Desktop, Tablet or Mobile to set spacing, layout and visibility for that device alone."
+msgstr ""
+
+#: includes/Admin/AdminPage.php:281
+msgid "Create a page"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:282
+msgid "Set your colors"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:287
+#: includes/Admin/AdminPage.php:656
+msgid "Blocks"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:300
+msgid "Help"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:306
+#: includes/Blocks/Render/AdvancedText.php:94
+#: includes/Blocks/Render/Button.php:108
+#: includes/Blocks/Render/IconListItem.php:85
+#: build/editor/index.js:15
+msgid "(opens in a new tab)"
+msgstr ""
+
+#. translators: %s: Plugin version, e.g. "1.0.0".
+#: includes/Admin/AdminPage.php:320
+#, php-format
+msgid "What's new in %s"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:331
+msgid "No changes listed for this version."
+msgstr ""
+
+#: includes/Admin/AdminPage.php:355
+msgid "Loading…"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:358
+msgid "Preview"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:465
+msgid "Codexa Blocks pages"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:502
+msgid "WordPress"
+msgstr ""
+
+#. translators: %s: A version number, e.g. "6.7" or "8.0".
+#: includes/Admin/AdminPage.php:505
+#: includes/Admin/AdminPage.php:512
+#, php-format
+msgid "%s or later required"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:509
+msgid "PHP"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:516
+#: build/editor/index.js:1
+msgid "Theme"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:518
+msgid "Block theme"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:518
+msgid "Classic theme"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:528
+msgid "Found"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:528
+msgid "Missing: run npm run build, or reinstall the plugin"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:535
+msgid "Custom colors"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:537
+msgid "Set on the Colors page"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:537
+msgid "Using the plugin's colors"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:549
+msgid "System check"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:558
+msgid "OK:"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:558
+msgid "Problem:"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:567
+msgid "To include in a support request:"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:595
+msgid "Documentation"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:597
+msgid "Guides for each block and setting."
+msgstr ""
+
+#: includes/Admin/AdminPage.php:600
+msgid "Support forum"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:602
+msgid "Ask a question or report a bug. Include the system check below."
+msgstr ""
+
+#: includes/Admin/AdminPage.php:657
+msgid "Shared stylesheet"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:658
+msgid "Editor script"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:659
+msgid "Icons"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:819
+msgid "Fill"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:819
+#: build/editor/index.js:19
+msgid "Outline"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:819
+msgid "Text link"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:819
+msgid "Underline"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:827
+msgid "An open item"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:827
+#: includes/Admin/AdminPage.php:828
+msgid "The content of an accordion item."
+msgstr ""
+
+#: includes/Admin/AdminPage.php:828
+msgid "A closed item"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:833
+msgid "Active tab"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:833
+msgid "The content of the active tab."
+msgstr ""
+
+#: includes/Admin/AdminPage.php:834
+msgid "Another tab"
+msgstr ""
+
+#: includes/Admin/AdminPage.php:834
+msgid "The content of another tab."
+msgstr ""
+
+#: includes/Admin/AdminPage.php:836
+msgid "Happy customers"
+msgstr ""
+
+#: includes/Blocks/Gallery/Types/Carousel.php:51
+#: build/blocks/gallery/index.js:5
+#: build/blocks/gallery/index.js:7
+msgid "Images"
+msgstr ""
+
+#: includes/Blocks/Render/AccordionItem.php:59
+msgid "Details"
+msgstr ""
+
+#. translators: %s: The link's name, e.g. "Our services".
+#: includes/Blocks/Render/Column.php:209
+#: includes/Blocks/Render/Gallery.php:322
+#, php-format
+msgid "%s (opens in a new tab)"
+msgstr ""
+
+#. translators: %d: The image's position in the gallery.
+#: includes/Blocks/Render/Gallery.php:314
+#: build/blocks/gallery/index.js:2
+#, php-format,js-format
+msgid "Image %d"
+msgstr ""
+
+#: includes/Blocks/Render/Posts.php:202
+#: build/blocks/posts/index.js:1
+msgid "Posts"
+msgstr ""
+
+#: includes/Blocks/Render/Posts.php:438
+#: build/blocks/posts/index.js:1
+msgid "Read more"
+msgstr ""
+
+#: includes/Blocks/Render/Posts.php:463
+#: build/blocks/posts/index.js:1
+#: build/editor/index.js:21
+msgid "(no title)"
+msgstr ""
+
+#: includes/Blocks/Render/Posts.php:593
+msgid "The excerpt as the Posts block shows it, at most 100 words."
+msgstr ""
+
+#: includes/Blocks/Render/Tab.php:60
+msgid "Tab"
+msgstr ""
+
+#: includes/Settings/BackdropSettings.php:46
+#: build/blocks/gallery/index.js:7
+msgid "Lightbox background"
+msgstr ""
+
+#: includes/Settings/BackdropSettings.php:47
+msgid "Behind an image opened from a gallery. A gallery can set its own."
+msgstr ""
+
+#: includes/Settings/ColorSettings.php:55
+msgid "Primary"
+msgstr ""
+
+#: includes/Settings/ColorSettings.php:55
+msgid "Buttons and the active tab."
+msgstr ""
+
+#: includes/Settings/ColorSettings.php:56
+msgid "Text on primary"
+msgstr ""
+
+#: includes/Settings/ColorSettings.php:56
+msgid "Text on Fill buttons and the active tab."
+msgstr ""
+
+#: includes/Settings/ColorSettings.php:57
+#: build/blocks/accordion/index.js:1
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+#: build/blocks/count-up/index.js:1
+#: build/blocks/gallery/index.js:7
+#: build/blocks/icon-list/index.js:1
+#: build/blocks/posts/index.js:1
+#: build/blocks/tabs/index.js:2
+#: build/editor/index.js:16
+msgid "Text"
+msgstr ""
+
+#: includes/Settings/ColorSettings.php:57
+msgid "Accordion titles, tabs and the Underline button."
+msgstr ""
+
+#: includes/Settings/ColorSettings.php:58
+msgid "Light background"
+msgstr ""
+
+#: includes/Settings/ColorSettings.php:58
+msgid "Accordion titles and tabs."
+msgstr ""
+
+#: includes/Settings/ColorSettings.php:59
+msgid "Borders"
+msgstr ""
+
+#: includes/Settings/ColorSettings.php:59
+msgid "Accordion and tab borders, when a block has one."
+msgstr ""
+
+#: includes/Utilities/BackgroundVideo.php:120
+msgid "Pause background video"
+msgstr ""
+
+#: includes/Utilities/Carousel.php:86
+#: build/editor/index.js:17
+msgid "Previous slide"
+msgstr ""
+
+#: includes/Utilities/Carousel.php:87
+#: build/editor/index.js:17
+msgid "Next slide"
+msgstr ""
+
+#. translators: 1: The slide's position, e.g. 2. 2: The number of slides, e.g. 4.
+#: includes/Utilities/Carousel.php:89
+#: build/editor/index.js:19
+#, php-format,js-format
+msgid "Slide %1$d of %2$d"
+msgstr ""
+
+#: includes/Utilities/Carousel.php:176
+#: build/editor/index.js:19
+msgid "carousel"
+msgstr ""
+
+#: includes/Utilities/Dividers.php:91
+msgid "Curve"
+msgstr ""
+
+#: includes/Utilities/Dividers.php:96
+msgid "Wave"
+msgstr ""
+
+#: includes/Utilities/Dividers.php:100
+msgid "Slant"
+msgstr ""
+
+#: includes/Utilities/Lightbox.php:78
+msgid "Image viewer"
+msgstr ""
+
+#: includes/Utilities/Lightbox.php:79
+msgid "Close"
+msgstr ""
+
+#: includes/Utilities/Lightbox.php:80
+msgid "Previous image"
+msgstr ""
+
+#: includes/Utilities/Lightbox.php:81
+msgid "Next image"
+msgstr ""
+
+#. translators: 1: The image's position, e.g. 3. 2: The number of images, e.g. 12.
+#: includes/Utilities/Lightbox.php:83
+#, php-format
+msgid "%1$d of %2$d"
+msgstr ""
+
+#: build/admin/index.js:1
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/column/index.js:1
+#: build/blocks/count-up/index.js:1
+#: build/editor/index.js:1
+#: build/editor/index.js:8
+#: build/editor/index.js:26
+msgid "Default"
+msgstr ""
+
+#. translators: 1: A setting, e.g. "Primary", "Link hover" or "Padding (tablet), Top". 2: Its value, e.g. "Accent", "#3a3a3a", "not set" or "24px".
+#: build/admin/index.js:2
+#: build/editor/index.js:2
+#: build/editor/index.js:3
+#: build/editor/index.js:9
+#, js-format
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: build/admin/index.js:2
+msgid "Use the default"
+msgstr ""
+
+#: build/admin/index.js:2
+msgid "Backdrops"
+msgstr ""
+
+#: build/admin/index.js:2
+msgid "The see-through color behind something opened over the page. Lower opacity lets more of the page show through."
+msgstr ""
+
+#: build/admin/index.js:2
+#: build/editor/index.js:3
+msgid "Opacity"
+msgstr ""
+
+#: build/admin/index.js:2
+msgid "Text on your theme's background"
+msgstr ""
+
+#: build/admin/index.js:2
+msgid "Primary on your theme's background (Outline and Text link buttons)"
+msgstr ""
+
+#: build/admin/index.js:2
+msgid "Text on primary, on Primary"
+msgstr ""
+
+#: build/admin/index.js:2
+msgid "Text on primary, on the Fill button's hover"
+msgstr ""
+
+#: build/admin/index.js:2
+msgid "Text on Light background"
+msgstr ""
+
+#. translators: %d: How many colors weren't saved.
+#: build/admin/index.js:3
+#, js-format
+msgid "%d color couldn't be saved and was reset."
+msgid_plural "%d colors couldn't be saved and were reset."
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/admin/index.js:3
+msgid "Colors saved."
+msgstr ""
+
+#: build/admin/index.js:3
+msgid "The colors couldn't be saved."
+msgstr ""
+
+#: build/admin/index.js:3
+msgid "Save colors"
+msgstr ""
+
+#: build/admin/index.js:3
+msgid "Brand colors"
+msgstr ""
+
+#: build/admin/index.js:3
+msgid "The colors every Codexa block starts with on this site. Hover and open colors follow from them. A block's own color settings still take their place for that block."
+msgstr ""
+
+#. translators: %s: The minimum contrast, e.g. "4.5".
+#: build/admin/index.js:4
+#, js-format
+msgid "Some colors are hard to read together. Text needs a contrast of at least %s:1."
+msgstr ""
+
+#. translators: 1: Two colors, e.g. "Text on Light background". 2: Their contrast, e.g. "3.2".
+#: build/admin/index.js:5
+#, js-format
+msgid "%1$s: %2$s:1"
+msgstr ""
+
+#: build/admin/index.js:5
+msgid "Every pair of colors the blocks show together is easy to read (WCAG AA)."
+msgstr ""
+
+#. translators: %s: The colors filled, e.g. "Primary, Text".
+#: build/admin/index.js:6
+#, js-format
+msgid "From your theme: %s. Check the preview, then save."
+msgstr ""
+
+#. translators: %s: The colors left as they were, e.g. "Borders".
+#: build/admin/index.js:7
+#, js-format
+msgid "Not found in your theme, so unchanged: %s."
+msgstr ""
+
+#: build/admin/index.js:7
+msgid "Use my theme's colors"
+msgstr ""
+
+#: build/admin/index.js:7
+msgid "Use the plugin's colors"
+msgstr ""
+
+#: build/admin/index.js:7
+msgid "Unsaved changes"
+msgstr ""
+
+#: build/blocks/accordion-item/index.js:1
+msgid "Close item"
+msgstr ""
+
+#: build/blocks/accordion-item/index.js:1
+msgid "Open item"
+msgstr ""
+
+#: build/blocks/accordion-item/index.js:1
+msgid "Item"
+msgstr ""
+
+#: build/blocks/accordion-item/index.js:1
+msgid "Open when the page loads"
+msgstr ""
+
+#: build/blocks/accordion-item/index.js:1
+msgid "Only one item can start open. Turning this on turns it off for the others."
+msgstr ""
+
+#: build/blocks/accordion-item/index.js:1
+msgid "Item title"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Chevron"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Plus / Minus"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/icon-list/index.js:1
+#: build/editor/index.js:8
+#: build/editor/index.js:15
+#: build/editor/index.js:16
+#: build/editor/index.js:20
+#: build/editor/index.js:26
+msgid "None"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Plain text"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "After the title"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Before the title"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Add item"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Accordion"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Only one open at a time"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Opening an item closes the one that is open. Choose which item starts open in that item's settings."
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/count-up/index.js:1
+#: build/blocks/posts/index.js:1
+msgid "Title tag"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "A heading puts the titles in the page outline. They look the same either way."
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/buttons/index.js:1
+#: build/blocks/column/index.js:1
+#: build/blocks/count-up/index.js:1
+#: build/blocks/gallery/index.js:7
+#: build/blocks/icon-list/index.js:1
+#: build/blocks/posts/index.js:1
+#: build/blocks/row/index.js:19
+#: build/blocks/tabs/index.js:2
+msgid "Spacing"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/icon-list/index.js:1
+msgid "Space between items"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+#: build/blocks/column/index.js:1
+#: build/blocks/count-up/index.js:1
+#: build/blocks/gallery/index.js:7
+#: build/blocks/icon-list/index.js:1
+#: build/blocks/posts/index.js:1
+#: build/blocks/row/index.js:19
+#: build/blocks/tabs/index.js:2
+msgid "Padding"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/buttons/index.js:1
+#: build/blocks/column/index.js:1
+#: build/blocks/count-up/index.js:1
+#: build/blocks/gallery/index.js:7
+#: build/blocks/icon-list/index.js:1
+#: build/blocks/posts/index.js:1
+#: build/blocks/row/index.js:19
+#: build/blocks/tabs/index.js:2
+msgid "Margin"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Titles"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/posts/index.js:1
+#: build/blocks/tabs/index.js:2
+msgid "Normal"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/posts/index.js:1
+#: build/blocks/tabs/index.js:2
+msgid "Hover"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Open"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Title text"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Hover title text"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Open title text"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/button/index.js:1
+#: build/blocks/gallery/index.js:7
+#: build/blocks/posts/index.js:1
+#: build/blocks/tabs/index.js:2
+#: build/editor/index.js:16
+msgid "Background"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Title background"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Hover title background"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Open title background"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/button/index.js:1
+#: build/blocks/column/index.js:1
+#: build/blocks/tabs/index.js:2
+#: build/editor/index.js:16
+msgid "Border"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Title border"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Hover title border"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Open title border"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/button/index.js:1
+#: build/blocks/tabs/index.js:2
+msgid "Border width"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/button/index.js:1
+#: build/blocks/tabs/index.js:2
+msgid "Border radius"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+#: build/blocks/icon-list-item/index.js:1
+#: build/blocks/icon-list/index.js:1
+msgid "Icon"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Type"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Position"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/editor/index.js:3
+#: build/editor/index.js:15
+#: build/editor/index.js:16
+msgid "Color"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+msgid "Icon color"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/posts/index.js:1
+#: build/blocks/tabs/index.js:2
+msgid "Content"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/tabs/index.js:2
+msgid "Content text"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+#: build/blocks/column/index.js:1
+#: build/blocks/gallery/index.js:2
+#: build/blocks/icon-list-item/index.js:1
+#: build/blocks/icon-list/index.js:1
+#: build/blocks/posts/index.js:1
+#: build/blocks/tabs/index.js:2
+#: build/editor/index.js:16
+#: build/editor/index.js:26
+msgid "Link"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/tabs/index.js:2
+msgid "Content link"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/tabs/index.js:2
+msgid "Content link hover"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/tabs/index.js:2
+msgid "Content background"
+msgstr ""
+
+#: build/blocks/accordion/index.js:1
+#: build/blocks/tabs/index.js:2
+msgid "Content border"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+msgid "Paragraph"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+msgid "Heading 1"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/count-up/index.js:1
+msgid "Heading 2"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/count-up/index.js:1
+msgid "Heading 3"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/count-up/index.js:1
+msgid "Heading 4"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/count-up/index.js:1
+msgid "Heading 5"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/count-up/index.js:1
+msgid "Heading 6"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/count-up/index.js:1
+msgid "Div"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+msgid "Span"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/buttons/index.js:1
+#: build/blocks/column/index.js:1
+#: build/blocks/count-up/index.js:1
+#: build/blocks/icon-list/index.js:1
+#: build/blocks/tabs/index.js:2
+#: build/editor/index.js:11
+msgid "Left"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/buttons/index.js:1
+#: build/blocks/column/index.js:1
+#: build/blocks/count-up/index.js:1
+#: build/blocks/icon-list/index.js:1
+#: build/blocks/tabs/index.js:2
+msgid "Center"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/buttons/index.js:1
+#: build/blocks/column/index.js:1
+#: build/blocks/count-up/index.js:1
+#: build/blocks/icon-list/index.js:1
+#: build/blocks/tabs/index.js:2
+#: build/editor/index.js:11
+msgid "Right"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+msgid "Right of the text"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+msgid "Left of the text"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/row/index.js:19
+msgid "HTML element"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+msgid "Headings build the page's outline for screen readers and search engines. Pick the level by its place on the page, not its size."
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/column/index.js:1
+msgid "Text alignment"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+msgid "Icon position"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+#: build/blocks/icon-list/index.js:1
+msgid "Icon size"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+#: build/blocks/icon-list/index.js:1
+msgid "Leave empty for 1.25em: a little larger than the text, and growing with it."
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/icon-list/index.js:1
+msgid "Space between icon and text"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/icon-list-item/index.js:1
+msgid "Icon meaning"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+msgid "Only when the icon says something the text doesn't, such as Phone before a number. Screen readers read it before the text."
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+msgid "The linked post isn't published, so the text shows without its link on the page."
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+msgid "The whole block is a link, so links inside its text are removed."
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+msgid "Makes the whole block a link, icon and text. To link a few words instead, select them and use the toolbar's Link button."
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+msgid "Hover text"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/icon-list/index.js:1
+#: build/editor/index.js:16
+msgid "Link hover"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+msgid "Hover icon"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+msgid "Typography"
+msgstr ""
+
+#: build/blocks/advanced-text/index.js:1
+#: build/blocks/button/index.js:1
+#: build/blocks/icon-list-item/index.js:1
+msgid "Add text…"
+msgstr ""
+
+#: build/blocks/button/index.js:1
+#: build/editor/index.js:6
+#: build/editor/index.js:15
+msgid "Small"
+msgstr ""
+
+#: build/blocks/button/index.js:1
+#: build/editor/index.js:6
+#: build/editor/index.js:15
+#: build/editor/index.js:26
+msgid "Medium"
+msgstr ""
+
+#: build/blocks/button/index.js:1
+#: build/editor/index.js:6
+#: build/editor/index.js:15
+msgid "Large"
+msgstr ""
+
+#: build/blocks/button/index.js:1
+msgid "The linked post isn't published, so the button isn't shown on the page."
+msgstr ""
+
+#: build/blocks/button/index.js:1
+msgid "No link: this is a plain button for a script to use, such as one that opens a popup. Give it an ID in Advanced > HTML anchor."
+msgstr ""
+
+#: build/blocks/button/index.js:1
+#: build/blocks/posts/index.js:1
+msgid "Button"
+msgstr ""
+
+#: build/blocks/button/index.js:1
+#: build/blocks/row/index.js:19
+#: build/editor/index.js:16
+msgid "Size"
+msgstr ""
+
+#: build/blocks/button/index.js:1
+msgid "Full width on mobile"
+msgstr ""
+
+#: build/blocks/button/index.js:1
+msgid "Hover background"
+msgstr ""
+
+#: build/blocks/button/index.js:1
+#: build/blocks/column/index.js:1
+msgid "Hover border"
+msgstr ""
+
+#: build/blocks/button/index.js:1
+#: build/editor/index.js:16
+msgid "Border and radius"
+msgstr ""
+
+#: build/blocks/button/index.js:1
+msgid "Button text"
+msgstr ""
+
+#: build/blocks/buttons/index.js:1
+msgid "Space between"
+msgstr ""
+
+#: build/blocks/buttons/index.js:1
+#: build/blocks/icon-list/index.js:1
+msgid "Side by side"
+msgstr ""
+
+#: build/blocks/buttons/index.js:1
+#: build/blocks/icon-list/index.js:1
+#: build/blocks/row/index.js:6
+msgid "One per line"
+msgstr ""
+
+#: build/blocks/buttons/index.js:1
+#: build/blocks/column/index.js:1
+#: build/blocks/count-up/index.js:1
+#: build/blocks/gallery/index.js:7
+#: build/blocks/icon-list/index.js:1
+#: build/blocks/posts/index.js:1
+#: build/blocks/row/index.js:19
+msgid "Layout"
+msgstr ""
+
+#: build/blocks/buttons/index.js:1
+#: build/blocks/icon-list/index.js:1
+msgid "Arrangement"
+msgstr ""
+
+#: build/blocks/buttons/index.js:1
+#: build/blocks/count-up/index.js:1
+#: build/blocks/icon-list/index.js:1
+msgid "Alignment"
+msgstr ""
+
+#: build/blocks/buttons/index.js:1
+msgid "Space between buttons"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+#: build/editor/index.js:15
+msgid "Overlay color"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Zoom the background image"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+#: build/editor/index.js:14
+msgid "Border color"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+#: build/editor/index.js:15
+msgid "Overlay"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Hover overlay"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Hover overlay opacity (%)"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Without a color, the overlay is black, or the column's own overlay color."
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Add a background image in Background to see this."
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Shown on sides with a border width (Border)."
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Hover effects"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Shown when the pointer is over the column, or the keyboard reaches its link. Choose any combination."
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Full width"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Vertical"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Horizontal"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+#: build/editor/index.js:11
+#: build/editor/index.js:16
+msgid "Top"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+#: build/editor/index.js:11
+#: build/editor/index.js:16
+msgid "Bottom"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Direction"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Vertical stacks the blocks. Horizontal puts them side by side, and the Layout alignments then work along and across that line."
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Wrap"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Side-by-side blocks move onto another line when they don't fit."
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Gap"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Space between side-by-side blocks. 1rem when empty."
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Horizontal alignment"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Vertical alignment"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Makes the whole column clickable. Links and buttons inside it keep working."
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "The linked post isn't published, so the column isn't linked on the page."
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Link text for screen readers"
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "Read out in place of the column's text. Leave it blank to use the column's first heading, or else its text or image description."
+msgstr ""
+
+#: build/blocks/column/index.js:1
+msgid "This column has no heading, text or image description, so screen readers will hear the linked page's title or its address. Add link text for screen readers to say where it goes."
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Comma (1,000)"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Period (1.000)"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Space (1 000)"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "None (1000)"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Period (1.5)"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Comma (1,5)"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Below the number"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Above the number"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Add a title"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Replay count"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Number"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Start at"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "End at"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Prefix"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Shown before the number, e.g. $."
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Suffix"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Shown after the number, e.g. + or %."
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Decimal places"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Thousands separator"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Decimal separator"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Duration (seconds)"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Five seconds at most, so the motion stops on its own. Visitors who ask for reduced motion see the final number straight away."
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+#: build/blocks/posts/index.js:1
+msgid "Title"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Show title"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Title position"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Space between number and title"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Number color"
+msgstr ""
+
+#: build/blocks/count-up/index.js:1
+msgid "Title color"
+msgstr ""
+
+#: build/blocks/gallery/index.js:1
+msgid "Missing image"
+msgstr ""
+
+#: build/blocks/gallery/index.js:2
+msgid "Linked"
+msgstr ""
+
+#: build/blocks/gallery/index.js:2
+msgid "No link"
+msgstr ""
+
+#: build/blocks/gallery/index.js:2
+msgid "The linked post isn't published, so the image isn't linked on the page."
+msgstr ""
+
+#. translators: %s: The image's name.
+#: build/blocks/gallery/index.js:3
+#, js-format
+msgid "Move %s up"
+msgstr ""
+
+#. translators: %s: The image's name.
+#: build/blocks/gallery/index.js:4
+#, js-format
+msgid "Move %s down"
+msgstr ""
+
+#. translators: %s: The image's name.
+#: build/blocks/gallery/index.js:5
+#, js-format
+msgid "Remove %s"
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+msgid "No alternative text. Add it in the Media Library, so screen readers can describe the image."
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+msgid "Hidden"
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+msgid "Below the image"
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+msgid "Over the image"
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+msgid "Nothing"
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+msgid "The image file"
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+msgid "A link set for each image"
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+msgid "A larger view (lightbox)"
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+msgid "Opens the image over the page, with arrows to move through the gallery."
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+#: build/blocks/posts/index.js:1
+msgid "Grid"
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+msgid "Masonry"
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+#: build/blocks/posts/index.js:1
+msgid "Carousel"
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+msgid "Play the slides on their own, fade between them, or add thumbnails."
+msgstr ""
+
+#: build/blocks/gallery/index.js:5
+msgid "Images in view"
+msgstr ""
+
+#. translators: %d: The image's position in the gallery.
+#: build/blocks/gallery/index.js:6
+#, js-format
+msgid "Caption of image %d"
+msgstr ""
+
+#: build/blocks/gallery/index.js:6
+msgid "Add a caption"
+msgstr ""
+
+#: build/blocks/gallery/index.js:6
+msgid "Edit images"
+msgstr ""
+
+#: build/blocks/gallery/index.js:6
+msgid "Gallery type"
+msgstr ""
+
+#: build/blocks/gallery/index.js:6
+msgid "This gallery's type isn't available on this site, so it shows as a grid. Pick a type to use one of these instead."
+msgstr ""
+
+#. translators: %s: Gallery type, e.g. "Carousel".
+#: build/blocks/gallery/index.js:7
+#, js-format
+msgid "%s settings"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+#: build/blocks/icon-list/index.js:1
+#: build/blocks/posts/index.js:1
+#: build/blocks/row/index.js:19
+msgid "Columns"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+#: build/blocks/posts/index.js:1
+msgid "Image shape"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Every image is cropped to this shape, from its center. Original keeps each image's own shape."
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+#: build/blocks/posts/index.js:1
+msgid "Image size"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+#: build/blocks/posts/index.js:1
+msgid "The largest file the page loads. Browsers pick a smaller one where it is enough."
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Filters and Load more"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Let visitors filter the images by category, and show the rest with a Load more button."
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Captions"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Captions come from the Media Library. Edit one in the gallery to change it here only."
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Links"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Clicking an image opens"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Show captions in the lightbox"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Even when the gallery hides them."
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Order"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Space between images"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+#: build/blocks/posts/index.js:1
+msgid "Corner radius"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+#: build/blocks/posts/index.js:1
+#: build/editor/index.js:16
+msgid "Shadow"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+#: build/blocks/posts/index.js:1
+#: build/editor/index.js:16
+msgid "Shadow color"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+#: build/blocks/posts/index.js:1
+#: build/editor/index.js:16
+msgid "Hover shadow"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+#: build/blocks/posts/index.js:1
+#: build/editor/index.js:16
+msgid "Same as normal"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Shown while the pointer is over an image, and when a linked image has keyboard focus."
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+#: build/blocks/posts/index.js:1
+#: build/editor/index.js:16
+msgid "Hover shadow color"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+#: build/blocks/posts/index.js:1
+#: build/editor/index.js:16
+msgid "same as normal"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+#: build/blocks/posts/index.js:1
+#: build/editor/index.js:16
+msgid "Customize a shadow's direction, distance, blur and spread."
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Caption text"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Caption background"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Lightbox"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Gallery"
+msgstr ""
+
+#: build/blocks/gallery/index.js:7
+msgid "Drag images here, upload new ones, or pick them from your Media Library."
+msgstr ""
+
+#: build/blocks/icon-list-item/index.js:1
+msgid "The linked post isn't published, so the item shows without its link on the page."
+msgstr ""
+
+#: build/blocks/icon-list-item/index.js:1
+msgid "The whole item is a link, so links inside its text are removed."
+msgstr ""
+
+#: build/blocks/icon-list-item/index.js:1
+msgid "Makes the whole item a link. To link a few words instead, select them and use the toolbar's Link button."
+msgstr ""
+
+#: build/blocks/icon-list-item/index.js:1
+msgid "Its own icon"
+msgstr ""
+
+#: build/blocks/icon-list-item/index.js:1
+msgid "Off: the list's icon."
+msgstr ""
+
+#: build/blocks/icon-list-item/index.js:1
+msgid "Only when the icon says something the text doesn't, such as Included or Not included. Screen readers read it before the text."
+msgstr ""
+
+#: build/blocks/icon-list-item/index.js:1
+msgid "List item text"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+#: build/editor/index.js:12
+#: build/editor/index.js:19
+msgid "Solid"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+#: build/editor/index.js:12
+msgid "Dashed"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+#: build/editor/index.js:12
+msgid "Dotted"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "First item"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "Second item"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "Third item"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "Every item shows it, unless the item has its own."
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "Icon beside long text"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "At the first line"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "In the middle"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "Hover icon, on linked items"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "Divider"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "Line between items"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "Across, between items one per line and between rows in columns; up and down, between items side by side."
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "Line"
+msgstr ""
+
+#: build/blocks/icon-list/index.js:1
+msgid "Line width"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Newest first"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Oldest first"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Recently updated"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Title, A to Z"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Title, Z to A"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Page order"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Image for posts without one"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Replace image"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+#: build/editor/index.js:6
+msgid "Choose image"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+#: build/editor/index.js:6
+#: build/editor/index.js:20
+msgid "Remove"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Show"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Choose…"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Show all post types."
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Filter by"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "No filter"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Number of posts"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Show more posts with a Load more button or infinite scroll."
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Sort"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Leave out the post being viewed"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "So a list of posts on a post doesn't show that post again."
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Posts in view"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Carousel settings"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Featured image"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "One level below the heading above the posts, so the page's outline stays in order."
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Date"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Excerpt"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Excerpt length (words)"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "A post's own excerpt is used when it has one, shortened to this length."
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Read more link"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Read more text"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Screen readers also hear the post's title, so every link has its own name."
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Filters"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Let visitors filter the posts by category."
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Space between posts"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Cards"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Card background"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Card padding"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Content padding"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Card corner radius"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Shown while the pointer is over a card, and when a link in it has keyboard focus."
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Image corner radius"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Title on hover"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Style"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Read more on hover"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Read more background"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "Read more background on hover"
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "This block's post type isn't available on this site, so the page shows nothing here. Choose what to show in the sidebar."
+msgstr ""
+
+#: build/blocks/posts/index.js:1
+msgid "No published posts match these settings, so the page shows nothing here."
+msgstr ""
+
+#. translators: %s: A layout, e.g. "Two per line".
+#: build/blocks/row/index.js:2
+#, js-format
+msgid "%s, first column full width"
+msgstr ""
+
+#. translators: %s: A layout, e.g. "33% / 33% / 33%".
+#: build/blocks/row/index.js:3
+#, js-format
+msgid "%s, first column wider"
+msgstr ""
+
+#. translators: %s: A layout, e.g. "Two per line".
+#: build/blocks/row/index.js:4
+#, js-format
+msgid "%s, last column full width"
+msgstr ""
+
+#. translators: %s: A layout, e.g. "33% / 33% / 33%".
+#: build/blocks/row/index.js:5
+#, js-format
+msgid "%s, last column wider"
+msgstr ""
+
+#. translators: %s: Column widths, e.g. "42% / 58%".
+#: build/blocks/row/index.js:6
+#, js-format
+msgid "Custom: %s"
+msgstr ""
+
+#: build/blocks/row/index.js:6
+msgid "Two per line"
+msgstr ""
+
+#. translators: %s: Column widths, e.g. "50% / 50%".
+#: build/blocks/row/index.js:7
+#, js-format
+msgid "Side by side: %s"
+msgstr ""
+
+#. translators: 1: Number of a column. 2: Number of the next column.
+#: build/blocks/row/index.js:8
+#, js-format
+msgid "Width of columns %1$d and %2$d"
+msgstr ""
+
+#: build/blocks/row/index.js:8
+msgid "Column widths (%)"
+msgstr ""
+
+#. translators: %s: The Layout setting with its device, e.g. "Layout (tablet)".
+#: build/blocks/row/index.js:9
+#, js-format
+msgid "%s: column widths (%%)"
+msgstr ""
+
+#. translators: %d: Number of a column.
+#: build/blocks/row/index.js:10
+#, js-format
+msgid "Column %d"
+msgstr ""
+
+#: build/blocks/row/index.js:10
+msgid "Row"
+msgstr ""
+
+#: build/blocks/row/index.js:10
+msgid "Choose a column layout. You can change it any time in the block settings."
+msgstr ""
+
+#. translators: %d: Number of columns.
+#: build/blocks/row/index.js:11
+#, js-format
+msgid "%d column"
+msgid_plural "%d columns"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: 1: Number of columns. 2: Column widths, e.g. "67% / 33%".
+#: build/blocks/row/index.js:12
+#, js-format
+msgid "%1$d column: %2$s"
+msgid_plural "%1$d columns: %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: The theme's wide width, e.g. "1340px".
+#: build/blocks/row/index.js:13
+#, js-format
+msgid "Theme wide width (%s)"
+msgstr ""
+
+#. translators: %s: The width used instead, e.g. "75rem".
+#: build/blocks/row/index.js:14
+#, js-format
+msgid "Wide width (%s; the theme sets none)"
+msgstr ""
+
+#. translators: %s: The theme's content width, e.g. "645px".
+#: build/blocks/row/index.js:15
+#, js-format
+msgid "Theme content width (%s)"
+msgstr ""
+
+#. translators: %s: The width used instead, e.g. "45rem".
+#: build/blocks/row/index.js:16
+#, js-format
+msgid "Content width (%s; the theme sets none)"
+msgstr ""
+
+#: build/blocks/row/index.js:16
+msgid "Full width of the row"
+msgstr ""
+
+#: build/blocks/row/index.js:16
+#: build/editor/index.js:1
+#: build/editor/index.js:15
+msgid "Custom"
+msgstr ""
+
+#: build/blocks/row/index.js:16
+msgid "Reverse column order on tablet"
+msgstr ""
+
+#: build/blocks/row/index.js:16
+msgid "Reverse column order on mobile"
+msgstr ""
+
+#. translators: %d: Number of columns in the Row.
+#: build/blocks/row/index.js:17
+#, js-format
+msgid "%d column in this Row."
+msgid_plural "%d columns in this Row."
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/blocks/row/index.js:17
+msgid "One per line on desktop."
+msgstr ""
+
+#: build/blocks/row/index.js:17
+msgid "All side by side on desktop."
+msgstr ""
+
+#. translators: %d: Number of columns side by side on desktop, 2 or more.
+#: build/blocks/row/index.js:18
+#, js-format
+msgid "%d goes across on desktop."
+msgid_plural "%d go across on desktop."
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %d: Number of columns left over, which continue on the next lines.
+#: build/blocks/row/index.js:19
+#, js-format
+msgid "%d more continues on the line below."
+msgid_plural "%d more continue on the lines below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/blocks/row/index.js:19
+msgid "How many fit across on desktop. Extra columns wrap below; none are removed."
+msgstr ""
+
+#: build/blocks/row/index.js:19
+msgid "Add column"
+msgstr ""
+
+#: build/blocks/row/index.js:19
+msgid "Equal height"
+msgstr ""
+
+#: build/blocks/row/index.js:19
+msgid "Column gap"
+msgstr ""
+
+#: build/blocks/row/index.js:19
+msgid "Row gap"
+msgstr ""
+
+#: build/blocks/row/index.js:19
+msgid "Content width"
+msgstr ""
+
+#: build/blocks/row/index.js:19
+msgid "Custom width"
+msgstr ""
+
+#: build/blocks/row/index.js:19
+msgid "Minimum height"
+msgstr ""
+
+#: build/blocks/row/index.js:19
+msgid "HTML"
+msgstr ""
+
+#: build/blocks/row/index.js:19
+msgid "Section name"
+msgstr ""
+
+#: build/blocks/row/index.js:19
+msgid "Optional. Screen readers announce it and list the Row among the page's landmarks, e.g. Pricing. Leave out words like section: they announce the kind of landmark themselves."
+msgstr ""
+
+#. translators: %d: tab number.
+#: build/blocks/tabs/index.js:2
+#, js-format
+msgid "Tab %d"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Across the top"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Down the side"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Fill the width"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Move tab up"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Move tab right"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Move tab left"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Move tab down"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Remove tab"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Tabs"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Tab position"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Where the block is narrower than 480px, as on a phone or in a narrow column, tabs down the side move to the top."
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Tab alignment"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Tab that starts open"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Space between tabs"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Active"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Tab text"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Hover tab text"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Active tab text"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Tab background"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Hover tab background"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Active tab background"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Tab border"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Hover tab border"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Active tab border"
+msgstr ""
+
+#: build/blocks/tabs/index.js:2
+msgid "Add tab"
+msgstr ""
+
+#: build/editor/index.js:1
+#: build/editor/index.js:3
+msgid "not set"
+msgstr ""
+
+#: build/editor/index.js:3
+msgid "How much of the page shows through. Empty uses the site default."
+msgstr ""
+
+#: build/editor/index.js:3
+msgid "Desktop"
+msgstr ""
+
+#: build/editor/index.js:3
+msgid "Tablet"
+msgstr ""
+
+#: build/editor/index.js:3
+msgid "Mobile"
+msgstr ""
+
+#: build/editor/index.js:3
+msgid "Device"
+msgstr ""
+
+#: build/editor/index.js:3
+msgid "desktop"
+msgstr ""
+
+#: build/editor/index.js:3
+msgid "tablet"
+msgstr ""
+
+#: build/editor/index.js:3
+msgid "mobile"
+msgstr ""
+
+#. translators: 1: Setting name, e.g. "Padding". 2: Device name, e.g. "desktop".
+#: build/editor/index.js:4
+#, js-format
+msgid "%1$s: use the %2$s value"
+msgstr ""
+
+#. translators: 1: Setting name, e.g. "Padding". 2: Device name, e.g. "tablet".
+#: build/editor/index.js:5
+#, js-format
+msgctxt "setting name (device name)"
+msgid "%1$s (%2$s)"
+msgstr ""
+
+#: build/editor/index.js:5
+msgid "Image"
+msgstr ""
+
+#: build/editor/index.js:5
+msgid "Drag the circle to the part of the image that stays visible when it is cropped."
+msgstr ""
+
+#: build/editor/index.js:5
+msgid "Choose an image. A video goes in the Video setting."
+msgstr ""
+
+#. translators: %s: Setting label with its device, e.g. "Image (mobile)".
+#: build/editor/index.js:6
+#, js-format
+msgid "%s: choose an image"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Replace"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "No image on this device"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Plays muted and looped on desktop and tablet. Phones, and visitors who prefer less motion, see the background image instead, so set one too. A short, small file loads fastest."
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Video"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Choose an MP4 or WebM video."
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Choose video"
+msgstr ""
+
+#: build/editor/index.js:6
+msgctxt "spacing size"
+msgid "XS"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Extra small"
+msgstr ""
+
+#: build/editor/index.js:6
+msgctxt "spacing size"
+msgid "SM"
+msgstr ""
+
+#: build/editor/index.js:6
+msgctxt "spacing size"
+msgid "MD"
+msgstr ""
+
+#: build/editor/index.js:6
+msgctxt "spacing size"
+msgid "LG"
+msgstr ""
+
+#: build/editor/index.js:6
+msgctxt "spacing size"
+msgid "XL"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Extra large"
+msgstr ""
+
+#: build/editor/index.js:6
+msgctxt "font size"
+msgid "XS"
+msgstr ""
+
+#: build/editor/index.js:6
+msgctxt "font size"
+msgid "SM"
+msgstr ""
+
+#: build/editor/index.js:6
+msgctxt "font size"
+msgid "MD"
+msgstr ""
+
+#: build/editor/index.js:6
+msgctxt "font size"
+msgid "LG"
+msgstr ""
+
+#: build/editor/index.js:6
+msgctxt "font size"
+msgid "XL"
+msgstr ""
+
+#: build/editor/index.js:6
+msgctxt "font size"
+msgid "2XL"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Huge"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Pill"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Pixels (px)"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Relative to the site's font size (rem)"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Relative to this text's font size (em)"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Percent (%)"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Percent of the screen's width (vw)"
+msgstr ""
+
+#: build/editor/index.js:6
+msgid "Percent of the screen's height (vh)"
+msgstr ""
+
+#. translators: %s: Setting label, e.g. "Minimum height".
+#: build/editor/index.js:7
+#, js-format
+msgid "%s unit"
+msgstr ""
+
+#. translators: %s: The current size, e.g. "clamp(1rem, 4vw, 3rem)".
+#: build/editor/index.js:8
+#, js-format
+msgid "Now %s. Set a size to replace it."
+msgstr ""
+
+#: build/editor/index.js:9
+msgid "default"
+msgstr ""
+
+#. translators: 1: A size's short name, e.g. "SM". 2: Its full name, e.g. "Small".
+#: build/editor/index.js:10
+#, js-format
+msgid "%1$s · %2$s"
+msgstr ""
+
+#: build/editor/index.js:10
+msgid "Custom size"
+msgstr ""
+
+#. translators: %s: Setting with its device, e.g. "Padding (tablet), Top".
+#: build/editor/index.js:11
+#, js-format
+msgid "%s, custom size"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "All sides"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Set all sides together"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Set each side"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Top left"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Top right"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Bottom right"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Bottom left"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "All corners"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Set all corners together"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Set each corner"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Top and bottom"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Left and right"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Set top and bottom together, and left and right together"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Set left and right together"
+msgstr ""
+
+#: build/editor/index.js:11
+msgid "Set top and bottom together"
+msgstr ""
+
+#. translators: 1: Setting name with its device, e.g. "Padding (tablet)". 2: Side or corner, e.g. "Top and bottom".
+#: build/editor/index.js:12
+#, js-format
+msgid "%1$s, %2$s"
+msgstr ""
+
+#: build/editor/index.js:12
+msgid "Double"
+msgstr ""
+
+#. translators: %s: The value used when nothing is chosen, e.g. "Solid".
+#: build/editor/index.js:13
+#: build/editor/index.js:16
+#, js-format
+msgid "Default (%s)"
+msgstr ""
+
+#. translators: %s: A border style, e.g. "Dashed".
+#: build/editor/index.js:14
+#, js-format
+msgid "Border style: %s"
+msgstr ""
+
+#: build/editor/index.js:14
+msgid "Border style"
+msgstr ""
+
+#. translators: %s: Setting name with its device, e.g. "Border (tablet)".
+#: build/editor/index.js:15
+#, js-format
+msgid "%s width"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Solid Color"
+msgstr ""
+
+#: build/editor/index.js:15
+#: build/editor/index.js:16
+msgid "Gradient"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Overlay gradient"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Overlay opacity (%)"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Available in Pro"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Pro"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Learn more"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "the shadow's own color"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Cover"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Contain"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Original size"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "No repeat"
+msgstr ""
+
+#: build/editor/index.js:15
+#: build/editor/index.js:16
+msgid "Repeat"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Scrolls with the page"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Fixed"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Hide on desktop"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Hide on tablet"
+msgstr ""
+
+#: build/editor/index.js:15
+msgid "Hide on mobile"
+msgstr ""
+
+#: build/editor/index.js:16
+msgid "Border, radius and shadow"
+msgstr ""
+
+#: build/editor/index.js:16
+msgid "Radius"
+msgstr ""
+
+#: build/editor/index.js:16
+msgid "Background color"
+msgstr ""
+
+#: build/editor/index.js:16
+msgid "Background gradient"
+msgstr ""
+
+#: build/editor/index.js:16
+msgid "Attachment"
+msgstr ""
+
+#: build/editor/index.js:16
+msgid "Visibility"
+msgstr ""
+
+#: build/editor/index.js:16
+msgid "Shown while the pointer is over the block, and while its link has keyboard focus."
+msgstr ""
+
+#. translators: %s: An edge, "Top" or "Bottom".
+#: build/editor/index.js:17
+#, js-format
+msgid "%s divider color"
+msgstr ""
+
+#: build/editor/index.js:17
+msgid "white, the default"
+msgstr ""
+
+#: build/editor/index.js:17
+msgid "Height"
+msgstr ""
+
+#: build/editor/index.js:17
+msgid "Without one, it grows with the screen, from 3rem to 6rem."
+msgstr ""
+
+#: build/editor/index.js:17
+msgid "Stretch (%)"
+msgstr ""
+
+#: build/editor/index.js:17
+msgid "Wider than the block makes the shape gentler. The middle part shows."
+msgstr ""
+
+#: build/editor/index.js:17
+msgid "Flip horizontally"
+msgstr ""
+
+#: build/editor/index.js:17
+msgid "Invert"
+msgstr ""
+
+#: build/editor/index.js:17
+msgid "The shape the other way around, a dip instead of a rise."
+msgstr ""
+
+#: build/editor/index.js:17
+msgid "In front of the content"
+msgstr ""
+
+#: build/editor/index.js:17
+msgid "Drawn over the columns instead of behind them."
+msgstr ""
+
+#: build/editor/index.js:17
+msgid "Dividers"
+msgstr ""
+
+#: build/editor/index.js:17
+msgid "More shapes, and a gentle drift animation."
+msgstr ""
+
+#: build/editor/index.js:19
+msgid "Arrows"
+msgstr ""
+
+#: build/editor/index.js:19
+msgid "Buttons that move to the previous and next slide."
+msgstr ""
+
+#: build/editor/index.js:19
+msgid "Dots"
+msgstr ""
+
+#: build/editor/index.js:19
+msgid "One for each slide, the items in view at once, to jump to it."
+msgstr ""
+
+#: build/editor/index.js:19
+msgid "Play the slides on their own or fade between them."
+msgstr ""
+
+#: build/editor/index.js:19
+msgid "Settings"
+msgstr ""
+
+#: build/editor/index.js:19
+msgid "Styles"
+msgstr ""
+
+#: build/editor/index.js:19
+msgid "Advanced"
+msgstr ""
+
+#: build/editor/index.js:19
+msgid "Search icons"
+msgstr ""
+
+#: build/editor/index.js:19
+msgid "Icon style"
+msgstr ""
+
+#: build/editor/index.js:19
+msgid "Icon set"
+msgstr ""
+
+#. translators: %d: Number of icons shown.
+#: build/editor/index.js:20
+#, js-format
+msgid "%d icon"
+msgid_plural "%d icons"
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/editor/index.js:20
+msgid "No icons match."
+msgstr ""
+
+#: build/editor/index.js:20
+msgid "Choose an icon"
+msgstr ""
+
+#: build/editor/index.js:20
+msgid "URL"
+msgstr ""
+
+#: build/editor/index.js:20
+msgid "Email"
+msgstr ""
+
+#: build/editor/index.js:20
+msgid "Phone"
+msgstr ""
+
+#: build/editor/index.js:20
+msgid "Section on this page"
+msgstr ""
+
+#. translators: 1: A link address. 2: Its kind, e.g. "Email".
+#: build/editor/index.js:21
+#, js-format
+msgctxt "link address (link kind)"
+msgid "%1$s (%2$s)"
+msgstr ""
+
+#. translators: %d: Number of search results.
+#: build/editor/index.js:22
+#, js-format
+msgid "%d result found, use up and down arrow keys to navigate."
+msgid_plural "%d results found, use up and down arrow keys to navigate."
+msgstr[0] ""
+msgstr[1] ""
+
+#: build/editor/index.js:22
+msgid "No results."
+msgstr ""
+
+#. translators: %d: Post ID.
+#: build/editor/index.js:23
+#, js-format
+msgid "Post %d"
+msgstr ""
+
+#: build/editor/index.js:23
+msgid "Paste a URL, email address or phone number, or type a title to search this site."
+msgstr ""
+
+#. translators: %s: The typed address and its kind, e.g. "name@example.com (Email)".
+#: build/editor/index.js:24
+#, js-format
+msgid "%s: saved when you press Enter or leave the field."
+msgstr ""
+
+#: build/editor/index.js:24
+msgid "Keep typing: this isn't a whole address yet, so it isn't saved."
+msgstr ""
+
+#: build/editor/index.js:24
+msgid "Searching…"
+msgstr ""
+
+#: build/editor/index.js:24
+msgid "No published posts match. To link to another site, type the whole address."
+msgstr ""
+
+#: build/editor/index.js:24
+msgid "Choose a result to link to it. Text typed here isn't saved on its own."
+msgstr ""
+
+#. translators: %s: Post type name, e.g. "Page".
+#: build/editor/index.js:25
+#, js-format
+msgid "Linked to this %s. The link updates if its address changes."
+msgstr ""
+
+#. translators: %s: The address and its kind, e.g. "name@example.com (Email)".
+#: build/editor/index.js:26
+#, js-format
+msgid "Linked to %s."
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Optional: the HTML anchor of a block on the linked page, e.g. pricing. The link opens the page at that block."
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Optional: the ID of a section on that page, e.g. pricing. It's added to the address as #pricing."
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Optional: the HTML anchor of a block on this page, e.g. pricing. The link scrolls to that block."
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Link to"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Jump to a section"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Open in a new tab"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Mark as nofollow"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Mark as sponsored"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Edit link"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Remove link"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Done"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Thin"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Extra light"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Light"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Regular"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Semibold"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Bold"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Extra bold"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Black"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Uppercase"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Lowercase"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Capitalize"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Font size"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Font weight"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Line height"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Letter spacing"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Letter case"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Original"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Square (1:1)"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Landscape (3:2)"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Landscape (4:3)"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Wide (16:9)"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Portrait (2:3)"
+msgstr ""
+
+#: build/editor/index.js:26
+msgid "Portrait (3:4)"
+msgstr ""
+
+#: build/blocks/accordion-item/block.json
+msgctxt "block title"
+msgid "Accordion Item"
+msgstr ""
+
+#: build/blocks/accordion-item/block.json
+msgctxt "block description"
+msgid "One section of an Accordion: a title, and content that shows when the title is opened."
+msgstr ""
+
+#: build/blocks/accordion/block.json
+msgctxt "block title"
+msgid "Accordion"
+msgstr ""
+
+#: build/blocks/accordion/block.json
+msgctxt "block description"
+msgid "Collapsible sections for FAQs and details, with the option to keep only one open at a time."
+msgstr ""
+
+#: build/blocks/accordion/block.json
+msgctxt "block keyword"
+msgid "accordion"
+msgstr ""
+
+#: build/blocks/accordion/block.json
+msgctxt "block keyword"
+msgid "faq"
+msgstr ""
+
+#: build/blocks/accordion/block.json
+msgctxt "block keyword"
+msgid "collapsible"
+msgstr ""
+
+#: build/blocks/accordion/block.json
+msgctxt "block keyword"
+msgid "expandable"
+msgstr ""
+
+#: build/blocks/accordion/block.json
+#: build/blocks/tabs/block.json
+msgctxt "block keyword"
+msgid "toggle"
+msgstr ""
+
+#: build/blocks/accordion/block.json
+#: build/blocks/row/block.json
+msgctxt "block keyword"
+msgid "section"
+msgstr ""
+
+#: build/blocks/accordion/block.json
+msgctxt "block keyword"
+msgid "details"
+msgstr ""
+
+#: build/blocks/advanced-text/block.json
+msgctxt "block title"
+msgid "Advanced Text"
+msgstr ""
+
+#: build/blocks/advanced-text/block.json
+msgctxt "block description"
+msgid "Text as a paragraph, heading or other element, with an optional icon before or after it, its own typography, colors, spacing per device and a link."
+msgstr ""
+
+#: build/blocks/advanced-text/block.json
+msgctxt "block keyword"
+msgid "text"
+msgstr ""
+
+#: build/blocks/advanced-text/block.json
+msgctxt "block keyword"
+msgid "heading"
+msgstr ""
+
+#: build/blocks/advanced-text/block.json
+msgctxt "block keyword"
+msgid "paragraph"
+msgstr ""
+
+#: build/blocks/advanced-text/block.json
+#: build/blocks/icon-list-item/block.json
+#: build/blocks/icon-list/block.json
+msgctxt "block keyword"
+msgid "icon"
+msgstr ""
+
+#: build/blocks/advanced-text/block.json
+msgctxt "block keyword"
+msgid "title"
+msgstr ""
+
+#: build/blocks/button/block.json
+msgctxt "block title"
+msgid "Button"
+msgstr ""
+
+#: build/blocks/button/block.json
+msgctxt "block description"
+msgid "A button that links to a post, page or any address: a URL, an email address or a phone number."
+msgstr ""
+
+#: build/blocks/button/block.json
+#: build/blocks/buttons/block.json
+msgctxt "block keyword"
+msgid "button"
+msgstr ""
+
+#: build/blocks/button/block.json
+#: build/blocks/buttons/block.json
+msgctxt "block keyword"
+msgid "link"
+msgstr ""
+
+#: build/blocks/button/block.json
+#: build/blocks/buttons/block.json
+msgctxt "block keyword"
+msgid "call to action"
+msgstr ""
+
+#: build/blocks/button/block.json
+#: build/blocks/buttons/block.json
+msgctxt "block keyword"
+msgid "cta"
+msgstr ""
+
+#: build/blocks/button/block.json
+msgctxt "block style label"
+msgid "Fill"
+msgstr ""
+
+#: build/blocks/button/block.json
+msgctxt "block style label"
+msgid "Outline"
+msgstr ""
+
+#: build/blocks/button/block.json
+msgctxt "block style label"
+msgid "Text link"
+msgstr ""
+
+#: build/blocks/button/block.json
+msgctxt "block style label"
+msgid "Underline"
+msgstr ""
+
+#: build/blocks/buttons/block.json
+msgctxt "block title"
+msgid "Buttons"
+msgstr ""
+
+#: build/blocks/buttons/block.json
+msgctxt "block description"
+msgid "One or more buttons side by side, wrapping onto the next line when they don't fit, or one per line, per device."
+msgstr ""
+
+#: build/blocks/buttons/block.json
+msgctxt "block keyword"
+msgid "buttons"
+msgstr ""
+
+#: build/blocks/column/block.json
+msgctxt "block title"
+msgid "Column"
+msgstr ""
+
+#: build/blocks/column/block.json
+msgctxt "block description"
+msgid "One column of a Row. Holds any blocks, with its own spacing and alignment per device, an optional link and hover effects."
+msgstr ""
+
+#: build/blocks/count-up/block.json
+msgctxt "block title"
+msgid "Count Up"
+msgstr ""
+
+#: build/blocks/count-up/block.json
+msgctxt "block description"
+msgid "An animated number that counts up when it scrolls into view, with an optional title. For stats, milestones and results."
+msgstr ""
+
+#: build/blocks/count-up/block.json
+msgctxt "block keyword"
+msgid "counter"
+msgstr ""
+
+#: build/blocks/count-up/block.json
+msgctxt "block keyword"
+msgid "number"
+msgstr ""
+
+#: build/blocks/count-up/block.json
+msgctxt "block keyword"
+msgid "stat"
+msgstr ""
+
+#: build/blocks/count-up/block.json
+msgctxt "block keyword"
+msgid "statistic"
+msgstr ""
+
+#: build/blocks/count-up/block.json
+msgctxt "block keyword"
+msgid "animated"
+msgstr ""
+
+#: build/blocks/gallery/block.json
+msgctxt "block title"
+msgid "Gallery"
+msgstr ""
+
+#: build/blocks/gallery/block.json
+msgctxt "block description"
+msgid "Images from the Media Library as a grid, masonry or carousel, with captions, links or a lightbox, and columns for every screen."
+msgstr ""
+
+#: build/blocks/gallery/block.json
+msgctxt "block keyword"
+msgid "gallery"
+msgstr ""
+
+#: build/blocks/gallery/block.json
+msgctxt "block keyword"
+msgid "images"
+msgstr ""
+
+#: build/blocks/gallery/block.json
+msgctxt "block keyword"
+msgid "photos"
+msgstr ""
+
+#: build/blocks/gallery/block.json
+#: build/blocks/posts/block.json
+#: build/blocks/row/block.json
+msgctxt "block keyword"
+msgid "grid"
+msgstr ""
+
+#: build/blocks/gallery/block.json
+msgctxt "block keyword"
+msgid "masonry"
+msgstr ""
+
+#: build/blocks/gallery/block.json
+#: build/blocks/posts/block.json
+msgctxt "block keyword"
+msgid "carousel"
+msgstr ""
+
+#: build/blocks/gallery/block.json
+#: build/blocks/posts/block.json
+msgctxt "block keyword"
+msgid "slider"
+msgstr ""
+
+#: build/blocks/gallery/block.json
+msgctxt "block keyword"
+msgid "portfolio"
+msgstr ""
+
+#: build/blocks/icon-list-item/block.json
+msgctxt "block title"
+msgid "Icon List Item"
+msgstr ""
+
+#: build/blocks/icon-list-item/block.json
+msgctxt "block description"
+msgid "One item of an Icon List: its text, and its own icon or link when it needs one."
+msgstr ""
+
+#: build/blocks/icon-list-item/block.json
+msgctxt "block keyword"
+msgid "list item"
+msgstr ""
+
+#: build/blocks/icon-list/block.json
+msgctxt "block title"
+msgid "Icon List"
+msgstr ""
+
+#: build/blocks/icon-list/block.json
+msgctxt "block description"
+msgid "A list with an icon beside each item: stacked, in columns or side by side, per device."
+msgstr ""
+
+#: build/blocks/icon-list/block.json
+msgctxt "block keyword"
+msgid "list"
+msgstr ""
+
+#: build/blocks/icon-list/block.json
+msgctxt "block keyword"
+msgid "icons"
+msgstr ""
+
+#: build/blocks/icon-list/block.json
+msgctxt "block keyword"
+msgid "features"
+msgstr ""
+
+#: build/blocks/icon-list/block.json
+msgctxt "block keyword"
+msgid "checklist"
+msgstr ""
+
+#: build/blocks/icon-list/block.json
+msgctxt "block keyword"
+msgid "bullets"
+msgstr ""
+
+#: build/blocks/posts/block.json
+msgctxt "block title"
+msgid "Posts"
+msgstr ""
+
+#: build/blocks/posts/block.json
+msgctxt "block description"
+msgid "The latest posts or pages in a grid or carousel, each with its image, title, date and excerpt, filtered by category or tag."
+msgstr ""
+
+#: build/blocks/posts/block.json
+msgctxt "block keyword"
+msgid "posts"
+msgstr ""
+
+#: build/blocks/posts/block.json
+msgctxt "block keyword"
+msgid "latest"
+msgstr ""
+
+#: build/blocks/posts/block.json
+msgctxt "block keyword"
+msgid "blog"
+msgstr ""
+
+#: build/blocks/posts/block.json
+msgctxt "block keyword"
+msgid "news"
+msgstr ""
+
+#: build/blocks/posts/block.json
+msgctxt "block keyword"
+msgid "pages"
+msgstr ""
+
+#: build/blocks/row/block.json
+msgctxt "block title"
+msgid "Row"
+msgstr ""
+
+#: build/blocks/row/block.json
+msgctxt "block description"
+msgid "Columns side by side, up to six per line; more columns continue on the next line. Set how they are laid out, spaced and ordered on desktop, tablet and mobile."
+msgstr ""
+
+#: build/blocks/row/block.json
+msgctxt "block keyword"
+msgid "columns"
+msgstr ""
+
+#: build/blocks/row/block.json
+msgctxt "block keyword"
+msgid "layout"
+msgstr ""
+
+#: build/blocks/tab/block.json
+msgctxt "block title"
+msgid "Tab"
+msgstr ""
+
+#: build/blocks/tab/block.json
+msgctxt "block description"
+msgid "One tab of a Tabs block: its label, and the content that shows when it is selected."
+msgstr ""
+
+#: build/blocks/tabs/block.json
+msgctxt "block title"
+msgid "Tabs"
+msgstr ""
+
+#: build/blocks/tabs/block.json
+msgctxt "block description"
+msgid "Content in tabs: visitors click a tab to show its content. Tabs run across the top or down the side; on a narrow screen they wrap onto more lines."
+msgstr ""
+
+#: build/blocks/tabs/block.json
+msgctxt "block keyword"
+msgid "tabs"
+msgstr ""
+
+#: build/blocks/tabs/block.json
+msgctxt "block keyword"
+msgid "tabbed"
+msgstr ""
+
+#: build/blocks/tabs/block.json
+msgctxt "block keyword"
+msgid "panels"
+msgstr ""

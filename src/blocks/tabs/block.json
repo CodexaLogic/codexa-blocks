@@ -1,0 +1,154 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "codexa-blocks/tabs",
+	"version": "1.0.0",
+	"title": "Tabs",
+	"category": "codexa-blocks",
+	"description": "Content in tabs: visitors click a tab to show its content. Tabs run across the top or down the side; on a narrow screen they wrap onto more lines.",
+	"keywords": ["tabs", "tabbed", "panels", "toggle"],
+	"textdomain": "codexa-blocks",
+	"allowedBlocks": ["codexa-blocks/tab"],
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"orientation": {
+			"type": "string",
+			"enum": ["horizontal", "vertical"],
+			"default": "horizontal"
+		},
+		"tabAlign": {
+			"type": "string",
+			"enum": ["start", "center", "end", "stretch"],
+			"default": "start"
+		},
+		"initialTab": {
+			"type": "integer",
+			"default": 0
+		},
+		"tabColor": {
+			"type": "string"
+		},
+		"tabBackground": {
+			"type": "string"
+		},
+		"tabHoverColor": {
+			"type": "string"
+		},
+		"tabHoverBackground": {
+			"type": "string"
+		},
+		"tabActiveColor": {
+			"type": "string"
+		},
+		"tabActiveBackground": {
+			"type": "string"
+		},
+		"tabBorderColor": {
+			"type": "string"
+		},
+		"tabHoverBorderColor": {
+			"type": "string"
+		},
+		"tabActiveBorderColor": {
+			"type": "string"
+		},
+		"tabBorderWidth": {
+			"type": "object"
+		},
+		"tabBorderRadius": {
+			"type": "object"
+		},
+		"tabGap": {
+			"type": "object"
+		},
+		"tabPadding": {
+			"type": "object"
+		},
+		"tabTypography": {
+			"type": "object"
+		},
+		"contentColor": {
+			"type": "string"
+		},
+		"contentLinkColor": {
+			"type": "string"
+		},
+		"contentLinkHoverColor": {
+			"type": "string"
+		},
+		"contentBackground": {
+			"type": "string"
+		},
+		"contentBorderColor": {
+			"type": "string"
+		},
+		"contentBorderWidth": {
+			"type": "object"
+		},
+		"contentBorderRadius": {
+			"type": "object"
+		},
+		"contentPadding": {
+			"type": "object"
+		},
+		"padding": {
+			"type": "object"
+		},
+		"margin": {
+			"type": "object"
+		},
+		"borderWidth": {
+			"type": "object"
+		},
+		"borderStyle": {
+			"type": "string",
+			"enum": ["solid", "dashed", "dotted", "double"]
+		},
+		"borderColor": {
+			"type": "string"
+		},
+		"borderRadius": {
+			"type": "object"
+		},
+		"backgroundImage": {
+			"type": "object"
+		},
+		"backgroundPosition": {
+			"type": "object"
+		},
+		"backgroundSize": {
+			"type": "string",
+			"enum": ["cover", "contain", "auto"]
+		},
+		"backgroundRepeat": {
+			"type": "string",
+			"enum": ["no-repeat", "repeat"]
+		},
+		"backgroundAttachment": {
+			"type": "string",
+			"enum": ["scroll", "fixed"]
+		},
+		"overlayColor": {
+			"type": "object"
+		},
+		"overlayGradient": {
+			"type": "object"
+		},
+		"overlayOpacity": {
+			"type": "object"
+		},
+		"hideOn": {
+			"type": "object"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": ["codexa-blocks-common", "file:./style-index.css"],
+	"viewScript": "file:./view.js"
+}

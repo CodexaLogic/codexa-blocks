@@ -1,0 +1,64 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "codexa-blocks/icon-list-item",
+	"version": "1.0.0",
+	"title": "Icon List Item",
+	"category": "codexa-blocks",
+	"parent": ["codexa-blocks/icon-list"],
+	"description": "One item of an Icon List: its text, and its own icon or link when it needs one.",
+	"keywords": ["list item", "icon"],
+	"textdomain": "codexa-blocks",
+	"usesContext": ["codexa-blocks/iconListIcon"],
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"text": {
+			"type": "string",
+			"default": "",
+			"role": "content"
+		},
+		"icon": {
+			"type": "string",
+			"default": ""
+		},
+		"iconColor": {
+			"type": "string"
+		},
+		"iconLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"linkPostId": {
+			"type": "integer"
+		},
+		"linkPostType": {
+			"type": "string"
+		},
+		"linkUrl": {
+			"type": "string"
+		},
+		"linkAnchor": {
+			"type": "string"
+		},
+		"linkOpensInNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"linkRel": {
+			"type": "array",
+			"default": []
+		},
+		"hideOn": {
+			"type": "object"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"reusable": false,
+		"splitting": true
+	},
+	"editorScript": "file:./index.js"
+}

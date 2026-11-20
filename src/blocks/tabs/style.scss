@@ -1,0 +1,360 @@
+/**
+ * Tabs and Tab, front end and editor.
+ *
+ * The page markup (Render\Tabs and Tab)
+ *
+ *   .wp-block-codexa-blocks-tabs.has-tab-headers
+ *     .__list [role=tablist]          the tab bar
+ *       .__tab [role=tab]             one per tab
+ *     .__panels
+ *       .wp-block-codexa-blocks-tab
+ *         .__header                   the tab's label, shown without scripts
+ *         .__panel                    the tab's content
+ *
+ * PHP prints the starting state, so nothing moves when view.js runs. The
+ * tab bar shows on every screen. On a narrow one its tabs wrap onto more
+ * lines, and vertical tabs move back on top of the content while the block
+ * is under 30rem (480px) across. When the browser runs no scripts, the tab
+ * bar is hidden and every tab shows, under its header.
+ *
+ * In the editor the same classes are on the tab bar and the content; the
+ * headers aren't there, and .is-active stands in for [aria-selected=true].
+ *
+ * The tab and content settings arrive as per-device variables (see
+ * device-variable() in _mixins.scss), copied into the --codexa-tabs-*
+ * variables below.
+ */
+@use "../../common/scss/mixins" as *;
+
+$tabs: ".wp-block-codexa-blocks-tabs";
+$tab: ".wp-block-codexa-blocks-tab";
+$sides: (top, right, bottom, left);
+
+// Below this width of the block (not the screen), vertical tabs go on top
+// of the content, because beside it a third of the width is too narrow for
+// their labels. It's smaller than the tablet breakpoint, because a theme's
+// content column is
+// often about 40rem (640px) wide even on desktop, where they fit, while a
+// phone's is under 30rem, as is a column in a three-column row.
+$vertical-below: 30rem;
+
+// A panel's border width and padding (the Content panel's Border width and
+// Padding), each set in two places below.
+@mixin panel-border-width {
+	border-width: var(--codexa-tabs-content-border-width-top)
+		var(--codexa-tabs-content-border-width-right)
+		var(--codexa-tabs-content-border-width-bottom)
+		var(--codexa-tabs-content-border-width-left);
+}
+
+@mixin panel-padding {
+	padding: var(--codexa-tabs-content-padding-top)
+		var(--codexa-tabs-content-padding-right)
+		var(--codexa-tabs-content-padding-bottom)
+		var(--codexa-tabs-content-padding-left);
+}
+
+// Defaults for tabs. The colors start from the brand colors (the Colors
+// page). The hover background is the tab background a shade toward the tab
+// text, so it follows the tabs' own colors.
+:where(#{$tabs}) {
+	--codexa-tabs-gap: var(--codexa-space-2);
+	--codexa-tabs-tab-border-width-top: 0;
+	--codexa-tabs-tab-border-width-right: 0;
+	--codexa-tabs-tab-border-width-bottom: 0;
+	--codexa-tabs-tab-border-width-left: 0;
+
+	@include corner-defaults(--codexa-tabs-tab-corner, var(--codexa-radius-sm));
+	--codexa-tabs-tab-border-color: var(--codexa-border-color);
+	--codexa-tabs-tab-hover-border-color: var(--codexa-tabs-tab-border-color);
+	--codexa-tabs-tab-active-border-color: var(
+		--codexa-tabs-tab-active-background
+	);
+	--codexa-tabs-tab-color: var(--codexa-text);
+	--codexa-tabs-tab-background: var(--codexa-surface);
+	--codexa-tabs-tab-hover-color: var(--codexa-tabs-tab-color);
+	--codexa-tabs-tab-hover-background: #{surface-shade(
+			var(--codexa-tabs-tab-background),
+			var(--codexa-tabs-tab-color)
+		)};
+	--codexa-tabs-tab-active-color: var(--codexa-on-primary);
+	--codexa-tabs-tab-active-background: var(--codexa-primary);
+	--codexa-tabs-tab-padding-top: var(--codexa-space-3);
+	--codexa-tabs-tab-padding-right: var(--codexa-space-5);
+	--codexa-tabs-tab-padding-bottom: var(--codexa-space-3);
+	--codexa-tabs-tab-padding-left: var(--codexa-space-5);
+	--codexa-tabs-content-color: currentcolor;
+	--codexa-tabs-content-background: transparent;
+	--codexa-tabs-content-border-color: var(--codexa-tabs-tab-border-color);
+	--codexa-tabs-content-border-width-top: 0;
+	--codexa-tabs-content-border-width-right: 0;
+	--codexa-tabs-content-border-width-bottom: 0;
+	--codexa-tabs-content-border-width-left: 0;
+
+	@include corner-defaults(
+		--codexa-tabs-content-corner,
+		var(--codexa-radius-sm)
+	);
+	--codexa-tabs-content-padding-top: var(--codexa-space-5);
+	--codexa-tabs-content-padding-right: var(--codexa-space-5);
+	--codexa-tabs-content-padding-bottom: var(--codexa-space-5);
+	--codexa-tabs-content-padding-left: var(--codexa-space-5);
+
+	@include typography-defaults(--codexa-tabs-tab);
+
+	--codexa-tabs-tab-font-weight: var(--codexa-font-weight-bold);
+	--codexa-tabs-tab-line-height: var(--codexa-line-height-tight);
+
+	// The block is a size container, so vertical tabs go by its own width,
+	// not the screen's (see the end of this file). Vertical tabs use two
+	// columns, the tab bar (at most a third of the width) and the panel.
+	// Everything else spans both.
+	container: codexa-tabs / inline-size;
+	display: grid;
+	gap: var(--codexa-tabs-gap);
+	grid-template-columns: fit-content(33%) minmax(0, 1fr);
+	align-items: start;
+
+	> #{$tabs}__list,
+	> #{$tabs}__panels {
+		grid-column: 1 / -1;
+	}
+}
+
+@include device-variable("tab-gap", --codexa-tabs-gap);
+@include corner-variables("tab-border-radius", --codexa-tabs-tab-corner);
+@include device-variable("tab-border-color", --codexa-tabs-tab-border-color);
+@include device-variable(
+	"tab-hover-border-color",
+	--codexa-tabs-tab-hover-border-color
+);
+@include device-variable(
+	"tab-active-border-color",
+	--codexa-tabs-tab-active-border-color
+);
+@include device-variable("content-color", --codexa-tabs-content-color);
+@include device-variable(
+	"content-background",
+	--codexa-tabs-content-background
+);
+@include device-variable(
+	"content-border-color",
+	--codexa-tabs-content-border-color
+);
+@include corner-variables(
+	"content-border-radius",
+	--codexa-tabs-content-corner
+);
+@include device-variable("tab-color", --codexa-tabs-tab-color);
+@include device-variable("tab-background", --codexa-tabs-tab-background);
+@include device-variable("tab-hover-color", --codexa-tabs-tab-hover-color);
+@include device-variable(
+	"tab-hover-background",
+	--codexa-tabs-tab-hover-background
+);
+@include device-variable("tab-active-color", --codexa-tabs-tab-active-color);
+@include device-variable(
+	"tab-active-background",
+	--codexa-tabs-tab-active-background
+);
+
+@include typography-variables("tab", --codexa-tabs-tab);
+
+@each $side in $sides {
+	@include device-variable(
+		"tab-border-width-#{$side}",
+		--codexa-tabs-tab-border-width-#{$side}
+	);
+	@include device-variable(
+		"content-border-width-#{$side}",
+		--codexa-tabs-content-border-width-#{$side}
+	);
+	@include device-variable(
+		"tab-padding-#{$side}",
+		--codexa-tabs-tab-padding-#{$side}
+	);
+	@include device-variable(
+		"content-padding-#{$side}",
+		--codexa-tabs-content-padding-#{$side}
+	);
+}
+
+// The tab bar.
+#{$tabs}__list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--codexa-tabs-gap);
+}
+
+// A tab, and a tab's header (without scripts), with the same look.
+#{$tabs}__tab,
+#{$tab}__header {
+	appearance: none;
+	background: var(--codexa-tabs-tab-background);
+	border-color: var(--codexa-tabs-tab-border-color);
+	border-radius: corners(--codexa-tabs-tab-corner);
+	border-style: solid;
+	border-width: var(--codexa-tabs-tab-border-width-top)
+		var(--codexa-tabs-tab-border-width-right)
+		var(--codexa-tabs-tab-border-width-bottom)
+		var(--codexa-tabs-tab-border-width-left);
+
+	color: var(--codexa-tabs-tab-color);
+	cursor: pointer;
+	font: inherit;
+
+	@include typography(--codexa-tabs-tab);
+
+	margin: 0;
+	padding: var(--codexa-tabs-tab-padding-top)
+		var(--codexa-tabs-tab-padding-right)
+		var(--codexa-tabs-tab-padding-bottom)
+		var(--codexa-tabs-tab-padding-left);
+	text-align: start;
+
+	&:focus-visible {
+		outline: 2px solid var(--codexa-focus);
+		outline-offset: 2px;
+	}
+}
+
+// Three states, normal (above), hover and active. Hover comes first, so a
+// hovered active tab keeps the active colors.
+#{$tabs}__tab:hover {
+	background: var(--codexa-tabs-tab-hover-background);
+	border-color: var(--codexa-tabs-tab-hover-border-color);
+	color: var(--codexa-tabs-tab-hover-color);
+}
+
+#{$tabs}__tab:is([aria-selected="true"], .is-active) {
+	background: var(--codexa-tabs-tab-active-background);
+	border-color: var(--codexa-tabs-tab-active-border-color);
+	color: var(--codexa-tabs-tab-active-color);
+}
+
+.is-tabs-align-center > #{$tabs}__list {
+	justify-content: center;
+}
+
+.is-tabs-align-end > #{$tabs}__list {
+	justify-content: flex-end;
+}
+
+.is-tabs-align-stretch > #{$tabs}__list > #{$tabs}__tab {
+	flex: 1 1 0;
+	text-align: center;
+}
+
+// The tabs' content. Stacked, with space between, in the editor and when
+// the browser runs no scripts; on the page, one panel at a time.
+#{$tabs}__panels {
+	display: flex;
+	flex-direction: column;
+	gap: var(--codexa-tabs-gap);
+	min-inline-size: 0;
+}
+
+#{$tabs}.has-tab-headers > #{$tabs}__panels {
+	display: block;
+}
+
+// A tab's header labels its content only when the browser runs no
+// scripts (see the end of this file).
+#{$tabs}.has-tab-headers > #{$tabs}__panels > #{$tab} > #{$tab}__header {
+	display: none;
+}
+
+#{$tab}__panel {
+	background: var(--codexa-tabs-content-background);
+	border-color: var(--codexa-tabs-content-border-color);
+	border-radius: corners(--codexa-tabs-content-corner);
+	border-style: solid;
+	color: var(--codexa-tabs-content-color);
+
+	@include panel-border-width;
+	@include panel-padding;
+
+	> :first-child {
+		margin-block-start: 0;
+	}
+
+	> :last-child {
+		margin-block-end: 0;
+	}
+
+	// Focusable from the tab bar (Tab key), so it shows where focus is.
+	&:focus-visible {
+		outline: 2px solid var(--codexa-focus);
+		outline-offset: 2px;
+	}
+
+	// A closed panel. hidden="until-found" hides only the content (so
+	// find-in-page can search it) and keeps the box, so remove the box too.
+	&[hidden] {
+		border-width: 0;
+		padding: 0;
+	}
+}
+
+// Link colors in the content. Buttons keep their own colors. The hover
+// color also applies on keyboard focus.
+.has-codexa-content-link-color
+	#{$tab}__panel
+	a:where(:not(.wp-element-button)) {
+	color: var(--codexa-content-link-color);
+}
+
+.has-codexa-content-link-hover-color
+	#{$tab}__panel
+	a:where(:not(.wp-element-button)):is(:hover, :focus) {
+	color: var(--codexa-content-link-hover-color);
+}
+
+// Vertical tabs put the tab bar down the start side and the panel beside
+// it, while the block is wide enough. A container query reads the nearest container
+// of that name, so each Tabs block, nested ones too, goes by its own width.
+@container codexa-tabs (width >= #{$vertical-below}) {
+	#{$tabs}.is-orientation-vertical {
+		> #{$tabs}__list {
+			flex-direction: column;
+			grid-column: 1;
+		}
+
+		> #{$tabs}__panels {
+			grid-column: 2;
+		}
+	}
+}
+
+// When the browser runs no scripts, the tabs can't switch, so show every
+// tab's content under its header, which is then only a label. (scripting)
+// is in every current browser; an older one ignores this block, which it
+// only needs with scripts turned off.
+@media (scripting: none) {
+	#{$tabs}.has-tab-headers {
+		> #{$tabs}__list {
+			display: none;
+		}
+
+		> #{$tabs}__panels {
+			display: flex;
+			grid-column: 1 / -1;
+		}
+
+		> #{$tabs}__panels > #{$tab} > #{$tab}__header {
+			cursor: default;
+			display: block;
+
+			+ #{$tab}__panel {
+				margin-block-start: var(--codexa-tabs-gap);
+			}
+		}
+
+		> #{$tabs}__panels > #{$tab} > #{$tab}__panel[hidden] {
+			content-visibility: visible;
+
+			@include panel-border-width;
+			@include panel-padding;
+		}
+	}
+}

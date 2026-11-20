@@ -1,0 +1,114 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "codexa-blocks/button",
+	"version": "1.0.0",
+	"title": "Button",
+	"category": "codexa-blocks",
+	"parent": ["codexa-blocks/buttons"],
+	"description": "A button that links to a post, page or any address: a URL, an email address or a phone number.",
+	"keywords": ["button", "link", "call to action", "cta"],
+	"textdomain": "codexa-blocks",
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"text": {
+			"type": "string",
+			"default": ""
+		},
+		"linkPostId": {
+			"type": "integer"
+		},
+		"linkPostType": {
+			"type": "string"
+		},
+		"linkUrl": {
+			"type": "string"
+		},
+		"linkAnchor": {
+			"type": "string"
+		},
+		"linkOpensInNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"linkRel": {
+			"type": "array",
+			"default": []
+		},
+		"buttonSize": {
+			"type": "string",
+			"enum": ["small", "medium", "large"],
+			"default": "medium"
+		},
+		"icon": {
+			"type": "string",
+			"default": "none"
+		},
+		"iconPosition": {
+			"type": "string",
+			"enum": ["start", "end"],
+			"default": "end"
+		},
+		"fullWidthOnMobile": {
+			"type": "boolean",
+			"default": false
+		},
+		"buttonColor": {
+			"type": "string"
+		},
+		"buttonBackground": {
+			"type": "string"
+		},
+		"buttonBorderColor": {
+			"type": "string"
+		},
+		"buttonHoverColor": {
+			"type": "string"
+		},
+		"buttonHoverBackground": {
+			"type": "string"
+		},
+		"buttonHoverBorderColor": {
+			"type": "string"
+		},
+		"buttonBorderWidth": {
+			"type": "object"
+		},
+		"buttonBorderRadius": {
+			"type": "object"
+		},
+		"buttonPadding": {
+			"type": "object"
+		},
+		"buttonTypography": {
+			"type": "object"
+		},
+		"iconColor": {
+			"type": "string"
+		},
+		"iconHoverColor": {
+			"type": "string"
+		},
+		"iconSize": {
+			"type": "object"
+		},
+		"hideOn": {
+			"type": "object"
+		}
+	},
+	"styles": [
+		{ "name": "fill", "label": "Fill", "isDefault": true },
+		{ "name": "outline", "label": "Outline" },
+		{ "name": "link", "label": "Text link" },
+		{ "name": "underline", "label": "Underline" }
+	],
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"reusable": false
+	},
+	"editorScript": "file:./index.js",
+	"style": ["codexa-blocks-common", "file:./style-index.css"]
+}

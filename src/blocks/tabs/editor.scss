@@ -1,0 +1,17 @@
+/**
+ * Tabs, editor canvas only. Loaded through block.json "editorStyle".
+ */
+
+// Only the active tab's content shows (see the Tab block's edit.jsx).
+.wp-block-codexa-blocks-tab.is-inactive {
+	display: none;
+}
+
+// The tab labels are typed into, so show a text cursor over the text.
+.wp-block-codexa-blocks-tabs__tab .rich-text {
+	cursor: text;
+}
+
+.wp-block-codexa-blocks-tabs__add.components-button {
+	align-self: center;
+}

@@ -1,0 +1,100 @@
+/**
+ * Count Up, front end and editor.
+ *
+ * The wrapper's settings use the shared per-device rules. This file styles
+ * the number and title, and adds the settings only this block has.
+ *   number-*      the number's typography (TypographyStyles in PHP)
+ *   title-*       the title's typography
+ *   title-gap     the space between the number and the title, per device
+ *   number-color  --codexa-number-color, one value
+ *   count-up-title-color  --codexa-count-up-title-color, one value
+ * --codexa-count-up-chars, the longest text's length, comes from the
+ * renderer and the editor preview.
+ */
+@use "../../common/scss/mixins" as *;
+
+.wp-block-codexa-blocks-count-up {
+	// The number sizes itself to the block's width (cqi units below), so a
+	// long number shrinks to fit a narrow column instead of overflowing.
+	container-type: inline-size;
+}
+
+// Defaults, inheriting from the next larger device like the shared rules
+// in _responsive.scss. The number is large, bold and tight; the title takes
+// the text around it.
+:where(.wp-block-codexa-blocks-count-up) {
+	@include typography-defaults(--codexa-count-up-number);
+	@include typography-defaults(--codexa-count-up-title);
+
+	--codexa-count-up-number-font-size: 3rem;
+	--codexa-count-up-number-font-weight: var(--codexa-font-weight-bold);
+	--codexa-count-up-number-line-height: var(--codexa-line-height-tight);
+	--codexa-count-up-title-gap: var(--codexa-space-2);
+}
+
+@include typography-variables("number", --codexa-count-up-number);
+@include typography-variables("title", --codexa-count-up-title);
+@include device-variable("title-gap", --codexa-count-up-title-gap);
+
+.wp-block-codexa-blocks-count-up__number {
+	// The chosen size, or smaller when the number wouldn't fit. Each character
+	// gets an equal share of the width, and a tabular digit is about 0.6em wide,
+	// plus any letter spacing.
+	--codexa-count-up-fit: calc(100cqi / var(--codexa-count-up-chars, 6));
+	--codexa-count-up-tracking: var(
+		--codexa-count-up-number-letter-spacing,
+		0px
+	);
+
+	font-size: min(
+		var(--codexa-count-up-number-font-size),
+		(var(--codexa-count-up-fit) - var(--codexa-count-up-tracking)) / 0.6
+	);
+
+	// Every digit the same width, so the number doesn't wobble while it counts.
+	font-variant-numeric: tabular-nums;
+	font-weight: var(--codexa-count-up-number-font-weight);
+	letter-spacing: var(--codexa-count-up-number-letter-spacing);
+	line-height: var(--codexa-count-up-number-line-height);
+	margin: 0;
+	text-transform: var(--codexa-count-up-number-text-transform);
+	white-space: nowrap;
+}
+
+// The number takes the text color around it, not a theme's heading color,
+// unless the block sets its own.
+:where(.wp-block-codexa-blocks-count-up__number) {
+	color: inherit;
+}
+
+.has-codexa-number-color .wp-block-codexa-blocks-count-up__number {
+	color: var(--codexa-number-color);
+}
+
+.wp-block-codexa-blocks-count-up__title {
+	@include typography(--codexa-count-up-title);
+
+	margin-block: var(--codexa-count-up-title-gap) 0;
+
+	&:first-child {
+		margin-block: 0 var(--codexa-count-up-title-gap);
+	}
+}
+
+// A longer name than number-color, since other blocks' title-color would
+// reach a counter placed inside them.
+.has-codexa-count-up-title-color .wp-block-codexa-blocks-count-up__title {
+	color: var(--codexa-count-up-title-color);
+}
+
+// The final value for screen readers while the digits move (view.js).
+// Hidden visually, but kept in the accessibility tree.
+.wp-block-codexa-blocks-count-up__label {
+	@include visually-hidden;
+}
+
+// A size container needs a width from its parent. In a flex row, where
+// items otherwise size to their content, give each counter a share.
+:where(.is-layout-flex) > .wp-block-codexa-blocks-count-up {
+	flex: 1 1 10rem;
+}

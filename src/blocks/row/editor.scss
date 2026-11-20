@@ -1,0 +1,189 @@
+/**
+ * Row and Column in the editor canvas only, the new Row's layout picker and
+ * column outlines while editing. Loaded through block.json "editorStyle".
+ */
+
+.wp-block-codexa-blocks-row__layouts {
+	display: grid;
+	gap: 12px;
+	grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.wp-block-codexa-blocks-row__layout.components-button {
+	align-items: center;
+	color: #1e1e1e; // WordPress admin's text color
+	flex-direction: column;
+	gap: 6px;
+	height: auto;
+	justify-content: center;
+	padding: 12px 8px;
+	width: 100%;
+
+	svg {
+		fill: var(--codexa-primary);
+	}
+
+	span {
+		font-size: 12px;
+	}
+}
+
+// Layout pictures (LayoutDiagram.jsx) are drawn left to right, and mirrored
+// in right-to-left languages to match the grid, so "67% / 33%" shows the
+// wide column on the right.
+.codexa-layout-diagram:dir(rtl) {
+	transform: scaleX(-1);
+}
+
+// While a Row or anything inside it is selected, outline every column, so
+// the layout is visible even where columns hold little or nothing.
+.wp-block-codexa-blocks-row:is(.is-selected, .has-child-selected)
+	.wp-block-codexa-blocks-column {
+	outline: 1px dashed color-mix(in srgb, currentcolor 40%, transparent);
+	outline-offset: -1px;
+}
+
+.wp-block-codexa-blocks-column.is-layout-flow.block-editor-block-list__block:not(
+		.is-selected
+	) {
+	> .block-list-appender:first-child:has(
+			.block-editor-button-block-appender
+		) {
+		pointer-events: auto;
+
+		&::after {
+			border: 0;
+		}
+
+		.block-editor-inserter {
+			opacity: 1;
+		}
+	}
+}
+
+.wp-block-codexa-blocks-column.is-layout-flow.block-editor-block-list__block {
+	> .block-list-appender {
+		width: 100%;
+	}
+
+	> .block-list-appender .block-editor-inserter,
+	> .block-list-appender .block-editor-button-block-appender {
+		width: 100%;
+	}
+
+	> .block-list-appender .block-editor-button-block-appender {
+		min-height: 4.5rem;
+	}
+}
+
+// Column width handles (ColumnResizer.jsx), positioned against the Row. Each
+// covers a gap and shows its line and grip on hover, and the grips show
+// while the Row is selected, so it's clear the edges can move.
+.wp-block-codexa-blocks-row {
+	position: relative;
+}
+
+.wp-block-codexa-blocks-row__handle {
+	--codexa-handle-color: var(--wp-admin-theme-color, #3858e9);
+
+	align-items: center;
+	cursor: col-resize;
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	touch-action: none; // Dragging moves the edge instead of scrolling on touch screens.
+	z-index: 20;
+
+	// The line along the edge.
+	&::before {
+		background: var(--codexa-handle-color);
+		border-radius: 1px;
+		content: "";
+		height: 100%;
+		left: 50%;
+		opacity: 0;
+		position: absolute;
+		top: 0;
+		transform: translateX(-50%);
+		width: 2px;
+	}
+
+	&:hover::before,
+	&:focus-visible::before,
+	&.is-resizing::before {
+		opacity: 1;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--wp-admin-theme-color, #3858e9);
+		outline-offset: 2px;
+	}
+}
+
+// The round grip with a left-right arrow, in the middle of the line.
+.wp-block-codexa-blocks-row__handle-grip {
+	align-items: center;
+	background: #fff;
+	border: 1.5px solid var(--codexa-handle-color);
+	border-radius: 50%;
+	box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
+	box-sizing: border-box;
+	color: var(--codexa-handle-color);
+	display: flex;
+	height: 24px;
+	justify-content: center;
+	opacity: 0;
+	pointer-events: none;
+	position: relative; // Above the line.
+	width: 24px;
+
+	svg {
+		fill: currentcolor;
+		height: 18px;
+		width: 18px;
+	}
+
+	// Only this Row's own handles, not those of a Row nested in a column.
+	.wp-block-codexa-blocks-row.is-selected
+		> .wp-block-codexa-blocks-row__handle
+		> & {
+		opacity: 1;
+	}
+
+	.wp-block-codexa-blocks-row__handle:hover > &,
+	.wp-block-codexa-blocks-row__handle:focus-visible > &,
+	.is-resizing > & {
+		background: var(--codexa-handle-color);
+		color: #fff;
+		opacity: 1;
+	}
+}
+
+// The two widths, shown while hovering, focusing or dragging the handle.
+.wp-block-codexa-blocks-row__handle-label {
+	background: #1e1e1e;
+	border-radius: 2px;
+	color: #fff;
+	font-family:
+		-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+	font-size: 11px;
+	left: 50%;
+	line-height: 1;
+	opacity: 0;
+	padding: 4px 6px;
+	pointer-events: none;
+	position: absolute;
+	top: 4px;
+	transform: translateX(-50%);
+	white-space: nowrap;
+
+	.wp-block-codexa-blocks-row__handle:hover > &,
+	.wp-block-codexa-blocks-row__handle:focus-visible > &,
+	.is-resizing > & {
+		opacity: 1;
+	}
+}

@@ -1,0 +1,15 @@
+# Dependencies
+node_modules
+vendor
+
+# Build artifacts
+build
+packaged
+
+# Generated / not ours to reformat
+package-lock.json
+composer.lock
+languages
+
+# OS files
+.DS_Store

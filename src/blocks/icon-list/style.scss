@@ -1,0 +1,193 @@
+/**
+ * Icon List, front end and editor.
+ *
+ * On the page the list is a <ul> of <li> items (CodexaBlocks\Blocks\
+ * Render\IconList and IconListItem); in the editor, the same elements with
+ * the same classes. Its settings arrive as per-device variables (see
+ * device-variable() in _mixins.scss), copied into --codexa-list-*.
+ *
+ * The layout is one class per device, the layout that device shows
+ * (is-desktop-stack, is-tablet-columns, is-mobile-inline...), each inside
+ * its own screen range. The ranges don't overlap, so a device's layout
+ * never mixes with a larger device's, and a divider is drawn the way its
+ * layout needs. It runs across between stacked items, and between rows of
+ * items in columns (from each device's number of columns, such as
+ * is-desktop-3-columns). It runs up and down between inline items.
+ */
+@use "../../common/scss/mixins" as *;
+
+$list: ".wp-block-codexa-blocks-icon-list";
+$max-columns: 4; // Must match COLUMNS.max in icon-list-styles.js.
+$item: ".wp-block-codexa-blocks-icon-list-item";
+$divider: var(--codexa-list-divider-width) var(--codexa-list-divider-style)
+	var(--codexa-list-divider-color);
+
+:where(#{$list}) {
+	--codexa-list-columns: 2;
+	--codexa-list-align: start;
+	--codexa-list-gap: var(--codexa-space-2);
+	--codexa-list-icon-gap: var(--codexa-space-2);
+	--codexa-list-icon-size: 1.25em;
+	--codexa-list-icon-color: var(--codexa-primary);
+	--codexa-list-icon-hover-color: var(--codexa-list-icon-color);
+	--codexa-list-divider-style: solid;
+	--codexa-list-divider-color: var(--codexa-border-color);
+	--codexa-list-divider-width: 1px;
+
+	@include typography-defaults(--codexa-list-item);
+
+	display: grid;
+	gap: var(--codexa-list-gap);
+	grid-template-columns: minmax(0, 1fr);
+	list-style: none;
+	padding: 0;
+}
+
+@include device-variable("icon-list-columns", --codexa-list-columns);
+@include device-variable("icon-list-align", --codexa-list-align);
+@include device-variable("icon-list-gap", --codexa-list-gap);
+@include device-variable("icon-list-icon-gap", --codexa-list-icon-gap);
+@include device-variable("icon-list-icon-size", --codexa-list-icon-size);
+@include device-variable("icon-list-icon-color", --codexa-list-icon-color);
+@include device-variable(
+	"icon-list-icon-hover-color",
+	--codexa-list-icon-hover-color
+);
+@include device-variable(
+	"icon-list-divider-style",
+	--codexa-list-divider-style
+);
+@include device-variable(
+	"icon-list-divider-color",
+	--codexa-list-divider-color
+);
+@include device-variable(
+	"icon-list-divider-width",
+	--codexa-list-divider-width
+);
+@include typography-variables("icon-list-item", --codexa-list-item);
+
+// An item's own icon color, on the item, so only it changes.
+@include device-variable("icon-list-item-icon-color", --codexa-list-icon-color);
+
+/**
+ * The layout a device shows. Stacked, one column, is the default above.
+ *
+ * @param {string} $device "desktop", "tablet" or "mobile".
+ */
+@mixin layout($device) {
+	#{$list}.is-#{$device}-columns {
+		grid-template-columns: repeat(
+			var(--codexa-list-columns),
+			minmax(0, 1fr)
+		);
+	}
+
+	#{$list}.is-#{$device}-inline {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: var(--codexa-list-align);
+	}
+
+	#{$list}.has-divider.is-#{$device}-stack > #{$item} + #{$item} {
+		border-block-start: $divider;
+		padding-block-start: var(--codexa-list-gap);
+	}
+
+	// A line above every item after the first row, across its column.
+	@for $count from 1 through $max-columns {
+		#{$list}.has-divider.is-#{$device}-#{$count}-columns
+			> #{$item}:nth-child(n + #{$count + 1}) {
+			border-block-start: $divider;
+			padding-block-start: var(--codexa-list-gap);
+		}
+	}
+
+	#{$list}.has-divider.is-#{$device}-inline > #{$item} + #{$item} {
+		border-inline-start: $divider;
+		padding-inline-start: var(--codexa-list-gap);
+	}
+}
+
+@include bp-desktop {
+	@include layout(desktop);
+}
+
+@media (#{$bp-tablet} <= width < #{$bp-desktop}) {
+	@include layout(tablet);
+}
+
+@include bp-below-tablet {
+	@include layout(mobile);
+}
+
+// An item puts the icon beside its text, lined up with the first line. A
+// linked item's link lays out the same way. Stacked or in columns, an item
+// fills its row, so a divider spans it and alignment moves the content.
+#{$item},
+#{$item}__link {
+	align-items: flex-start;
+	display: flex;
+	gap: var(--codexa-list-icon-gap);
+	justify-content: var(--codexa-list-align);
+}
+
+#{$item} {
+	margin: 0;
+
+	@include typography(--codexa-list-item);
+}
+
+#{$list}.is-icon-center :is(#{$item}, #{$item}__link) {
+	align-items: center;
+}
+
+#{$item}__link {
+	color: inherit;
+	text-decoration: none;
+}
+
+#{$item}__link:is(:hover, :focus-visible) #{$item}__text {
+	text-decoration: underline;
+}
+
+// The icon, inline SVG from an icon set (Icons.php), in the list's or
+// item's color at its size. At the top it's centered on the first line
+// (1lh), however the text wraps.
+#{$item}__icon {
+	block-size: var(--codexa-list-icon-size);
+	color: var(--codexa-list-icon-color);
+	flex: none;
+	inline-size: var(--codexa-list-icon-size);
+}
+
+#{$list}.is-icon-top #{$item}__icon {
+	margin-block-start: calc((1lh - var(--codexa-list-icon-size)) / 2);
+}
+
+#{$item}__link:is(:hover, :focus-visible) #{$item}__icon {
+	color: var(--codexa-list-icon-hover-color);
+}
+
+// Arrows point the way the text reads.
+#{$item}__icon.is-directional:dir(rtl) {
+	transform: scaleX(-1);
+}
+
+#{$item}__text {
+	min-inline-size: 0;
+	text-align: var(--codexa-list-align);
+	overflow-wrap: break-word;
+}
+
+// Read by screen readers, not shown, such as an icon's meaning or "opens in
+// a new tab".
+#{$item}__hidden {
+	@include visually-hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	#{$item}__icon {
+		transition: color var(--codexa-transition-fast);
+	}
+}

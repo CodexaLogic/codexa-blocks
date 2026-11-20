@@ -1,0 +1,309 @@
+/**
+ * Column styles, on the front end and in the editor.
+ *
+ * Defaults sit inside :where() at zero specificity, so the per-device
+ * classes from the shared stylesheet (one class each) always win, whichever
+ * stylesheet loads first.
+ *
+ * The column is a flex column. Horizontal alignment (align-items) lines its
+ * blocks up across, and Vertical alignment moves them down, both per
+ * device through device-variable(). Direction can put the blocks side by
+ * side instead, also per device.
+ *
+ * A linked column and its hover effects follow; see Column.php for the
+ * markup.
+ */
+@use "../../common/scss/mixins" as *;
+
+$column: ".wp-block-codexa-blocks-column";
+
+// Hover effects show while the pointer is over the column or its link has
+// keyboard focus. Not :focus-within, which would show them while a field
+// or an editor block inside has focus.
+$hover: ":is(:hover, :has(> #{$column}__link:focus-visible))";
+
+:where(.wp-block-codexa-blocks-column) {
+	// Set on every column, so a column inside another column doesn't
+	// inherit its parent's alignment.
+	--codexa-column-content-align: stretch;
+	--codexa-column-justify: flex-start;
+	--codexa-column-self: auto;
+
+	align-items: var(--codexa-column-content-align);
+	align-self: var(--codexa-column-self);
+	display: flex;
+	flex-direction: column;
+	justify-content: var(--codexa-column-justify);
+
+	// Lets a grid column shrink below its content's width (long words,
+	// wide images) instead of overflowing the row.
+	min-width: 0;
+}
+
+@include device-variable("content-align", --codexa-column-content-align);
+
+// Blocks that always fill the column's width, whatever its Horizontal
+// alignment, which would otherwise fit them to their content. An Accordion
+// would shrink to its titles, and a Count Up, which sizes its number by its
+// own width, would collapse to nothing. Their content lines up inside them
+// instead (Text alignment, their own settings).
+:where(#{$column})
+	> :where(
+		.wp-block-codexa-blocks-accordion,
+		.wp-block-codexa-blocks-count-up,
+		.wp-block-codexa-blocks-gallery,
+		.wp-block-codexa-blocks-posts,
+		.wp-block-codexa-blocks-row,
+		.wp-block-codexa-blocks-tabs
+	) {
+	align-self: stretch;
+}
+
+// Vertical alignment. Center and Bottom also stretch the column to its
+// line's height, so the blocks have room to move down. The settings' names
+// differ from these variables, so a variable never refers to itself.
+@include device-variable("vertical-justify", --codexa-column-justify);
+@include device-variable("vertical-self", --codexa-column-self);
+
+// Direction. Horizontal puts the blocks side by side, wrapping onto more
+// lines unless Wrap is off (is-nowrap), with the Gap between them. The two
+// alignments then swap axes: Horizontal alignment spreads the blocks along
+// the line, Full width sharing it equally (--codexa-column-item-flex), and
+// Vertical alignment lines them up across it. Their own margins give way to
+// the gap. Blocks that always fill the column share the line too.
+@include device-variable("content-gap", --codexa-column-content-gap);
+@include device-variable("content-flex", --codexa-column-item-flex);
+
+@mixin column-horizontal {
+	align-items: var(--codexa-column-justify);
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: var(--codexa-column-content-gap, var(--codexa-space-4));
+	justify-content: var(--codexa-column-content-align);
+
+	&.is-nowrap {
+		flex-wrap: nowrap;
+	}
+
+	> * {
+		flex: var(--codexa-column-item-flex, 1 1 0%);
+		margin-block: 0;
+		min-inline-size: 0;
+	}
+
+	> :where(
+		.wp-block-codexa-blocks-accordion,
+		.wp-block-codexa-blocks-count-up,
+		.wp-block-codexa-blocks-gallery,
+		.wp-block-codexa-blocks-posts,
+		.wp-block-codexa-blocks-row,
+		.wp-block-codexa-blocks-tabs
+	) {
+		flex: 1 1 0%;
+	}
+}
+
+// Each range is horizontal when its device says so, or when the nearest
+// larger device that sets a direction does, so vertical needs no rules.
+// Two classes, so the blocks' margins give way over WordPress's flow
+// spacing (:root :where(.is-layout-flow) > *).
+@media (width >= $bp-desktop) {
+	#{$column}.is-horizontal {
+		@include column-horizontal;
+	}
+}
+
+@media ($bp-tablet <= width < $bp-desktop) {
+	:where(#{$column}):is(
+		.is-horizontal-tablet,
+		.is-horizontal:not(.is-vertical-tablet)
+	) {
+		@include column-horizontal;
+	}
+}
+
+@include bp-below-tablet {
+	:where(#{$column}):is(
+		.is-horizontal-mobile,
+		.is-horizontal-tablet:not(.is-vertical-mobile),
+		.is-horizontal:not(.is-vertical-tablet, .is-vertical-mobile)
+	) {
+		@include column-horizontal;
+	}
+}
+
+// A linked column's link covers it, under its own links, buttons and
+// fields. The video's pause button comes later in the markup, so it stays
+// above too.
+#{$column}.is-linked {
+	position: relative;
+
+	:is(a, button, input, select, textarea, summary, [tabindex]):not(
+		#{$column}__link,
+		.codexa-background-video__toggle
+	) {
+		position: relative;
+		z-index: 2;
+	}
+}
+
+#{$column}__link {
+	border-radius: inherit;
+	inset: 0;
+	position: absolute;
+	z-index: 1;
+
+	// Inside the edge, where a zoomed column's clipping can't cut it off, a
+	// dark ring with a white halo inside.
+	&:focus-visible {
+		box-shadow: inset 0 0 0 4px var(--codexa-focus-halo);
+		outline: 2px solid var(--codexa-focus);
+		outline-offset: -2px;
+	}
+}
+
+// The hover overlay fades in between the background and the content.
+// Without an overlay of its own (_design.scss) it's black unless a hover
+// color is set. With one, it keeps that overlay's color and gradient
+// unless a hover color is set, and changes opacity on hover.
+:where(#{$column}.codexa-hover-overlay) {
+	// Not a parent's overlay (custom properties are inherited); the
+	// column's own overlay classes set these on the devices they cover.
+	--codexa-block-overlay-color: initial;
+	--codexa-block-overlay-gradient: initial;
+	--codexa-block-overlay-opacity: initial;
+}
+
+#{$column}.codexa-hover-overlay {
+	--codexa-column-hover-color: #000;
+
+	isolation: isolate;
+	position: relative;
+
+	&::before {
+		background-color: var(
+			--codexa-block-overlay-color,
+			var(--codexa-column-hover-color)
+		);
+		background-image: var(--codexa-block-overlay-gradient, none);
+		border-radius: inherit;
+		content: "";
+		inset: 0;
+		opacity: var(--codexa-block-overlay-opacity, 0);
+		pointer-events: none;
+		position: absolute;
+		transition:
+			background-color var(--codexa-transition-base),
+			opacity var(--codexa-transition-base);
+		z-index: -1;
+	}
+
+	&#{$hover}::before {
+		opacity: var(--codexa-hover-overlay-opacity);
+	}
+}
+
+#{$column}.has-codexa-hover-overlay-color {
+	--codexa-column-hover-color: var(--codexa-hover-overlay-color);
+
+	&#{$hover}::before {
+		background-color: var(--codexa-column-hover-color);
+	}
+}
+
+// The hover shadow (Styles > Border, radius and shadow) replaces the
+// normal one. It fades rather than moves, so it stays for visitors who
+// prefer reduced motion.
+#{$column}.has-codexa-hover-box-shadow {
+	transition: box-shadow var(--codexa-transition-base);
+
+	&#{$hover} {
+		box-shadow: var(--codexa-hover-box-shadow);
+	}
+}
+
+// The border color changes on the sides that have a width.
+#{$column}.codexa-hover-border {
+	transition: border-color var(--codexa-transition-base);
+}
+
+#{$column}.codexa-hover-border.has-codexa-hover-border-color#{$hover} {
+	border-color: var(--codexa-hover-border-color);
+}
+
+// With a hover shadow too, both fade together.
+#{$column}.codexa-hover-border.has-codexa-hover-box-shadow {
+	transition:
+		border-color var(--codexa-transition-base),
+		box-shadow var(--codexa-transition-base);
+}
+
+// Zoom moves the background image onto a layer behind the overlay and
+// content, which grows on hover inside the column's edges. The layer reads
+// the same per-device image and position (_responsive.scss).
+#{$column}.codexa-hover-zoom {
+	isolation: isolate;
+	overflow: clip;
+	position: relative;
+
+	&:is(
+		.has-codexa-background-image,
+		.has-codexa-background-image-tablet,
+		.has-codexa-background-image-mobile
+	) {
+		background-image: none;
+	}
+
+	&::after {
+		background-position: 50% 50%;
+		background-repeat: no-repeat;
+		background-size: cover;
+		border-radius: inherit;
+		content: "";
+		inset: 0;
+		pointer-events: none;
+		position: absolute;
+		transition: transform 600ms var(--codexa-ease-standard);
+		z-index: -2;
+	}
+
+	&.has-codexa-background-size::after {
+		background-size: var(--codexa-background-size);
+	}
+
+	&.has-codexa-background-repeat::after {
+		background-repeat: var(--codexa-background-repeat);
+	}
+
+	&#{$hover}::after {
+		transform: scale(1.08);
+	}
+}
+
+@mixin zoom-layer($suffix) {
+	#{$column}.codexa-hover-zoom.has-codexa-background-image#{$suffix}::after {
+		background-image: var(--codexa-background-image#{$suffix});
+	}
+
+	#{$column}.codexa-hover-zoom.has-codexa-background-position#{$suffix}::after {
+		background-position: var(--codexa-background-position#{$suffix});
+	}
+}
+
+@include zoom-layer("");
+
+@include bp-below-desktop {
+	@include zoom-layer("-tablet");
+}
+
+@include bp-below-tablet {
+	@include zoom-layer("-mobile");
+}
+
+// Visitors who prefer reduced motion get the color changes, without the
+// movement.
+@media (prefers-reduced-motion: reduce) {
+	#{$column}.codexa-hover-zoom#{$hover}::after {
+		transform: none;
+	}
+}

@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build artifacts
+build/
+packaged/
+
+# Source maps
+*.map
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+
+# Environment files
+.env
+.env.local
+.wp-env.override.json
+
+*.log
+npm-debug.log*

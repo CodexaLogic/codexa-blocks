@@ -1,0 +1,238 @@
+/**
+ * Design settings that need more than one rule, such as link colors, border
+ * and background defaults, the overlay, the background video and hiding per
+ * device. Single-property settings are in _responsive.scss. The same
+ * helpers add these classes, so a block without a setting gets no rules.
+ */
+@use "sass:list";
+@use "mixins" as *;
+
+$border-width-classes: ();
+
+@each $suffix in ("", "-tablet", "-mobile") {
+	@each $side in (top, right, bottom, left) {
+		$border-width-classes: list.append(
+			$border-width-classes,
+			".has-codexa-border-width-#{$side}#{$suffix}",
+			$separator: comma
+		);
+	}
+}
+
+// Links inside the block. The hover color also applies on keyboard focus.
+.has-codexa-link-color a {
+	color: var(--codexa-link-color);
+}
+
+.has-codexa-link-hover-color a:is(:hover, :focus) {
+	color: var(--codexa-link-hover-color);
+}
+
+// A border appears only on the sides given a width. Without these defaults
+// a single width would also draw the browser's medium border on the other
+// three sides.
+:where(#{$border-width-classes}) {
+	border-color: currentcolor;
+	border-style: solid;
+	border-width: 0;
+}
+
+// A background image covers the block, centered, unless a setting says otherwise.
+:where(
+	.has-codexa-background-image,
+	.has-codexa-background-image-tablet,
+	.has-codexa-background-image-mobile
+) {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+// A background gradient, over the color. With an image on a device the
+// image is drawn over the gradient, as a second layer of the same
+// background. Two classes beat the image's own rule (_responsive.scss), and
+// the device rules follow in order, so a smaller device's image still wins.
+// A device whose image is "none" shows the gradient alone.
+.has-codexa-background-gradient {
+	background-image: var(--codexa-background-gradient);
+}
+
+.has-codexa-background-gradient.has-codexa-background-image {
+	background-image:
+		var(--codexa-background-image), var(--codexa-background-gradient);
+}
+
+@include bp-below-desktop {
+	.has-codexa-background-gradient.has-codexa-background-image-tablet {
+		background-image:
+			var(--codexa-background-image-tablet),
+			var(--codexa-background-gradient);
+	}
+}
+
+@include bp-below-tablet {
+	.has-codexa-background-gradient.has-codexa-background-image-mobile {
+		background-image:
+			var(--codexa-background-image-mobile),
+			var(--codexa-background-gradient);
+	}
+}
+
+// The overlay sits between the background and the content. isolation keeps
+// z-index -1 inside the block. Each device with its own overlay saves all
+// three parts (color or "transparent", gradient or "none", opacity), so it
+// replaces a larger device's, while a device without one inherits. The
+// device classes set --codexa-block-overlay-* and one ::before draws them.
+$overlay-classes: ();
+
+@each $part in (color, gradient, opacity) {
+	@each $suffix in ("", "-tablet", "-mobile") {
+		$overlay-classes: list.append(
+			$overlay-classes,
+			".has-codexa-overlay-#{$part}#{$suffix}",
+			$separator: comma
+		);
+	}
+}
+
+:where(#{$overlay-classes}) {
+	// Custom properties inherit, so a block inside another with an overlay
+	// must not pick up its parent's.
+	--codexa-block-overlay-color: initial;
+	--codexa-block-overlay-gradient: initial;
+	--codexa-block-overlay-opacity: initial;
+
+	isolation: isolate;
+	position: relative;
+
+	&::before {
+		background-color: var(--codexa-block-overlay-color, transparent);
+		background-image: var(--codexa-block-overlay-gradient, none);
+		border-radius: inherit;
+		content: "";
+		inset: 0;
+		opacity: var(--codexa-block-overlay-opacity, 0);
+		pointer-events: none;
+		position: absolute;
+		z-index: -1;
+	}
+}
+
+@include device-variable("overlay-color", --codexa-block-overlay-color);
+@include device-variable("overlay-gradient", --codexa-block-overlay-gradient);
+@include device-variable("overlay-opacity", --codexa-block-overlay-opacity);
+
+// A background video fills the block under the overlay and content, and
+// lets clicks through. The video sits below the overlay (-1) and the pause
+// button above the content. It follows the content in the markup, so
+// margin 0 stops layout spacing from moving it, with two classes to beat
+// ":root :where(.is-layout-flow) > *".
+.has-codexa-background-video {
+	isolation: isolate;
+	position: relative;
+}
+
+.has-codexa-background-video > .codexa-background-video {
+	border-radius: inherit;
+	inset: 0;
+	margin: 0;
+	overflow: hidden;
+	pointer-events: none;
+	position: absolute;
+}
+
+.codexa-background-video__media {
+	height: 100%;
+	inset: 0;
+	object-fit: cover;
+	position: absolute;
+	width: 100%;
+	z-index: -2;
+}
+
+.codexa-background-video__toggle {
+	align-items: center;
+	background: color-mix(in srgb, var(--codexa-body) 65%, transparent);
+	border: 0;
+	border-radius: 50%;
+	color: var(--codexa-white);
+	cursor: pointer;
+	display: flex;
+	height: 2.25rem;
+	inset-block-end: var(--codexa-space-3);
+	inset-inline-end: var(--codexa-space-3);
+	justify-content: center;
+	padding: 0;
+	pointer-events: auto;
+	position: absolute;
+	width: 2.25rem;
+	z-index: 1;
+
+	&:hover {
+		background: color-mix(in srgb, var(--codexa-body) 85%, transparent);
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--codexa-white);
+		outline-offset: 2px;
+	}
+
+	&[hidden] {
+		display: none;
+	}
+
+	svg {
+		fill: currentcolor;
+		height: 1.25rem;
+		width: 1.25rem;
+	}
+}
+
+// The button shows what pressing it does, pause while playing and play
+// while paused (aria-pressed="true").
+.codexa-background-video__toggle[aria-pressed="false"]
+	.codexa-background-video__play,
+.codexa-background-video__toggle[aria-pressed="true"]
+	.codexa-background-video__pause {
+	display: none;
+}
+
+// Phones and reduced motion get the background image instead, and a hidden
+// video never loads.
+@include bp-below-tablet {
+	.codexa-background-video {
+		display: none;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.codexa-background-video {
+		display: none;
+	}
+}
+
+// Hide on a device. !important, as in any utility class, so hiding wins
+// over every display rule.
+@include bp-desktop {
+	.codexa-hide-desktop {
+		display: none !important;
+	}
+}
+
+@media (#{$bp-tablet} <= width < #{$bp-desktop}) {
+	.codexa-hide-tablet {
+		display: none !important;
+	}
+}
+
+@include bp-below-tablet {
+	.codexa-hide-mobile {
+		display: none !important;
+	}
+}
+
+// In the editor a hidden block stays visible, faded, so it can still be
+// selected and edited while previewing the device it is hidden on.
+.is-codexa-hidden-in-editor {
+	opacity: 0.4;
+}

@@ -1,0 +1,303 @@
+/**
+ * Button, front end and editor.
+ *
+ * On the page the button is an <a> (Render\Button), and in the editor a
+ * <div> with the same classes. Four looks are block styles (Fill, the
+ * default, Outline, Text link and Underline). Each sets defaults for the
+ * --codexa-btn-* variables below, which the button's own per-device
+ * settings replace (device-variable() in _mixins.scss).
+ *
+ * --codexa-btn-* holds the values shown. It isn't named --codexa-button-*,
+ * which the settings use, because a variable that copies itself is empty.
+ *
+ * Colors start from the brand colors. Hover colors come from the button's
+ * own colors, so a custom color gets a matching hover unless it sets one.
+ */
+@use "../../common/scss/mixins" as *;
+
+$button: ".wp-block-codexa-blocks-button";
+$sides: (top, right, bottom, left);
+
+// Defaults, the Fill look at medium size.
+:where(#{$button}) {
+	--codexa-btn-color: var(--codexa-on-primary);
+	--codexa-btn-background: var(--codexa-primary);
+	--codexa-btn-border-color: var(--codexa-btn-background);
+	--codexa-btn-hover-color: var(--codexa-btn-color);
+	--codexa-btn-hover-background: #{hover-shade(var(--codexa-btn-background))};
+	--codexa-btn-hover-border-color: var(--codexa-btn-hover-background);
+
+	@each $side in $sides {
+		--codexa-btn-border-width-#{$side}: var(--codexa-border-width);
+	}
+
+	@include corner-defaults(--codexa-btn-corner, var(--codexa-radius-sm));
+
+	--codexa-btn-padding-top: var(--codexa-space-3);
+	--codexa-btn-padding-right: var(--codexa-space-5);
+	--codexa-btn-padding-bottom: var(--codexa-space-3);
+	--codexa-btn-padding-left: var(--codexa-space-5);
+	--codexa-btn-text-decoration: none;
+
+	// The icon takes the text color, and its hover color, unless it has
+	// its own; with its own color and no hover color, it keeps it on hover.
+	--codexa-btn-icon-color: currentcolor;
+	--codexa-btn-icon-hover-color: var(--codexa-btn-icon-color);
+	--codexa-btn-icon-size: 1.25em;
+
+	@include typography-defaults(--codexa-btn);
+
+	--codexa-btn-font-size: 1rem;
+	--codexa-btn-font-weight: var(--codexa-font-weight-bold);
+	--codexa-btn-line-height: var(--codexa-line-height-tight);
+}
+
+// Sizes set padding and text size. They're as weak as the defaults (:where),
+// so the button's own padding and font size still win.
+:where(#{$button}.is-size-small) {
+	--codexa-btn-padding-top: var(--codexa-space-2);
+	--codexa-btn-padding-right: var(--codexa-space-4);
+	--codexa-btn-padding-bottom: var(--codexa-space-2);
+	--codexa-btn-padding-left: var(--codexa-space-4);
+	--codexa-btn-font-size: 0.875rem;
+}
+
+:where(#{$button}.is-size-large) {
+	--codexa-btn-padding-top: var(--codexa-space-4);
+	--codexa-btn-padding-right: var(--codexa-space-6);
+	--codexa-btn-padding-bottom: var(--codexa-space-4);
+	--codexa-btn-padding-left: var(--codexa-space-6);
+	--codexa-btn-font-size: 1.125rem;
+}
+
+// Outline uses the brand color for text and border, and fills on hover.
+:where(#{$button}.is-style-outline) {
+	--codexa-btn-color: var(--codexa-primary);
+	--codexa-btn-background: transparent;
+	--codexa-btn-border-color: var(--codexa-btn-color);
+	--codexa-btn-hover-color: var(--codexa-on-primary);
+	--codexa-btn-hover-background: var(--codexa-btn-color);
+	--codexa-btn-hover-border-color: var(--codexa-btn-hover-background);
+}
+
+// Text link is underlined text without a box.
+:where(#{$button}.is-style-link) {
+	--codexa-btn-color: var(--codexa-primary);
+	--codexa-btn-background: transparent;
+	--codexa-btn-border-color: transparent;
+	--codexa-btn-hover-color: #{hover-shade(var(--codexa-btn-color))};
+	--codexa-btn-hover-background: transparent;
+	--codexa-btn-hover-border-color: transparent;
+
+	@each $side in $sides {
+		--codexa-btn-border-width-#{$side}: 0;
+	}
+
+	--codexa-btn-padding-top: 0;
+	--codexa-btn-padding-right: 0;
+	--codexa-btn-padding-bottom: 0;
+	--codexa-btn-padding-left: 0;
+	--codexa-btn-text-decoration: underline;
+}
+
+// Underline is text over a light line that fills with Primary on hover.
+:where(#{$button}.is-style-underline) {
+	--codexa-btn-color: var(--codexa-text);
+	--codexa-btn-background: transparent;
+	--codexa-btn-border-color: color-mix(
+		in srgb,
+		var(--codexa-primary) 25%,
+		transparent
+	);
+	--codexa-btn-hover-color: var(--codexa-btn-color);
+	--codexa-btn-hover-background: transparent;
+	--codexa-btn-hover-border-color: var(--codexa-primary);
+
+	@each $side in $sides {
+		--codexa-btn-border-width-#{$side}: 3px;
+	}
+
+	@include corner-defaults(--codexa-btn-corner, 0);
+
+	--codexa-btn-padding-top: 0;
+	--codexa-btn-padding-right: 0;
+	--codexa-btn-padding-bottom: var(--codexa-space-2);
+	--codexa-btn-padding-left: 0;
+}
+
+@include device-variable("button-color", --codexa-btn-color);
+@include device-variable("button-background", --codexa-btn-background);
+@include device-variable("button-border-color", --codexa-btn-border-color);
+@include device-variable("button-hover-color", --codexa-btn-hover-color);
+@include device-variable(
+	"button-hover-background",
+	--codexa-btn-hover-background
+);
+@include device-variable(
+	"button-hover-border-color",
+	--codexa-btn-hover-border-color
+);
+@include device-variable("button-icon-color", --codexa-btn-icon-color);
+@include device-variable(
+	"button-icon-hover-color",
+	--codexa-btn-icon-hover-color
+);
+@include device-variable("button-icon-size", --codexa-btn-icon-size);
+@include corner-variables("button-border-radius", --codexa-btn-corner);
+@include typography-variables("button", --codexa-btn);
+
+@each $side in $sides {
+	@include device-variable(
+		"button-padding-#{$side}",
+		--codexa-btn-padding-#{$side}
+	);
+	@include device-variable(
+		"button-border-width-#{$side}",
+		--codexa-btn-border-width-#{$side}
+	);
+}
+
+#{$button} {
+	align-items: center;
+	background: var(--codexa-btn-background);
+	border-color: var(--codexa-btn-border-color);
+	border-radius: corners(--codexa-btn-corner);
+	border-style: solid;
+	border-width: var(--codexa-btn-border-width-top)
+		var(--codexa-btn-border-width-right)
+		var(--codexa-btn-border-width-bottom)
+		var(--codexa-btn-border-width-left);
+	box-sizing: border-box;
+	color: var(--codexa-btn-color);
+	cursor: pointer;
+	display: inline-flex;
+	font-family: inherit;
+
+	@include typography(--codexa-btn);
+
+	gap: 0.5em;
+	justify-content: center;
+	padding: var(--codexa-btn-padding-top) var(--codexa-btn-padding-right)
+		var(--codexa-btn-padding-bottom) var(--codexa-btn-padding-left);
+	text-align: center;
+	text-decoration: var(--codexa-btn-text-decoration);
+	text-underline-offset: 0.2em;
+
+	&:focus-visible {
+		outline: 2px solid var(--codexa-focus);
+		outline-offset: 2px;
+	}
+}
+
+// The theme's link styles don't reach the button. ":root" lifts these rules
+// above a theme's own, such as ".entry-content a:hover" (0,2,1). The
+// button's settings still apply through the variables these rules read.
+// Only Text link keeps an underline.
+:root #{$button} {
+	&:link,
+	&:visited {
+		color: var(--codexa-btn-color);
+		text-decoration: var(--codexa-btn-text-decoration);
+	}
+
+	&:hover,
+	&:focus-visible {
+		background: var(--codexa-btn-hover-background);
+		border-color: var(--codexa-btn-hover-border-color);
+		color: var(--codexa-btn-hover-color);
+		text-decoration: var(--codexa-btn-text-decoration);
+	}
+}
+
+// Underline has no border. The line is one gradient twice its width, half
+// hover color and half line color, which slides across on hover so the
+// hover color sweeps in from where the text starts.
+#{$button}.is-style-underline {
+	border-width: 0;
+	position: relative;
+
+	&::after {
+		background-image: linear-gradient(
+			to right,
+			var(--codexa-btn-hover-border-color) 50%,
+			var(--codexa-btn-border-color) 50%
+		);
+		background-position: 100% 0;
+		background-repeat: no-repeat;
+		background-size: 200% 100%;
+		block-size: var(--codexa-btn-border-width-bottom);
+		content: "";
+		inset-block-end: 0;
+		inset-inline: 0;
+		position: absolute;
+	}
+
+	&:is(:hover, :focus-visible)::after {
+		background-position: 0 0;
+	}
+
+	// Right to left, mirrored.
+	&:dir(rtl)::after {
+		background-image: linear-gradient(
+			to left,
+			var(--codexa-btn-hover-border-color) 50%,
+			var(--codexa-btn-border-color) 50%
+		);
+		background-position: 0 0;
+	}
+
+	&:dir(rtl):is(:hover, :focus-visible)::after {
+		background-position: 100% 0;
+	}
+}
+
+button#{$button} {
+	font-style: inherit;
+	margin: 0;
+}
+
+// Read by screen readers, not shown, e.g. "(opens in a new tab)".
+#{$button}__note {
+	@include visually-hidden;
+}
+
+// The icon, inline SVG from an icon set (Icons.php), in its color (the text
+// color unless set) at its size per device.
+#{$button}__icon {
+	block-size: var(--codexa-btn-icon-size);
+	color: var(--codexa-btn-icon-color);
+	flex: none;
+	inline-size: var(--codexa-btn-icon-size);
+}
+
+#{$button}:is(:hover, :focus-visible) #{$button}__icon {
+	color: var(--codexa-btn-icon-hover-color);
+}
+
+// Arrows point the way the text reads.
+#{$button}__icon.is-directional:dir(rtl) {
+	transform: scaleX(-1);
+}
+
+@include bp-below-tablet {
+	#{$button}.is-full-width-on-mobile {
+		inline-size: 100%;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	#{$button} {
+		transition:
+			background-color var(--codexa-transition-fast),
+			border-color var(--codexa-transition-fast),
+			color var(--codexa-transition-fast);
+	}
+
+	#{$button}__icon {
+		transition: color var(--codexa-transition-fast);
+	}
+
+	#{$button}.is-style-underline::after {
+		transition: background-position var(--codexa-transition-slow);
+	}
+}

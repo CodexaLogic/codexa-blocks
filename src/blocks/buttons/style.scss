@@ -1,0 +1,29 @@
+/**
+ * Buttons, front end and editor. The buttons sit side by side and wrap, or
+ * one per line.
+ *
+ * Alignment, spacing, direction and cross-axis alignment arrive as
+ * per-device variables (device-variable() in _mixins.scss), copied into
+ * --codexa-buttons-*. Direction and cross-axis alignment come from
+ * Buttons::placement() in PHP and its editor twin.
+ */
+@use "../../common/scss/mixins" as *;
+
+:where(.wp-block-codexa-blocks-buttons) {
+	--codexa-buttons-align: start;
+	--codexa-buttons-gap: var(--codexa-space-3);
+	--codexa-buttons-direction: row;
+	--codexa-buttons-items: center;
+
+	align-items: var(--codexa-buttons-items);
+	display: flex;
+	flex-direction: var(--codexa-buttons-direction);
+	flex-wrap: wrap;
+	gap: var(--codexa-buttons-gap);
+	justify-content: var(--codexa-buttons-align);
+}
+
+@include device-variable("button-align", --codexa-buttons-align);
+@include device-variable("button-gap", --codexa-buttons-gap);
+@include device-variable("button-direction", --codexa-buttons-direction);
+@include device-variable("button-items", --codexa-buttons-items);

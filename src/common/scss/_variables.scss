@@ -1,0 +1,104 @@
+/**
+ * Design tokens, the plugin's shared values as CSS custom properties, named
+ * --codexa-{category}-{variant}. Override a token to restyle every block,
+ * e.g. :root { --codexa-primary: #0b5cad; }. The Colors page sets the five
+ * brand roles (Settings\ColorSettings). Blocks work out hover and open
+ * colors (hover-shade() and surface-shade() in _mixins.scss).
+ *
+ * Contrast against white, for WCAG 2.2 AA (4.5:1 text, 3:1 focus rings and
+ * control borders)
+ * - Text body 16.8:1, primary 5.9:1, primary-hover 7:1, gray-700 7.6:1,
+ *   gray-600 4.8:1.
+ * - Decoration only, gray-500 and lighter.
+ */
+@use "mixins" as *;
+
+:root {
+	/* Brand */
+	--codexa-primary: #0369a1;
+
+	/* The Fill button's hover on the Primary color, for the Colors page's
+	   contrast check and for themes. The button works out its own, from
+	   its background. */
+	--codexa-primary-hover: #{hover-shade(var(--codexa-primary))};
+
+	/* Neutrals */
+	--codexa-white: #fff;
+	--codexa-body: #141f26;
+	--codexa-gray-100: #f8fafc;
+	--codexa-gray-200: #f1f5f9;
+	--codexa-gray-300: #e2e8f0;
+	--codexa-gray-400: #cbd5e1;
+	--codexa-gray-500: #94a3b8;
+	--codexa-gray-600: #64748b;
+	--codexa-gray-700: #475569;
+
+	/* Text */
+	--codexa-text: var(--codexa-body);
+
+	/* Brand roles the blocks share, set on the Colors page. */
+	--codexa-on-primary: var(--codexa-white);
+	--codexa-surface: var(--codexa-gray-200);
+	--codexa-border-color: var(--codexa-gray-300);
+
+	/* The blocks' own spacing, a 4px-based scale in rem, for gaps and
+	   padding inside their design. No setting offers these. */
+	--codexa-space-1: 0.25rem;
+	--codexa-space-2: 0.5rem;
+	--codexa-space-3: 0.75rem;
+	--codexa-space-4: 1rem;
+	--codexa-space-5: 1.5rem;
+	--codexa-space-6: 2rem;
+
+	/* The spacing sizes people choose in settings (padding, margin,
+	   gaps), saved in each post by name. Override one to change every
+	   setting that chose it. Kept apart from the scale above, so changing
+	   a size never reshapes the blocks themselves. Must match
+	   SPACING_SIZES in presets.js, which saves each size with this value
+	   as its fallback. */
+	--codexa-spacing-xs: 0.5rem;
+	--codexa-spacing-sm: 1rem;
+	--codexa-spacing-md: 2rem;
+	--codexa-spacing-lg: 3rem;
+	--codexa-spacing-xl: 4rem;
+
+	/* Typography */
+	--codexa-font-weight-bold: 700;
+
+	/* Font sizes, offered only when the theme has none of its own. Must
+	   match PLUGIN_FONT_SIZES in presets.js. */
+	--codexa-font-size-xs: 0.875rem;
+	--codexa-font-size-sm: 1rem;
+	--codexa-font-size-md: 1.25rem;
+	--codexa-font-size-lg: 1.5rem;
+	--codexa-font-size-xl: 2rem;
+	--codexa-font-size-2xl: 2.5rem;
+	--codexa-line-height-tight: 1.1;
+
+	/* Radius */
+	--codexa-radius-sm: 0.25rem;
+	--codexa-radius-md: 0.5rem;
+	--codexa-radius-lg: 1rem;
+	--codexa-radius-pill: 50rem;
+
+	/* Shadows, offered when the theme has no shadow presets. Must match
+	   PLUGIN_SHADOWS in use-shadow-presets.js, which saves each with this
+	   value as its fallback. */
+	--codexa-shadow-sm: 0px 1px 3px 0px #0000001f;
+	--codexa-shadow-md: 0px 6px 16px 0px #00000026;
+	--codexa-shadow-lg: 0px 16px 40px 0px #0003;
+
+	/* Borders */
+	--codexa-border-width: 1px;
+	--codexa-border: var(--codexa-border-width) solid var(--codexa-border-color);
+
+	/* Focus, a dark ring with a white halo so one always contrasts. */
+	--codexa-focus: var(--codexa-body);
+	--codexa-focus-halo: var(--codexa-white);
+
+	/* Motion */
+	--codexa-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+	--codexa-transition-fast: 150ms var(--codexa-ease-standard);
+	--codexa-transition-base: 300ms var(--codexa-ease-standard);
+	--codexa-transition-slow: 400ms ease-in;
+}

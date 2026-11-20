@@ -1,0 +1,53 @@
+{
+	"name": "codexa-blocks",
+	"version": "1.0.0",
+	"private": true,
+	"description": "Create beautiful, cohesive pages with accessible blocks, flexible layouts, engaging content and effortless styling for desktop, tablet and mobile.",
+	"author": "Codexa (https://codexalogic.com)",
+	"license": "GPL-2.0-or-later",
+	"type": "module",
+	"engines": {
+		"node": "^24.18.0 || >=26.0.0",
+		"npm": ">=11.16.0"
+	},
+	"scripts": {
+		"dev": "npm run build:icons && concurrently --names vite,blocks,editor,admin --prefix-colors cyan,magenta,yellow,green \"npm run dev:vite\" \"npm run dev:blocks\" \"npm run dev:editor\" \"npm run dev:admin\"",
+		"dev:vite": "node scripts/clean-assets.mjs && vite build --watch --mode development",
+		"dev:blocks": "wp-scripts start --webpack-src-dir=src/blocks --output-path=build/blocks --blocks-manifest",
+		"dev:editor": "wp-scripts start --webpack-src-dir=src/editor --output-path=build/editor",
+		"dev:admin": "wp-scripts start --webpack-src-dir=src/admin --output-path=build/admin",
+		"build": "npm run build:icons && npm run build:vite && npm run build:blocks && npm run build:editor && npm run build:admin && npm run build:guard",
+		"build:icons": "node scripts/build-icons.mjs",
+		"build:vite": "node scripts/clean-assets.mjs && vite build",
+		"build:blocks": "wp-scripts build --webpack-src-dir=src/blocks --output-path=build/blocks --blocks-manifest",
+		"build:editor": "wp-scripts build --webpack-src-dir=src/editor --output-path=build/editor",
+		"build:admin": "wp-scripts build --webpack-src-dir=src/admin --output-path=build/admin",
+		"build:guard": "node scripts/guard-build-php.mjs",
+		"bundle": "node scripts/bundle.mjs",
+		"pot": "node scripts/make-pot.mjs",
+		"lint": "npm run lint:js && npm run lint:css && npm run lint:php",
+		"lint:fix": "eslint . --fix && wp-scripts lint-style \"src/**/*.scss\" --fix && composer run lint:fix",
+		"lint:js": "eslint .",
+		"lint:css": "wp-scripts lint-style \"src/**/*.scss\"",
+		"lint:php": "composer run lint",
+		"format": "prettier . --write",
+		"format:check": "prettier . --check",
+		"env:start": "wp-env start",
+		"env:stop": "wp-env stop"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.39.5",
+		"@wordpress/dependency-extraction-webpack-plugin": "^6.57.0",
+		"@wordpress/env": "^11.17.0",
+		"@wordpress/eslint-plugin": "^27.1.0",
+		"@wordpress/icons": "^18.0.0",
+		"@wordpress/scripts": "^36.1.0",
+		"archiver": "^8.0.0",
+		"concurrently": "^10.0.6",
+		"eslint": "^9.39.5",
+		"globals": "^17.13.0",
+		"prettier": "^3.9.10",
+		"sass": "^1.105.2",
+		"vite": "^8.3.4"
+	}
+}

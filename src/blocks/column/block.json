@@ -1,0 +1,165 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "codexa-blocks/column",
+	"version": "1.0.0",
+	"title": "Column",
+	"category": "codexa-blocks",
+	"parent": ["codexa-blocks/row"],
+	"description": "One column of a Row. Holds any blocks, with its own spacing and alignment per device, an optional link and hover effects.",
+	"textdomain": "codexa-blocks",
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"padding": {
+			"type": "object"
+		},
+		"margin": {
+			"type": "object"
+		},
+		"textAlign": {
+			"type": "object"
+		},
+		"verticalAlignment": {
+			"type": "object"
+		},
+		"contentAlign": {
+			"type": "object"
+		},
+		"direction": {
+			"type": "object"
+		},
+		"wrap": {
+			"type": "boolean",
+			"default": true
+		},
+		"contentGap": {
+			"type": "object"
+		},
+		"textColor": {
+			"type": "string"
+		},
+		"linkColor": {
+			"type": "string"
+		},
+		"linkHoverColor": {
+			"type": "string"
+		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"backgroundGradient": {
+			"type": "string"
+		},
+		"borderWidth": {
+			"type": "object"
+		},
+		"borderStyle": {
+			"type": "string",
+			"enum": ["solid", "dashed", "dotted", "double"]
+		},
+		"borderColor": {
+			"type": "string"
+		},
+		"borderRadius": {
+			"type": "object"
+		},
+		"shadow": {
+			"type": "string"
+		},
+		"shadowColor": {
+			"type": "string"
+		},
+		"hoverShadow": {
+			"type": "string"
+		},
+		"hoverShadowColor": {
+			"type": "string"
+		},
+		"backgroundImage": {
+			"type": "object"
+		},
+		"backgroundVideo": {
+			"type": "object"
+		},
+		"backgroundPosition": {
+			"type": "object"
+		},
+		"backgroundSize": {
+			"type": "string",
+			"enum": ["cover", "contain", "auto"]
+		},
+		"backgroundRepeat": {
+			"type": "string",
+			"enum": ["no-repeat", "repeat"]
+		},
+		"backgroundAttachment": {
+			"type": "string",
+			"enum": ["scroll", "fixed"]
+		},
+		"overlayColor": {
+			"type": "object"
+		},
+		"overlayGradient": {
+			"type": "object"
+		},
+		"overlayOpacity": {
+			"type": "object"
+		},
+		"linkPostId": {
+			"type": "integer"
+		},
+		"linkPostType": {
+			"type": "string"
+		},
+		"linkUrl": {
+			"type": "string"
+		},
+		"linkAnchor": {
+			"type": "string"
+		},
+		"linkOpensInNewTab": {
+			"type": "boolean",
+			"default": false
+		},
+		"linkRel": {
+			"type": "array",
+			"default": []
+		},
+		"linkLabel": {
+			"type": "string"
+		},
+		"hoverEffects": {
+			"type": "array",
+			"default": []
+		},
+		"hoverOverlayColor": {
+			"type": "string"
+		},
+		"hoverOverlayOpacity": {
+			"type": "number",
+			"default": 30
+		},
+		"hoverBorderColor": {
+			"type": "string"
+		},
+		"hideOn": {
+			"type": "object"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false,
+		"inserter": false,
+		"reusable": false,
+		"layout": {
+			"default": {
+				"type": "default"
+			},
+			"allowEditing": false
+		}
+	},
+	"editorScript": "file:./index.js",
+	"style": ["codexa-blocks-common", "file:./style-index.css"]
+}

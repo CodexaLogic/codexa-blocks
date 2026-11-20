@@ -1,0 +1,47 @@
+# Files kept out of the plugin zip by npm run bundle (scripts/bundle.mjs).
+# A leading / means "at the top of the plugin folder", and * matches within
+# one name. node_modules, .git and packaged are always left out.
+
+# Source and tools. The zip ships build/, not src/.
+
+/src
+/scripts
+/vendor
+/tests
+
+# Configuration
+
+/.distignore
+/.editorconfig
+/.gitignore
+/.npmrc
+/.nvmrc
+/.prettierignore
+/.prettierrc
+/.wp-env.json
+/.wp-env.override.json
+/composer.json
+/composer.lock
+/package.json
+/package-lock.json
+/phpcs.xml.dist
+/eslint.config.js
+/stylelint.config.js
+/vite.config.js
+/webpack.config.js
+
+# GitHub's readme. WordPress reads readme.txt instead.
+
+/README.md
+
+# Patches and notes
+
+*.diff
+*.patch
+
+# Anywhere
+
+*.map
+*.log
+.DS_Store
+Thumbs.db

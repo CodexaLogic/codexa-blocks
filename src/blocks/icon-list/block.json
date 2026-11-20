@@ -1,0 +1,140 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "codexa-blocks/icon-list",
+	"version": "1.0.0",
+	"title": "Icon List",
+	"category": "codexa-blocks",
+	"description": "A list with an icon beside each item: stacked, in columns or side by side, per device.",
+	"keywords": ["list", "icon", "icons", "features", "checklist", "bullets"],
+	"textdomain": "codexa-blocks",
+	"allowedBlocks": ["codexa-blocks/icon-list-item"],
+	"providesContext": {
+		"codexa-blocks/iconListIcon": "icon"
+	},
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"icon": {
+			"type": "string",
+			"default": "codexa/check"
+		},
+		"layout": {
+			"type": "object",
+			"default": {
+				"desktop": "stack"
+			}
+		},
+		"columns": {
+			"type": "object"
+		},
+		"itemAlign": {
+			"type": "object"
+		},
+		"iconAlign": {
+			"type": "string",
+			"enum": ["top", "center"],
+			"default": "top"
+		},
+		"itemGap": {
+			"type": "object"
+		},
+		"iconGap": {
+			"type": "object"
+		},
+		"iconSize": {
+			"type": "object"
+		},
+		"iconColor": {
+			"type": "string"
+		},
+		"iconHoverColor": {
+			"type": "string"
+		},
+		"divider": {
+			"type": "string",
+			"enum": ["none", "solid", "dashed", "dotted"],
+			"default": "none"
+		},
+		"dividerColor": {
+			"type": "string"
+		},
+		"dividerWidth": {
+			"type": "object"
+		},
+		"itemTypography": {
+			"type": "object"
+		},
+		"padding": {
+			"type": "object"
+		},
+		"margin": {
+			"type": "object"
+		},
+		"textColor": {
+			"type": "string"
+		},
+		"linkColor": {
+			"type": "string"
+		},
+		"linkHoverColor": {
+			"type": "string"
+		},
+		"backgroundColor": {
+			"type": "string"
+		},
+		"backgroundGradient": {
+			"type": "string"
+		},
+		"borderWidth": {
+			"type": "object"
+		},
+		"borderStyle": {
+			"type": "string",
+			"enum": ["solid", "dashed", "dotted", "double"]
+		},
+		"borderColor": {
+			"type": "string"
+		},
+		"borderRadius": {
+			"type": "object"
+		},
+		"backgroundImage": {
+			"type": "object"
+		},
+		"backgroundPosition": {
+			"type": "object"
+		},
+		"backgroundSize": {
+			"type": "string",
+			"enum": ["cover", "contain", "auto"]
+		},
+		"backgroundRepeat": {
+			"type": "string",
+			"enum": ["no-repeat", "repeat"]
+		},
+		"backgroundAttachment": {
+			"type": "string",
+			"enum": ["scroll", "fixed"]
+		},
+		"overlayColor": {
+			"type": "object"
+		},
+		"overlayGradient": {
+			"type": "object"
+		},
+		"overlayOpacity": {
+			"type": "object"
+		},
+		"hideOn": {
+			"type": "object"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"style": ["codexa-blocks-common", "file:./style-index.css"]
+}

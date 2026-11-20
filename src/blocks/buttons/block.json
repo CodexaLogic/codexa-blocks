@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "codexa-blocks/buttons",
+	"version": "1.0.0",
+	"title": "Buttons",
+	"category": "codexa-blocks",
+	"description": "One or more buttons side by side, wrapping onto the next line when they don't fit, or one per line, per device.",
+	"keywords": ["buttons", "button", "link", "call to action", "cta"],
+	"textdomain": "codexa-blocks",
+	"allowedBlocks": ["codexa-blocks/button"],
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"buttonAlign": {
+			"type": "object"
+		},
+		"buttonLayout": {
+			"type": "object"
+		},
+		"buttonGap": {
+			"type": "object"
+		},
+		"margin": {
+			"type": "object"
+		},
+		"hideOn": {
+			"type": "object"
+		}
+	},
+	"supports": {
+		"anchor": true,
+		"html": false
+	},
+	"editorScript": "file:./index.js",
+	"style": ["codexa-blocks-common", "file:./style-index.css"]
+}

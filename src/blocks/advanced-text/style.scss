@@ -1,0 +1,129 @@
+/**
+ * Advanced Text, front end and editor.
+ *
+ * The block is the chosen element (p, h1 to h6, div or span), holding the
+ * icon and text in one element, a link when the whole block is linked
+ * (Render\AdvancedText). In the editor that element is always a span.
+ *
+ * Padding, margin, text alignment, colors, background and border come from
+ * the shared per-device classes. Typography applies only where it's set, so
+ * a heading keeps the theme's look otherwise.
+ */
+@use "../../common/scss/mixins" as *;
+
+$block: ".wp-block-codexa-blocks-advanced-text";
+
+:where(#{$block}) {
+	--codexa-adv-text-icon-size: 1.25em;
+	--codexa-adv-text-icon-gap: 0.5em;
+
+	box-sizing: border-box;
+}
+
+// A span is laid out as a block, so its spacing and alignment apply.
+:where(span#{$block}) {
+	display: block;
+}
+
+@include device-variable(
+	"advanced-text-icon-size",
+	--codexa-adv-text-icon-size
+);
+@include device-variable("advanced-text-icon-gap", --codexa-adv-text-icon-gap);
+
+// Two classes, so a setting beats a theme's heading styles such as
+// ".entry-content h2".
+@each $property in $typography-properties {
+	#{$block}.has-codexa-advanced-text-#{$property} {
+		#{$property}: var(--codexa-advanced-text-#{$property});
+	}
+
+	@include bp-below-desktop {
+		#{$block}.has-codexa-advanced-text-#{$property}-tablet {
+			#{$property}: var(--codexa-advanced-text-#{$property}-tablet);
+		}
+	}
+
+	@include bp-below-tablet {
+		#{$block}.has-codexa-advanced-text-#{$property}-mobile {
+			#{$property}: var(--codexa-advanced-text-#{$property}-mobile);
+		}
+	}
+}
+
+// With an icon, the icon and text are one group that Text alignment
+// places, and the text wraps beside the icon rather than under it.
+:is(#{$block}.has-icon-start, #{$block}.has-icon-end) > #{$block}__content {
+	align-items: flex-start;
+	display: inline-flex;
+	gap: var(--codexa-adv-text-icon-gap);
+	max-inline-size: 100%;
+	vertical-align: top;
+}
+
+// The icon, inline SVG from an icon set (Icons.php), in the text color
+// unless it has its own, centered on the first line (1lh).
+#{$block}__icon {
+	block-size: var(--codexa-adv-text-icon-size);
+	flex: none;
+	inline-size: var(--codexa-adv-text-icon-size);
+	margin-block-start: calc((1lh - var(--codexa-adv-text-icon-size)) / 2);
+}
+
+#{$block}.has-codexa-advanced-text-icon-color #{$block}__icon {
+	color: var(--codexa-advanced-text-icon-color);
+}
+
+// Arrows point the way the text reads.
+#{$block}__icon.is-directional:dir(rtl) {
+	transform: scaleX(-1);
+}
+
+#{$block}__text {
+	min-inline-size: 0;
+	overflow-wrap: break-word;
+}
+
+// A linked block takes its own colors, not the theme's link styles. ":root"
+// lifts these above a theme's own, such as ".entry-content a:hover".
+:root a#{$block}__content {
+	&:link,
+	&:visited {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	&:is(:hover, :focus-visible) #{$block}__text {
+		text-decoration: underline;
+	}
+
+	&:focus-visible {
+		outline: 2px solid var(--codexa-focus);
+		outline-offset: 2px;
+	}
+}
+
+:root
+	#{$block}.has-codexa-advanced-text-hover-color
+	> a#{$block}__content:is(:hover, :focus-visible) {
+	color: var(--codexa-advanced-text-hover-color);
+}
+
+#{$block}.has-codexa-advanced-text-icon-hover-color
+	> a#{$block}__content:is(:hover, :focus-visible)
+	#{$block}__icon {
+	color: var(--codexa-advanced-text-icon-hover-color);
+}
+
+// Read by screen readers, not shown, such as an icon's meaning or "opens in
+// a new tab".
+#{$block}__hidden {
+	@include visually-hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	a#{$block}__content,
+	#{$block}__icon {
+		transition: color var(--codexa-transition-fast);
+	}
+}
